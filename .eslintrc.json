@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:storybook/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "ignorePatterns": ["*.config.js"],
+  "rules": {
+    "tailwindcss/classnames-order": "off",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
+  }
+}

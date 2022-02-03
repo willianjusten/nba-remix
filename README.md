@@ -1,8 +1,6 @@
-![React Avançado](https://raw.githubusercontent.com/React-Avancado/boilerplate/master/public/img/logo-gh.svg)
+## NBA React
 
-This is a [Next.js](https://nextjs.org/) boilerplate using [TailwindCSS](https://tailwindcss.com/) and other cool stuff. Most of this is taught in [this course](https://reactavancado.com.br).
-
-![ci](https://github.com/React-Avancado/boilerplate/workflows/ci/badge.svg)
+> A simple app to show NBA games and scores/details.
 
 ## What is inside?
 

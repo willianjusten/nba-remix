@@ -1,13 +1,16 @@
 import { format, addDays, subDays } from 'date-fns'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
+import { getLeagueYear } from 'utils/getApiDate'
 
 export default function Home() {
   const today = new Date()
 
   const [date, setDate] = useState(today)
 
+  const year = getLeagueYear(date)
   const userDate = format(date, 'dd MMMM yyyy')
   const apiDate = format(date, 'yyyyMMdd')
 
@@ -45,18 +48,19 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center">
               {data.games.map((game) => {
                 return (
-                  <div
-                    className="grid grid-cols-3 justify-items-center"
-                    key={game.gameId}
-                  >
-                    <p>
-                      {game.vTeam.score} {game.vTeam.triCode}
-                    </p>
-                    <span className="px-4">{game.clock || 'x'}</span>
-                    <h1>
-                      {game.hTeam.triCode} {game.hTeam.score}
-                    </h1>
-                  </div>
+                  <Link href={`/game/${year}/${game.gameId}`} key={game.gameId}>
+                    <a>
+                      <div className="grid grid-cols-3 justify-items-center">
+                        <p>
+                          {game.vTeam.score} {game.vTeam.triCode}
+                        </p>
+                        <span className="px-4">{game.clock || 'x'}</span>
+                        <h1>
+                          {game.hTeam.triCode} {game.hTeam.score}
+                        </h1>
+                      </div>
+                    </a>
+                  </Link>
                 )
               })}
             </div>

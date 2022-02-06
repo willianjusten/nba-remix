@@ -1,17 +1,17 @@
-import { Link, useLoaderData, useParams } from "remix";
+import { Link, useLoaderData, useParams } from 'remix'
 
 export const loader = async ({ params }) => {
-  const { year, gameId } = params;
+  const { year, gameId } = params
 
   const response = await fetch(
     `https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/${year}/scores/gamedetail/${gameId}_gamedetail.json`
-  );
+  )
 
-  return response.json();
-};
+  return response.json()
+}
 
 function Game() {
-  const { g: game } = useLoaderData();
+  const { g: game } = useLoaderData()
 
   return (
     <div>
@@ -30,7 +30,7 @@ function Game() {
         </div>
       </div>
 
-      {game.st === "1" ? (
+      {game.st === '1' ? (
         <h1>Game has not started</h1>
       ) : (
         <>
@@ -56,18 +56,10 @@ function Game() {
                   <td>{game.hls.q2}</td>
                   <td>{game.hls.q3}</td>
                   <td>{game.hls.q4}</td>
-                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && (
-                    <td>{game.hls.ot1}</td>
-                  )}
-                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && (
-                    <td>{game.hls.ot2}</td>
-                  )}
-                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && (
-                    <td>{game.hls.ot3}</td>
-                  )}
-                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && (
-                    <td>{game.hls.ot4}</td>
-                  )}
+                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && <td>{game.hls.ot1}</td>}
+                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && <td>{game.hls.ot2}</td>}
+                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && <td>{game.hls.ot3}</td>}
+                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && <td>{game.hls.ot4}</td>}
                 </tr>
                 <tr>
                   <td>{game.vls.ta}</td>
@@ -75,18 +67,10 @@ function Game() {
                   <td>{game.vls.q2}</td>
                   <td>{game.vls.q3}</td>
                   <td>{game.vls.q4}</td>
-                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && (
-                    <td>{game.vls.ot1}</td>
-                  )}
-                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && (
-                    <td>{game.vls.ot2}</td>
-                  )}
-                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && (
-                    <td>{game.vls.ot3}</td>
-                  )}
-                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && (
-                    <td>{game.vls.ot4}</td>
-                  )}
+                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && <td>{game.vls.ot1}</td>}
+                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && <td>{game.vls.ot2}</td>}
+                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && <td>{game.vls.ot3}</td>}
+                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && <td>{game.vls.ot4}</td>}
                 </tr>
               </tbody>
             </table>
@@ -241,7 +225,7 @@ function Game() {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default Game;
+export default Game

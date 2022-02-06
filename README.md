@@ -1,6 +1,6 @@
-# Welcome to Remix!
+## NBA React
 
-- [Remix Docs](https://remix.run/docs)
+> A simple app to show NBA games and scores/details.
 
 ## Deployment
 

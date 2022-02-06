@@ -1,2 +1,4 @@
-!.storybook
-!.jest
+node_modules/
+.cache/*
+**/*.css
+coverage/

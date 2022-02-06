@@ -1,22 +1,20 @@
-import { addDays, format, subDays } from "date-fns";
+import { addDays, format, parseISO, subDays } from "date-fns";
 import { Link, useLoaderData, useParams } from "remix";
 
-export const loader = async () => {
-  const today = new Date();
-  const date = format(today, "yyyyMMdd");
-
+export const loader = async ({ params }) => {
   const response = await fetch(
-    `http://data.nba.net/prod/v2/${date}/scoreboard.json`
+    `http://data.nba.net/prod/v2/${params.date}/scoreboard.json`
   );
 
   return response.json();
 };
 
 export default function Index() {
-  const { params } = useParams();
-  const date = new Date(params || Date.now());
-  const prevDate = subDays(date, 1);
-  const nextDate = addDays(date, 1);
+  const { date } = useParams();
+
+  const day = parseISO(date!);
+  const prevDay = subDays(day, 1);
+  const nextDay = addDays(day, 1);
 
   const { games } = useLoaderData();
 
@@ -25,9 +23,9 @@ export default function Index() {
       <h1>NBA Games</h1>
 
       <div>
-        <Link to={`/${format(prevDate, "yyyyMMdd")}`}>&laquo;</Link>
-        <p>{format(date, "dd MMMM yyyy")}</p>
-        <Link to={`/${format(nextDate, "yyyyMMdd")}`}>&raquo;</Link>
+        <Link to={`/${format(prevDay, "yyyyMMdd")}`}>&laquo;</Link>
+        <p>{format(day, "dd MMMM yyyy")}</p>
+        <Link to={`/${format(nextDay, "yyyyMMdd")}`}>&raquo;</Link>
       </div>
 
       <div>

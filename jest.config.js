@@ -20,6 +20,8 @@ module.exports = {
     '!app/root.tsx',
     '!app/entry.client.tsx',
     '!app/entry.server.tsx',
+    '!app/routes/**/*.tsx',
+    '!app/**/stories.tsx',
   ],
 
   // The directory where Jest should output its coverage files

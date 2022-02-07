@@ -1,5 +1,6 @@
 import { addDays, format, subDays } from 'date-fns'
 import { Link, useLoaderData } from 'remix'
+import GameCard, { GameCardProps } from '~/components/GameCard'
 
 export const loader = async () => {
   const today = new Date()
@@ -30,21 +31,15 @@ export default function Index() {
           </div>
 
           <div>
-            {games.map((game) => {
-              return (
-                <Link to={`/game/${game.seasonYear}/${game.gameId}`} key={game.gameId}>
-                  <div style={{ display: 'flex' }}>
-                    <p>
-                      {game.vTeam.score} {game.vTeam.triCode}
-                    </p>
-                    <p>{game.clock || 'x'}</p>
-                    <p>
-                      {game.hTeam.triCode} {game.hTeam.score}
-                    </p>
-                  </div>
-                </Link>
-              )
-            })}
+            {games.map(({ seasonYear, gameId, clock, vTeam, hTeam }: GameCardProps) => (
+              <GameCard
+                seasonYear={seasonYear}
+                gameId={gameId}
+                clock={clock}
+                vTeam={vTeam}
+                hTeam={hTeam}
+              />
+            ))}
           </div>
         </div>
       </main>

@@ -2,3 +2,5 @@ node_modules/
 .cache/*
 **/*.css
 coverage/
+!.storybook
+!.jest

@@ -32,13 +32,15 @@ export default function Index() {
 
           <div>
             {games.map(({ seasonYear, gameId, clock, vTeam, hTeam }: GameCardProps) => (
-              <GameCard
-                seasonYear={seasonYear}
-                gameId={gameId}
-                clock={clock}
-                vTeam={vTeam}
-                hTeam={hTeam}
-              />
+              <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
+                <GameCard
+                  seasonYear={seasonYear}
+                  gameId={gameId}
+                  clock={clock}
+                  vTeam={vTeam}
+                  hTeam={hTeam}
+                />
+              </Link>
             ))}
           </div>
         </div>

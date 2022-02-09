@@ -20,6 +20,8 @@ module.exports = {
     '!app/root.tsx',
     '!app/entry.client.tsx',
     '!app/entry.server.tsx',
+    '!app/routes/**/*.tsx',
+    '!app/**/stories.tsx',
   ],
 
   // The directory where Jest should output its coverage files
@@ -30,7 +32,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(t|j)sx?$': '@swc/jest',
+    '\\.[jt]sx?$': ['babel-jest', { configFile: './.jest/babel.config.js' }],
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test

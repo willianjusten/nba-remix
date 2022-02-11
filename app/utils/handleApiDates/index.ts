@@ -1,12 +1,16 @@
-import { format } from 'date-fns'
-import addYears from 'date-fns/addYears'
-import getMonth from 'date-fns/getMonth'
-import getYear from 'date-fns/getYear'
+import { addYears, format, getMonth, getYear } from 'date-fns'
 
 const COVID_YEAR = 2020
 const COVID_MONTH_END = 9
 const REGULAR_MONTH_END = 5
 
+/**
+ * Method to get the year of the league based on the date
+ * It will return the current year if the date is after the
+ * regular season end date
+ * @param date - Date object to get the year from
+ * @returns string - Ex.: '2020'
+ */
 export const getLeagueYear = (date: Date) => {
   if (getYear(date) === COVID_YEAR) {
     return getMonth(date) > COVID_MONTH_END
@@ -28,6 +32,14 @@ export type getTimePeriodArgs = {
 
 const REGULAR_PERIOD_COUNT = 4
 
+/**
+ * Method that returns the time period of the game
+ * @param startTime - The start time of the game
+ * @param endTime - The end time of the game
+ * @param clock - The current clock of the game
+ * @param period - The current period of the game - 0 (not started) | 1-4 (regular) | +4 (OT)
+ * @returns string
+ */
 export const getTimePeriod = ({
   startTime,
   endTime,

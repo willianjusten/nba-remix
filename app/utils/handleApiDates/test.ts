@@ -33,10 +33,10 @@ describe('getLeagueYear()', () => {
 
 describe('getTimePeriod()', () => {
   it('should return when the game starts if not started yet', () => {
-    const startTime = '2022-02-12T00:00:00.000Z' // 9:00 PM GMT-3 (Brazil)
+    const startTime = '2022-02-12T00:00:00.000Z'
     const clock = ''
 
-    expect(getTimePeriod(startTime, undefined, clock)).toEqual('9:00 PM')
+    expect(getTimePeriod(startTime, undefined, clock)).toEqual('12:00 AM')
   })
 
   describe('FINAL', () => {

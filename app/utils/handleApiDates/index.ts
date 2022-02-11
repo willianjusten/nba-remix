@@ -3,24 +3,39 @@ import addYears from 'date-fns/addYears'
 import getMonth from 'date-fns/getMonth'
 import getYear from 'date-fns/getYear'
 
+const COVID_YEAR = 2020
+const COVID_MONTH_END = 9
+const REGULAR_MONTH_END = 5
+
 export const getLeagueYear = (date: Date) => {
-  if (getYear(date) === 2020) {
-    // 2020 season is delayed and season should finish in 2020-10
-    return getMonth(date) > 9 ? getYear(date) : getYear(addYears(date, -1))
+  if (getYear(date) === COVID_YEAR) {
+    return getMonth(date) > COVID_MONTH_END
+      ? getYear(date)
+      : getYear(addYears(date, -1))
   } else {
-    // in NBA the season starts from July and ends in May
-    // so if the date is in the first half of the year, we should return the previous year
-    return getMonth(date) > 5 ? getYear(date) : getYear(addYears(date, -1))
+    return getMonth(date) > REGULAR_MONTH_END
+      ? getYear(date)
+      : getYear(addYears(date, -1))
   }
 }
 
-export const getTimePeriod = (
-  startTime: string,
-  endTime?: string,
-  clock?: string,
+export type getTimePeriodArgs = {
+  startTime: string
+  endTime?: string
+  clock?: string
+  period?: number
+}
+
+const REGULAR_PERIOD_COUNT = 4
+
+export const getTimePeriod = ({
+  startTime,
+  endTime,
+  clock,
   period = 0,
-) => {
-  const overtime = period > 4 ? `OT${period - 4}` : ''
+}: getTimePeriodArgs) => {
+  const overtime =
+    period > REGULAR_PERIOD_COUNT ? `OT${period - REGULAR_PERIOD_COUNT}` : ''
 
   if (endTime) return `Final${overtime && `/${overtime}`}`
 

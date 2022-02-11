@@ -36,7 +36,7 @@ describe('getTimePeriod()', () => {
     const startTime = '2022-02-12T00:00:00.000Z'
     const clock = ''
 
-    expect(getTimePeriod(startTime, undefined, clock)).toEqual('12:00 AM')
+    expect(getTimePeriod({ startTime, clock })).toEqual('12:00 AM')
   })
 
   describe('FINAL', () => {
@@ -44,11 +44,13 @@ describe('getTimePeriod()', () => {
     const endTime = '2022-02-11T02:28:00.000Z'
 
     it('should return final when the game already has finished', () => {
-      expect(getTimePeriod(startTime, endTime)).toEqual('Final')
+      expect(getTimePeriod({ startTime, endTime })).toEqual('Final')
     })
 
     it('should return final with OT', () => {
-      expect(getTimePeriod(startTime, endTime, '', 6)).toEqual('Final/OT2')
+      expect(getTimePeriod({ startTime, endTime, period: 6 })).toEqual(
+        'Final/OT2',
+      )
     })
   })
 
@@ -59,17 +61,13 @@ describe('getTimePeriod()', () => {
     it('should return the clock and its period when live', () => {
       const period = 2
 
-      expect(getTimePeriod(startTime, undefined, clock, period)).toEqual(
-        'Q2 - 11:38',
-      )
+      expect(getTimePeriod({ startTime, clock, period })).toEqual('Q2 - 11:38')
     })
 
     it('should return the clock with OT if period bigger than 4', () => {
       const period = 6
 
-      expect(getTimePeriod(startTime, undefined, clock, period)).toEqual(
-        'OT2 - 11:38',
-      )
+      expect(getTimePeriod({ startTime, clock, period })).toEqual('OT2 - 11:38')
     })
   })
 })

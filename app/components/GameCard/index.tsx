@@ -31,9 +31,9 @@ const GameCard = ({
   period,
   clock,
 }: GameCardProps) => (
-  <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl hover:cursor-pointer">
+  <article className="flex min-w-[340px] rounded-lg border border-main bg-glass text-white backdrop-blur-xl hover:cursor-pointer">
     <div className="flex w-full flex-col">
-      <div className="flex py-6 px-2">
+      <div className="flex p-6">
         <div className="flex w-1/4 flex-col items-center text-center">
           <TeamLogo team={vTeam.triCode} size={48} />
           <p className="mt-1 whitespace-nowrap text-sm font-semibold">

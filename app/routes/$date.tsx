@@ -1,10 +1,12 @@
-import { addDays, format, parseISO, subDays } from 'date-fns'
-import { Link, useLoaderData, useParams } from 'remix'
+import { addDays, parseISO, subDays } from 'date-fns'
+import { useLoaderData, useParams } from 'remix'
+import type { LoaderFunction } from 'remix'
+
 import DateSelector from '~/components/DateSelector'
-import GameCard from '~/components/GameCard'
+import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
-export const loader = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params }) => {
   const response = await fetch(
     `http://data.nba.net/prod/v2/${params.date}/scoreboard.json`,
   )
@@ -25,31 +27,7 @@ export default function Index() {
     <Layout>
       <DateSelector day={day} prevDay={prevDay} nextDay={nextDay} />
 
-      <div>
-        {games.map(
-          ({
-            seasonYear,
-            gameId,
-            startTimeUTC,
-            endTimeUTC,
-            period,
-            clock,
-            vTeam,
-            hTeam,
-          }) => (
-            <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
-              <GameCard
-                startTime={startTimeUTC}
-                endTime={endTimeUTC}
-                period={period.current}
-                clock={clock}
-                vTeam={vTeam}
-                hTeam={hTeam}
-              />
-            </Link>
-          ),
-        )}
-      </div>
+      <GamesList games={games} />
     </Layout>
   )
 }

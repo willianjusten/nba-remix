@@ -1,7 +1,8 @@
 import { addDays, format, subDays } from 'date-fns'
-import { Link, useLoaderData } from 'remix'
+import { useLoaderData } from 'remix'
+
 import DateSelector from '~/components/DateSelector'
-import GameCard from '~/components/GameCard'
+import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
 export const loader = async () => {
@@ -26,31 +27,7 @@ export default function Index() {
     <Layout>
       <DateSelector day={day} prevDay={prevDay} nextDay={nextDay} />
 
-      <div>
-        {games.map(
-          ({
-            seasonYear,
-            gameId,
-            startTimeUTC,
-            endTimeUTC,
-            period,
-            clock,
-            vTeam,
-            hTeam,
-          }) => (
-            <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
-              <GameCard
-                startTime={startTimeUTC}
-                endTime={endTimeUTC}
-                period={period.current}
-                clock={clock}
-                vTeam={vTeam}
-                hTeam={hTeam}
-              />
-            </Link>
-          ),
-        )}
-      </div>
+      <GamesList games={games} />
     </Layout>
   )
 }

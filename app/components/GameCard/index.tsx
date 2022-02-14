@@ -31,7 +31,7 @@ const GameCard = ({
   period,
   clock,
 }: GameCardProps) => (
-  <article className="flex min-w-[340px] rounded-lg border border-main bg-glass text-white backdrop-blur-xl hover:cursor-pointer">
+  <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700">
     <div className="flex w-full flex-col">
       <div className="flex p-6">
         <div className="flex w-1/4 flex-col items-center text-center">

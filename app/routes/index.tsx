@@ -1,6 +1,11 @@
-import { addDays, format, subDays } from 'date-fns'
-import { Link, useLoaderData } from 'remix'
-import GameCard from '~/components/GameCard'
+import { format } from 'date-fns'
+import { useLoaderData } from 'remix'
+
+import DateSelector from '~/components/DateSelector'
+import GamesList from '~/components/GamesList'
+import Layout from '~/components/Layout'
+
+import { getDays } from '~/utils/handleApiDates'
 
 export const loader = async () => {
   const today = new Date()
@@ -14,51 +19,14 @@ export const loader = async () => {
 }
 
 export default function Index() {
-  const date = new Date()
-  const prevDay = subDays(date, 1)
-  const nextDay = addDays(date, 1)
-
+  const { day, prevDay, nextDay } = getDays()
   const { games } = useLoaderData()
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold">NBA Games</h1>
+    <Layout>
+      <DateSelector day={day} prevDay={prevDay} nextDay={nextDay} />
 
-          <div className="flex gap-4 py-4">
-            <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>&laquo;</Link>
-            <p>{format(date, 'dd MMMM yyyy')}</p>
-            <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>&raquo;</Link>
-          </div>
-
-          <div>
-            {games.map(
-              ({
-                seasonYear,
-                gameId,
-                startTimeUTC,
-                endTimeUTC,
-                period,
-                clock,
-                vTeam,
-                hTeam,
-              }) => (
-                <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
-                  <GameCard
-                    startTime={startTimeUTC}
-                    endTime={endTimeUTC}
-                    period={period.current}
-                    clock={clock}
-                    vTeam={vTeam}
-                    hTeam={hTeam}
-                  />
-                </Link>
-              ),
-            )}
-          </div>
-        </div>
-      </main>
-    </div>
+      <GamesList games={games} />
+    </Layout>
   )
 }

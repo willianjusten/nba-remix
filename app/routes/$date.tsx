@@ -1,8 +1,13 @@
-import { addDays, format, parseISO, subDays } from 'date-fns'
-import { Link, useLoaderData, useParams } from 'remix'
-import GameCard from '~/components/GameCard'
+import { useLoaderData, useParams } from 'remix'
+import type { LoaderFunction } from 'remix'
 
-export const loader = async ({ params }) => {
+import DateSelector from '~/components/DateSelector'
+import GamesList from '~/components/GamesList'
+import Layout from '~/components/Layout'
+
+import { getDays } from '~/utils/handleApiDates'
+
+export const loader: LoaderFunction = async ({ params }) => {
   const response = await fetch(
     `http://data.nba.net/prod/v2/${params.date}/scoreboard.json`,
   )
@@ -12,52 +17,15 @@ export const loader = async ({ params }) => {
 
 export default function Index() {
   const { date } = useParams()
-
-  const day = parseISO(date!)
-  const prevDay = subDays(day, 1)
-  const nextDay = addDays(day, 1)
+  const { day, prevDay, nextDay } = getDays(date)
 
   const { games } = useLoaderData()
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold">NBA Games</h1>
+    <Layout>
+      <DateSelector day={day} prevDay={prevDay} nextDay={nextDay} />
 
-          <div className="flex gap-4 py-4">
-            <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>&laquo;</Link>
-            <p>{format(day, 'dd MMMM yyyy')}</p>
-            <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>&raquo;</Link>
-          </div>
-
-          <div>
-            {games.map(
-              ({
-                seasonYear,
-                gameId,
-                startTimeUTC,
-                endTimeUTC,
-                period,
-                clock,
-                vTeam,
-                hTeam,
-              }) => (
-                <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
-                  <GameCard
-                    startTime={startTimeUTC}
-                    endTime={endTimeUTC}
-                    period={period.current}
-                    clock={clock}
-                    vTeam={vTeam}
-                    hTeam={hTeam}
-                  />
-                </Link>
-              ),
-            )}
-          </div>
-        </div>
-      </main>
-    </div>
+      <GamesList games={games} />
+    </Layout>
   )
 }

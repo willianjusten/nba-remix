@@ -1,4 +1,12 @@
-import { addYears, format, getMonth, getYear } from 'date-fns'
+import {
+  addDays,
+  addYears,
+  format,
+  getMonth,
+  getYear,
+  parseISO,
+  subDays,
+} from 'date-fns'
 
 const COVID_YEAR = 2020
 const COVID_MONTH_END = 9
@@ -54,4 +62,19 @@ export const getTimePeriod = ({
   if (clock) return `${overtime || `Q${period}`} - ${clock}`
 
   return format(new Date(startTime), 'h:mm a')
+}
+
+/**
+ * Method to return the day, nextDay and prevDay
+ * @param date - string of the day - Ex.: '20220214'
+ * @returns object of date objects
+ */
+export const getDays = (date?: string) => {
+  const day = date ? parseISO(date) : new Date()
+
+  return {
+    day,
+    prevDay: subDays(day, 1),
+    nextDay: addDays(day, 1),
+  }
 }

@@ -49,3 +49,10 @@ Default.args = {
   team: 'GSW',
   size: 300,
 }
+
+export const NoLogo: Story<TeamLogoProps> = (args) => <TeamLogo {...args} />
+
+NoLogo.args = {
+  team: 'DRT',
+  size: 300,
+}

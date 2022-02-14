@@ -1,5 +1,6 @@
 import { addDays, format, subDays } from 'date-fns'
 import { Link, useLoaderData } from 'remix'
+import DateSelector from '~/components/DateSelector'
 import GameCard from '~/components/GameCard'
 import Layout from '~/components/Layout'
 
@@ -15,19 +16,15 @@ export const loader = async () => {
 }
 
 export default function Index() {
-  const date = new Date()
-  const prevDay = subDays(date, 1)
-  const nextDay = addDays(date, 1)
+  const day = new Date()
+  const prevDay = subDays(day, 1)
+  const nextDay = addDays(day, 1)
 
   const { games } = useLoaderData()
 
   return (
     <Layout>
-      <div className="flex gap-4 py-4">
-        <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>&laquo;</Link>
-        <p>{format(date, 'dd MMMM yyyy')}</p>
-        <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>&raquo;</Link>
-      </div>
+      <DateSelector day={day} prevDay={prevDay} nextDay={nextDay} />
 
       <div>
         {games.map(

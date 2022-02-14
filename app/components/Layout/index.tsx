@@ -6,9 +6,9 @@ export type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="bg-main bg-cover">
+    <div className="min-h-screen bg-main bg-cover text-white">
       <Header />
-      <main>{children}</main>
+      <main className="container mx-auto">{children}</main>
     </div>
   )
 }

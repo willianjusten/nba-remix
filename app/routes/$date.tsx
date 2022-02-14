@@ -1,6 +1,7 @@
 import { addDays, format, parseISO, subDays } from 'date-fns'
 import { Link, useLoaderData, useParams } from 'remix'
 import GameCard from '~/components/GameCard'
+import Layout from '~/components/Layout'
 
 export const loader = async ({ params }) => {
   const response = await fetch(
@@ -20,44 +21,38 @@ export default function Index() {
   const { games } = useLoaderData()
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold">NBA Games</h1>
+    <Layout>
+      <div className="flex gap-4 py-4">
+        <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>&laquo;</Link>
+        <p>{format(day, 'dd MMMM yyyy')}</p>
+        <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>&raquo;</Link>
+      </div>
 
-          <div className="flex gap-4 py-4">
-            <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>&laquo;</Link>
-            <p>{format(day, 'dd MMMM yyyy')}</p>
-            <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>&raquo;</Link>
-          </div>
-
-          <div>
-            {games.map(
-              ({
-                seasonYear,
-                gameId,
-                startTimeUTC,
-                endTimeUTC,
-                period,
-                clock,
-                vTeam,
-                hTeam,
-              }) => (
-                <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
-                  <GameCard
-                    startTime={startTimeUTC}
-                    endTime={endTimeUTC}
-                    period={period.current}
-                    clock={clock}
-                    vTeam={vTeam}
-                    hTeam={hTeam}
-                  />
-                </Link>
-              ),
-            )}
-          </div>
-        </div>
-      </main>
-    </div>
+      <div>
+        {games.map(
+          ({
+            seasonYear,
+            gameId,
+            startTimeUTC,
+            endTimeUTC,
+            period,
+            clock,
+            vTeam,
+            hTeam,
+          }) => (
+            <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
+              <GameCard
+                startTime={startTimeUTC}
+                endTime={endTimeUTC}
+                period={period.current}
+                clock={clock}
+                vTeam={vTeam}
+                hTeam={hTeam}
+              />
+            </Link>
+          ),
+        )}
+      </div>
+    </Layout>
   )
 }

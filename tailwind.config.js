@@ -8,6 +8,7 @@ module.exports = {
       backgroundImage: {
         glass:
           'linear-gradient(262.6deg, rgba(48, 49, 58, 0.5) 0%, rgba(48, 49, 58, 0.3) 101.18%, rgba(48, 49, 58, 0.3) 101.18%);',
+        main: "url('/images/bg.jpg')",
       },
     },
   },

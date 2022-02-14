@@ -1,3 +1,5 @@
+import '../app/styles/tailwind.css'
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -9,5 +11,17 @@ export const parameters = {
   previewTabs: {
     'storybook/docs/panel': { index: -1 },
   },
+  backgrounds: {
+    default: 'dark',
+    values: [
+      {
+        name: 'dark',
+        value: '#090B0C',
+      },
+      {
+        name: 'light',
+        value: '#fff',
+      },
+    ],
+  },
 }
-

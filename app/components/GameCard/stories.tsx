@@ -4,28 +4,99 @@ import GameCard, { GameCardProps } from '.'
 export default {
   title: 'GameCard',
   component: GameCard,
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
 } as Meta
 
-export const Default: Story<GameCardProps> = (args) => <GameCard {...args} />
-
-Default.args = {
-  clock: '',
+const teams = {
   vTeam: {
-    triCode: 'GSW',
+    triCode: 'PHI',
     win: '44',
     loss: '10',
     score: '130',
   },
   hTeam: {
-    triCode: 'PHI',
+    triCode: 'MIA',
     win: '32',
     loss: '22',
     score: '109',
   },
 }
 
-// TODO: add other possible stories here
+export const Final: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
 
-// When the game didn't start yet (should show the time it will start)
-// When the game is happening (should show the clock)
-// When the game already happened (should show final)
+Final.args = {
+  startTime: '2022-02-12T22:00:00.000Z',
+  endTime: '2022-02-13T00:30:00.000Z',
+  period: 4,
+  clock: '',
+  ...teams,
+}
+
+export const FinalWithOT: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+FinalWithOT.args = {
+  startTime: '2022-02-12T22:00:00.000Z',
+  endTime: '2022-02-13T00:30:00.000Z',
+  period: 5,
+  clock: '',
+  ...teams,
+}
+
+export const Future: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+Future.args = {
+  startTime: '2022-02-14T22:00:00.000Z',
+  clock: '',
+  vTeam: {
+    triCode: 'GSW',
+    win: '44',
+    loss: '10',
+  },
+  hTeam: {
+    triCode: 'MIA',
+    win: '32',
+    loss: '22',
+  },
+}
+
+export const Started: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+Started.args = {
+  startTime: '2022-02-14T22:00:00.000Z',
+  period: 4,
+  clock: '1:34',
+  ...teams,
+}
+
+export const StartedWithOT: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+StartedWithOT.args = {
+  startTime: '2022-02-14T22:00:00.000Z',
+  period: 6,
+  clock: '4:34',
+  ...teams,
+}

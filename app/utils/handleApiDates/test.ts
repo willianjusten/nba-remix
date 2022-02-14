@@ -1,4 +1,4 @@
-import { getLeagueYear, getTimePeriod } from '.'
+import { getDays, getLeagueYear, getTimePeriod } from '.'
 
 // Because NBA season starts from July and ends in May,
 // we need to calculate the year of the season based on that
@@ -68,6 +68,29 @@ describe('getTimePeriod()', () => {
       const period = 6
 
       expect(getTimePeriod({ startTime, clock, period })).toEqual('OT2 - 11:38')
+    })
+  })
+})
+
+describe('getDays()', () => {
+  it('should return the day, nextDay and prevDay when date is passed', () => {
+    const date = '20220214'
+
+    expect(getDays(date)).toEqual({
+      day: new Date('2022-02-14T00:00:00.000Z'),
+      nextDay: new Date('2022-02-15T00:00:00.000Z'),
+      prevDay: new Date('2022-02-13T00:00:00.000Z'),
+    })
+  })
+
+  it('should return the day, nextDay and prevDay when date is not passed', () => {
+    // changing the day to a specific date
+    jest.useFakeTimers().setSystemTime(new Date('2021-06-28').getTime())
+
+    expect(getDays()).toEqual({
+      day: new Date('2021-06-28T00:00:00.000Z'),
+      nextDay: new Date('2021-06-29T00:00:00.000Z'),
+      prevDay: new Date('2021-06-27T00:00:00.000Z'),
     })
   })
 })

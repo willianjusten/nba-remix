@@ -1,10 +1,11 @@
-import { addDays, parseISO, subDays } from 'date-fns'
 import { useLoaderData, useParams } from 'remix'
 import type { LoaderFunction } from 'remix'
 
 import DateSelector from '~/components/DateSelector'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
+
+import { getDays } from '~/utils/handleApiDates'
 
 export const loader: LoaderFunction = async ({ params }) => {
   const response = await fetch(
@@ -16,10 +17,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function Index() {
   const { date } = useParams()
-
-  const day = parseISO(date!)
-  const prevDay = subDays(day, 1)
-  const nextDay = addDays(day, 1)
+  const { day, prevDay, nextDay } = getDays(date)
 
   const { games } = useLoaderData()
 

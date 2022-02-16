@@ -13,3 +13,18 @@ export type Game = {
   vTeam: Team
   hTeam: Team
 }
+
+export type GameList = {
+  gameId: string
+  seasonYear: string
+  startTimeUTC: string
+  endTimeUTC?: string
+  period: {
+    current: number
+    isHalftime: boolean
+    isEndOfPeriod: boolean
+  }
+  clock?: string
+  vTeam: Team
+  hTeam: Team
+}

@@ -1,30 +1,9 @@
 import { Link } from 'remix'
 import GameCard from '../GameCard'
-
-export type Team = {
-  score?: string
-  triCode: string
-  win: string
-  loss: string
-}
-
-export type Game = {
-  gameId: string
-  seasonYear: string
-  startTimeUTC: string
-  endTimeUTC?: string
-  period: {
-    current: number
-    isHalftime: boolean
-    isEndOfPeriod: boolean
-  }
-  clock?: string
-  vTeam: Team
-  hTeam: Team
-}
+import type { GameList } from '~/types'
 
 export type GamesListProps = {
-  games: Game[]
+  games: GameList[]
 }
 
 function GamesList({ games }: GamesListProps) {

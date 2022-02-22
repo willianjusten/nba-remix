@@ -1,5 +1,6 @@
 import { useLoaderData } from 'remix'
 import ArrowIcon from '~/components/ArrowIcon'
+import GameCard from '~/components/GameCard'
 import Layout from '~/components/Layout'
 
 export const loader = async ({ params }) => {
@@ -9,11 +10,31 @@ export const loader = async ({ params }) => {
     `https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/${year}/scores/gamedetail/${gameId}_gamedetail.json`,
   )
 
-  return response.json()
+  const { g: game } = await response.json()
+
+  return {
+    game: {
+      startTimeUTC: game.htm,
+      endTimeUTC: game.dur,
+      period: game.p,
+      clock: game.cl,
+      status: game.st,
+      vTeam: {
+        score: game.vls.s,
+        triCode: game.vls.ta,
+        ...game.vls,
+      },
+      hTeam: {
+        score: game.hls.s,
+        triCode: game.hls.ta,
+        ...game.hls,
+      },
+    },
+  }
 }
 
 function Game() {
-  const { g: game } = useLoaderData()
+  const { game } = useLoaderData()
   const handleBackButton = () => window.history.back()
 
   return (
@@ -26,21 +47,19 @@ function Game() {
         <span className="pl-3 text-xl">Back</span>
       </div>
 
-      <div className="flex gap-4 py-4">
-        <div>
-          <h1 className="font-bold">{game.vls.ta}</h1>
-          <p>{game.vls.tn}</p>
-          <p>{game.vls.s}</p>
-        </div>
-
-        <div>
-          <h1 className="font-bold">{game.hls.ta}</h1>
-          <p>{game.hls.tn}</p>
-          <p>{game.hls.s}</p>
-        </div>
+      <div className="py-5 md:max-w-sm">
+        <GameCard
+          vTeam={game.vTeam}
+          hTeam={game.hTeam}
+          clock={game.clock}
+          period={game.period}
+          startTime={game.startTimeUTC}
+          endTime={game.endTimeUTC}
+          details={false}
+        />
       </div>
 
-      {game.st === '1' ? (
+      {game.status === '1' ? (
         <h1>Game has not started</h1>
       ) : (
         <>
@@ -53,49 +72,49 @@ function Game() {
                   <th>Q2</th>
                   <th>Q3</th>
                   <th>Q4</th>
-                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && <th>OT1</th>}
-                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && <th>OT2</th>}
-                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && <th>OT3</th>}
-                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && <th>OT4</th>}
+                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && <th>OT1</th>}
+                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && <th>OT2</th>}
+                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && <th>OT3</th>}
+                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && <th>OT4</th>}
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{game.hls.ta}</td>
-                  <td>{game.hls.q1}</td>
-                  <td>{game.hls.q2}</td>
-                  <td>{game.hls.q3}</td>
-                  <td>{game.hls.q4}</td>
-                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && (
-                    <td>{game.hls.ot1}</td>
+                  <td>{game.hTeam.ta}</td>
+                  <td>{game.hTeam.q1}</td>
+                  <td>{game.hTeam.q2}</td>
+                  <td>{game.hTeam.q3}</td>
+                  <td>{game.hTeam.q4}</td>
+                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && (
+                    <td>{game.hTeam.ot1}</td>
                   )}
-                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && (
-                    <td>{game.hls.ot2}</td>
+                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && (
+                    <td>{game.hTeam.ot2}</td>
                   )}
-                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && (
-                    <td>{game.hls.ot3}</td>
+                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && (
+                    <td>{game.hTeam.ot3}</td>
                   )}
-                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && (
-                    <td>{game.hls.ot4}</td>
+                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && (
+                    <td>{game.hTeam.ot4}</td>
                   )}
                 </tr>
                 <tr>
-                  <td>{game.vls.ta}</td>
-                  <td>{game.vls.q1}</td>
-                  <td>{game.vls.q2}</td>
-                  <td>{game.vls.q3}</td>
-                  <td>{game.vls.q4}</td>
-                  {game.hls.ot1 !== 0 && game.vls.ot1 !== 0 && (
-                    <td>{game.vls.ot1}</td>
+                  <td>{game.vTeam.ta}</td>
+                  <td>{game.vTeam.q1}</td>
+                  <td>{game.vTeam.q2}</td>
+                  <td>{game.vTeam.q3}</td>
+                  <td>{game.vTeam.q4}</td>
+                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && (
+                    <td>{game.vTeam.ot1}</td>
                   )}
-                  {game.hls.ot2 !== 0 && game.vls.ot2 !== 0 && (
-                    <td>{game.vls.ot2}</td>
+                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && (
+                    <td>{game.vTeam.ot2}</td>
                   )}
-                  {game.hls.ot3 !== 0 && game.vls.ot3 !== 0 && (
-                    <td>{game.vls.ot3}</td>
+                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && (
+                    <td>{game.vTeam.ot3}</td>
                   )}
-                  {game.hls.ot4 !== 0 && game.vls.ot4 !== 0 && (
-                    <td>{game.vls.ot4}</td>
+                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && (
+                    <td>{game.vTeam.ot4}</td>
                   )}
                 </tr>
               </tbody>
@@ -105,7 +124,7 @@ function Game() {
           <div className="flex gap-12 py-10">
             <div>
               <h1 className="pb-4 text-2xl font-bold">
-                {game.hls.tc} {game.hls.tn}
+                {game.hTeam.tc} {game.hTeam.tn}
               </h1>
               <table>
                 <thead>
@@ -118,7 +137,7 @@ function Game() {
                   </tr>
                 </thead>
                 <tbody>
-                  {game.hls.pstsg.map((player) => (
+                  {game.hTeam.pstsg.map((player) => (
                     <tr key={player.id}>
                       <td>{player.fn}</td>
                       <td>{player.min}</td>
@@ -133,7 +152,7 @@ function Game() {
 
             <div>
               <h1 className="pb-4 text-2xl font-bold">
-                {game.vls.tc} {game.vls.tn}
+                {game.vTeam.tc} {game.vTeam.tn}
               </h1>
               <table>
                 <thead>
@@ -146,7 +165,7 @@ function Game() {
                   </tr>
                 </thead>
                 <tbody>
-                  {game.vls.pstsg.map((player) => (
+                  {game.vTeam.pstsg.map((player) => (
                     <tr key={player.id}>
                       <td>{player.fn}</td>
                       <td>{player.min}</td>
@@ -163,87 +182,87 @@ function Game() {
               <h1 className="pb-4 text-2xl font-bold">Team Stats</h1>
               <table>
                 <tr>
-                  <td className="font-bold">{game.hls.tn}</td>
+                  <td className="font-bold">{game.hTeam.tn}</td>
                   <td className="text-center">Stats</td>
-                  <td className="font-bold">{game.vls.tn}</td>
+                  <td className="font-bold">{game.vTeam.tn}</td>
                 </tr>
 
                 <tr>
                   <td>
-                    {game.hls.tstsg.fgm} / {game.hls.tstsg.fga}
+                    {game.hTeam.tstsg.fgm} / {game.hTeam.tstsg.fga}
                   </td>
                   <td>Field Goals</td>
                   <td>
-                    {game.vls.tstsg.fgm} / {game.vls.tstsg.fga}
+                    {game.vTeam.tstsg.fgm} / {game.vTeam.tstsg.fga}
                   </td>
                 </tr>
 
                 <tr>
                   <td>
-                    {game.hls.tstsg.tpm} / {game.hls.tstsg.tpa}
+                    {game.hTeam.tstsg.tpm} / {game.hTeam.tstsg.tpa}
                   </td>
                   <td>3 pointers</td>
                   <td>
-                    {game.vls.tstsg.tpm} / {game.vls.tstsg.tpa}
+                    {game.vTeam.tstsg.tpm} / {game.vTeam.tstsg.tpa}
                   </td>
                 </tr>
 
                 <tr>
                   <td>
-                    {game.hls.tstsg.ftm} / {game.hls.tstsg.fta}
+                    {game.hTeam.tstsg.ftm} / {game.hTeam.tstsg.fta}
                   </td>
                   <td>Free throws</td>
                   <td>
-                    {game.vls.tstsg.ftm} / {game.vls.tstsg.fta}
+                    {game.vTeam.tstsg.ftm} / {game.vTeam.tstsg.fta}
                   </td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.reb}</td>
+                  <td>{game.hTeam.tstsg.reb}</td>
                   <td>Total Rebounds</td>
-                  <td>{game.vls.tstsg.reb}</td>
+                  <td>{game.vTeam.tstsg.reb}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.oreb}</td>
+                  <td>{game.hTeam.tstsg.oreb}</td>
                   <td>Offensive Rebounds</td>
-                  <td>{game.vls.tstsg.oreb}</td>
+                  <td>{game.vTeam.tstsg.oreb}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.ast}</td>
+                  <td>{game.hTeam.tstsg.ast}</td>
                   <td>Assists</td>
-                  <td>{game.vls.tstsg.ast}</td>
+                  <td>{game.vTeam.tstsg.ast}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.blk}</td>
+                  <td>{game.hTeam.tstsg.blk}</td>
                   <td>Blocks</td>
-                  <td>{game.vls.tstsg.blk}</td>
+                  <td>{game.vTeam.tstsg.blk}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.stl}</td>
+                  <td>{game.hTeam.tstsg.stl}</td>
                   <td>Steals</td>
-                  <td>{game.vls.tstsg.stl}</td>
+                  <td>{game.vTeam.tstsg.stl}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.tov}</td>
+                  <td>{game.hTeam.tstsg.tov}</td>
                   <td>Turnovers</td>
-                  <td>{game.vls.tstsg.tov}</td>
+                  <td>{game.vTeam.tstsg.tov}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.pip}</td>
+                  <td>{game.hTeam.tstsg.pip}</td>
                   <td>Points in the paint</td>
-                  <td>{game.vls.tstsg.pip}</td>
+                  <td>{game.vTeam.tstsg.pip}</td>
                 </tr>
 
                 <tr>
-                  <td>{game.hls.tstsg.pf}</td>
+                  <td>{game.hTeam.tstsg.pf}</td>
                   <td>Fouls - Personal</td>
-                  <td>{game.vls.tstsg.pf}</td>
+                  <td>{game.vTeam.tstsg.pf}</td>
                 </tr>
               </table>
             </div>

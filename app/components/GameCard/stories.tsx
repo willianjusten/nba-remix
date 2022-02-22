@@ -100,3 +100,17 @@ StartedWithOT.args = {
   clock: '4:34',
   ...teams,
 }
+
+export const WithoutFooter: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+WithoutFooter.args = {
+  startTime: '2022-02-14T22:00:00.000Z',
+  period: 6,
+  clock: '4:34',
+  ...teams,
+  details: false,
+}

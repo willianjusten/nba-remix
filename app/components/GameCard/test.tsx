@@ -42,4 +42,10 @@ describe('<GameCard />', () => {
     // show footer info
     expect(screen.getByText('View details')).toBeInTheDocument()
   })
+
+  it('should render without footer', () => {
+    render(<GameCard {...game} details={false} />)
+
+    expect(screen.queryByText('View details')).not.toBeInTheDocument()
+  })
 })

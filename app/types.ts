@@ -1,8 +1,8 @@
 export type Team = {
   score?: string
   triCode: string
-  win: string
-  loss: string
+  win?: string
+  loss?: string
 }
 
 export type Game = {

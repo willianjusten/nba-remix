@@ -1,4 +1,5 @@
-import { Link, useLoaderData, useParams } from 'remix'
+import { useLoaderData } from 'remix'
+import ArrowIcon from '~/components/ArrowIcon'
 import Layout from '~/components/Layout'
 
 export const loader = async ({ params }) => {
@@ -13,10 +14,18 @@ export const loader = async ({ params }) => {
 
 function Game() {
   const { g: game } = useLoaderData()
+  const handleBackButton = () => window.history.back()
 
   return (
     <Layout>
-      <Link to="/">Back</Link>
+      <div
+        className="flex max-w-fit items-center py-5 transition-all duration-200 hover:cursor-pointer hover:opacity-60"
+        onClick={handleBackButton}
+      >
+        <ArrowIcon size={16} />
+        <span className="pl-3 text-xl">Back</span>
+      </div>
+
       <div className="flex gap-4 py-4">
         <div>
           <h1 className="font-bold">{game.vls.ta}</h1>

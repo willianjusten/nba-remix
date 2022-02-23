@@ -2,6 +2,10 @@ import TeamInfo from '../TeamInfo'
 import type { Game } from '~/types'
 import { getTimePeriod } from '~/utils/handleApiDates'
 
+export type GameCardProps = Game & {
+  details?: boolean
+}
+
 const GameCard = ({
   vTeam,
   hTeam,
@@ -9,7 +13,8 @@ const GameCard = ({
   endTime,
   period,
   clock,
-}: Game) => (
+  details = true,
+}: GameCardProps) => (
   <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700">
     <div className="flex w-full flex-col">
       <div className="flex p-6">
@@ -30,9 +35,11 @@ const GameCard = ({
         <TeamInfo team={hTeam} />
       </div>
 
-      <footer className="border-t border-main py-2 text-center text-sm">
-        View details
-      </footer>
+      {details && (
+        <footer className="border-t border-main py-2 text-center text-sm">
+          View details
+        </footer>
+      )}
     </div>
   </article>
 )

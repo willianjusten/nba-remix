@@ -14,7 +14,9 @@ function TeamInfo({ team }: TeamInfoProps) {
       <p className="mt-1 whitespace-nowrap text-sm font-semibold">
         {TEAM_NAME[team.triCode as keyof typeof TEAM_NAME]}
       </p>
-      <p className="text-xs text-gray-400">{`${team.win}-${team.loss}`}</p>
+      {team.win && team.loss && (
+        <p className="text-xs text-gray-400">{`${team.win}-${team.loss}`}</p>
+      )}
     </div>
   )
 }

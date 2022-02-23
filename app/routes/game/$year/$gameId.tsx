@@ -69,7 +69,7 @@ function Game() {
         <>
           <GameSummary game={game} />
 
-          <div className="flex gap-4 overflow-x-auto py-10 md:gap-12 ">
+          <div className="flex gap-4 overflow-x-auto md:gap-12 ">
             <PlayerStats team={game.hTeam} />
             <PlayerStats team={game.vTeam} />
 

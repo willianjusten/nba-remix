@@ -19,7 +19,7 @@ export function Statistic({ homeStatistic, visitorStatistic, label }) {
 function TeamStats({ game }) {
   return (
     <div>
-      <h1 className="pb-4 text-2xl font-bold">Team Stats</h1>
+      <h1 className="text-2xl font-bold">Team Stats</h1>
       <Table>
         <tbody>
           <tr>

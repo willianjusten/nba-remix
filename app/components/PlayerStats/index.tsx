@@ -12,7 +12,7 @@ function PlayerStats({ team }) {
       <Table>
         <TableHead>
           <tr>
-            <TableCell className="min-w-[135px]">Player</TableCell>
+            <TableCell className="min-w-[160px] text-left">Player</TableCell>
             <TableCell>Min</TableCell>
             <TableCell>Reb</TableCell>
             <TableCell>Ast</TableCell>
@@ -22,7 +22,9 @@ function PlayerStats({ team }) {
         <tbody>
           {team.pstsg.map((player) => (
             <tr key={player.num}>
-              <TableCell>{`${player.fn[0]}. ${player.ln}`}</TableCell>
+              <TableCell className="text-left">
+                {player.fn} {player.ln}
+              </TableCell>
               <TableCell>{player.min}</TableCell>
               <TableCell>{player.reb}</TableCell>
               <TableCell>{player.ast}</TableCell>

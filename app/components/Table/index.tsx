@@ -10,7 +10,6 @@ export function TableCell({
   className,
   children,
 }: React.PropsWithChildren<{ className?: string }>) {
-  // TODO: Refactor to use clx package after
   return (
     <td
       className={`border border-slate-500 px-3 py-2 ${

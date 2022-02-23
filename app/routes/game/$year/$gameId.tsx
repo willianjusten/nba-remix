@@ -1,3 +1,4 @@
+import React from 'react'
 import { useLoaderData } from 'remix'
 import ArrowIcon from '~/components/ArrowIcon'
 import GameCard from '~/components/GameCard'
@@ -33,6 +34,62 @@ export const loader = async ({ params }) => {
   }
 }
 
+function Table({ children }: React.PropsWithChildren<{}>) {
+  return (
+    <table className="my-5 min-w-full border border-slate-600 bg-glass text-center md:min-w-min">
+      {children}
+    </table>
+  )
+}
+
+function TableCell({ children }: React.PropsWithChildren<{}>) {
+  return <td className="border border-slate-500 px-3 py-2">{children}</td>
+}
+
+function TableHead({ children }: React.PropsWithChildren<{}>) {
+  return <thead className="bg-slate-800">{children}</thead>
+}
+
+type OvertimeHeadProps = {
+  period: number
+}
+
+function OvertimeHead({ period }: OvertimeHeadProps) {
+  return period > 4 ? (
+    <>
+      {Array(period - 4)
+        .fill(null)
+        .map((_, i) => (
+          <TableCell key={i}>OT{i + 1}</TableCell>
+        ))}
+    </>
+  ) : null
+}
+
+type OvertimeScoreProps = {
+  period: number
+  team: {
+    ot1: number
+    ot2?: number
+    ot3?: number
+    ot4?: number
+  }
+}
+
+function OvertimeScore({ period, team }: OvertimeScoreProps) {
+  return period > 4 ? (
+    <>
+      {Array(period - 4)
+        .fill(null)
+        .map((_, i) => (
+          <TableCell key={i}>
+            {team[`ot${i + 1}` as keyof typeof team]}
+          </TableCell>
+        ))}
+    </>
+  ) : null
+}
+
 function Game() {
   const { game } = useLoaderData()
   const handleBackButton = () => window.history.back()
@@ -63,65 +120,43 @@ function Game() {
         <h1>Game has not started</h1>
       ) : (
         <>
-          <div className="py-10">
-            <table>
-              <thead>
-                <tr>
-                  <th>Team</th>
-                  <th>Q1</th>
-                  <th>Q2</th>
-                  <th>Q3</th>
-                  <th>Q4</th>
-                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && <th>OT1</th>}
-                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && <th>OT2</th>}
-                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && <th>OT3</th>}
-                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && <th>OT4</th>}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{game.hTeam.ta}</td>
-                  <td>{game.hTeam.q1}</td>
-                  <td>{game.hTeam.q2}</td>
-                  <td>{game.hTeam.q3}</td>
-                  <td>{game.hTeam.q4}</td>
-                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && (
-                    <td>{game.hTeam.ot1}</td>
-                  )}
-                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && (
-                    <td>{game.hTeam.ot2}</td>
-                  )}
-                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && (
-                    <td>{game.hTeam.ot3}</td>
-                  )}
-                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && (
-                    <td>{game.hTeam.ot4}</td>
-                  )}
-                </tr>
-                <tr>
-                  <td>{game.vTeam.ta}</td>
-                  <td>{game.vTeam.q1}</td>
-                  <td>{game.vTeam.q2}</td>
-                  <td>{game.vTeam.q3}</td>
-                  <td>{game.vTeam.q4}</td>
-                  {game.hTeam.ot1 !== 0 && game.vTeam.ot1 !== 0 && (
-                    <td>{game.vTeam.ot1}</td>
-                  )}
-                  {game.hTeam.ot2 !== 0 && game.vTeam.ot2 !== 0 && (
-                    <td>{game.vTeam.ot2}</td>
-                  )}
-                  {game.hTeam.ot3 !== 0 && game.vTeam.ot3 !== 0 && (
-                    <td>{game.vTeam.ot3}</td>
-                  )}
-                  {game.hTeam.ot4 !== 0 && game.vTeam.ot4 !== 0 && (
-                    <td>{game.vTeam.ot4}</td>
-                  )}
-                </tr>
-              </tbody>
-            </table>
+          <div className="py-5">
+            <h1 className="text-2xl font-semibold">Game Summary</h1>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHead>
+                  <tr className="border border-slate-600">
+                    <TableCell>Team</TableCell>
+                    <TableCell>Q1</TableCell>
+                    <TableCell>Q2</TableCell>
+                    <TableCell>Q3</TableCell>
+                    <TableCell>Q4</TableCell>
+                    <OvertimeHead period={game.period} />
+                  </tr>
+                </TableHead>
+                <tbody>
+                  <tr>
+                    <TableCell>{game.hTeam.ta}</TableCell>
+                    <TableCell>{game.hTeam.q1}</TableCell>
+                    <TableCell>{game.hTeam.q2}</TableCell>
+                    <TableCell>{game.hTeam.q3}</TableCell>
+                    <TableCell>{game.hTeam.q4}</TableCell>
+                    <OvertimeScore period={game.period} team={game.hTeam} />
+                  </tr>
+                  <tr>
+                    <TableCell>{game.vTeam.ta}</TableCell>
+                    <TableCell>{game.vTeam.q1}</TableCell>
+                    <TableCell>{game.vTeam.q2}</TableCell>
+                    <TableCell>{game.vTeam.q3}</TableCell>
+                    <TableCell>{game.vTeam.q4}</TableCell>
+                    <OvertimeScore period={game.period} team={game.vTeam} />
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
           </div>
 
-          <div className="flex gap-12 py-10">
+          <div className="flex gap-12 overflow-x-auto py-10 ">
             <div>
               <h1 className="pb-4 text-2xl font-bold">
                 {game.hTeam.tc} {game.hTeam.tn}

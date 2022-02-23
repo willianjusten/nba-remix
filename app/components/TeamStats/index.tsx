@@ -23,9 +23,15 @@ function TeamStats({ game }) {
       <Table>
         <tbody>
           <tr>
-            <TableCell className="min-w-[90px]">{game.hTeam.tn}</TableCell>
-            <TableCell className="min-w-[150px]">Stats</TableCell>
-            <TableCell className="min-w-[90px]">{game.vTeam.tn}</TableCell>
+            <TableCell className="min-w-[90px] bg-slate-900 font-bold">
+              {game.hTeam.tn}
+            </TableCell>
+            <TableCell className="min-w-[150px] bg-slate-900 font-bold">
+              Stats
+            </TableCell>
+            <TableCell className="min-w-[90px] bg-slate-900 font-bold">
+              {game.vTeam.tn}
+            </TableCell>
           </tr>
 
           <Statistic

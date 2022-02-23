@@ -22,5 +22,5 @@ export function TableCell({
 }
 
 export function TableHead({ children }: React.PropsWithChildren<{}>) {
-  return <thead className="bg-slate-800">{children}</thead>
+  return <thead className="bg-slate-900 font-bold">{children}</thead>
 }

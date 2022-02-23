@@ -42,8 +42,20 @@ function Table({ children }: React.PropsWithChildren<{}>) {
   )
 }
 
-function TableCell({ children }: React.PropsWithChildren<{}>) {
-  return <td className="border border-slate-500 px-3 py-2">{children}</td>
+function TableCell({
+  className,
+  children,
+}: React.PropsWithChildren<{ className?: string }>) {
+  // TODO: Refactor to use clx package after
+  return (
+    <td
+      className={`border border-slate-500 px-3 py-2 ${
+        className ? className : ''
+      }`}
+    >
+      {children}
+    </td>
+  )
 }
 
 function TableHead({ children }: React.PropsWithChildren<{}>) {
@@ -73,6 +85,9 @@ type OvertimeScoreProps = {
     ot2?: number
     ot3?: number
     ot4?: number
+    ot5?: number
+    ot6?: number
+    ot7?: number
   }
 }
 
@@ -88,6 +103,175 @@ function OvertimeScore({ period, team }: OvertimeScoreProps) {
         ))}
     </>
   ) : null
+}
+
+// TODO: Add types
+function GameSummary({ game }) {
+  return (
+    <div className="py-5">
+      <h1 className="text-2xl font-semibold">Game Summary</h1>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHead>
+            <tr className="border border-slate-600">
+              <TableCell>Team</TableCell>
+              <TableCell>Q1</TableCell>
+              <TableCell>Q2</TableCell>
+              <TableCell>Q3</TableCell>
+              <TableCell>Q4</TableCell>
+              <OvertimeHead period={game.period} />
+            </tr>
+          </TableHead>
+          <tbody>
+            <tr>
+              <TableCell>{game.hTeam.ta}</TableCell>
+              <TableCell>{game.hTeam.q1}</TableCell>
+              <TableCell>{game.hTeam.q2}</TableCell>
+              <TableCell>{game.hTeam.q3}</TableCell>
+              <TableCell>{game.hTeam.q4}</TableCell>
+              <OvertimeScore period={game.period} team={game.hTeam} />
+            </tr>
+            <tr>
+              <TableCell>{game.vTeam.ta}</TableCell>
+              <TableCell>{game.vTeam.q1}</TableCell>
+              <TableCell>{game.vTeam.q2}</TableCell>
+              <TableCell>{game.vTeam.q3}</TableCell>
+              <TableCell>{game.vTeam.q4}</TableCell>
+              <OvertimeScore period={game.period} team={game.vTeam} />
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    </div>
+  )
+}
+
+// TODO: Add types
+function PlayerStats({ team }) {
+  return (
+    <div>
+      <h1 className="pb-4 text-2xl font-bold">
+        {team.tc} {team.tn}
+      </h1>
+      <Table>
+        <TableHead>
+          <tr>
+            <TableCell className="min-w-[135px]">Player</TableCell>
+            <TableCell>Min</TableCell>
+            <TableCell>Reb</TableCell>
+            <TableCell>Ast</TableCell>
+            <TableCell>Pts</TableCell>
+          </tr>
+        </TableHead>
+        <tbody>
+          {team.pstsg.map((player) => (
+            <tr key={player.num}>
+              <TableCell>{`${player.fn[0]}. ${player.ln}`}</TableCell>
+              <TableCell>{player.min}</TableCell>
+              <TableCell>{player.reb}</TableCell>
+              <TableCell>{player.ast}</TableCell>
+              <TableCell>{player.pts}</TableCell>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  )
+}
+
+// TODO: Add types
+function Statistic({ homeStatistic, visitorStatistic, label }) {
+  return (
+    <tr>
+      <TableCell>{homeStatistic}</TableCell>
+      <TableCell>{label}</TableCell>
+      <TableCell>{visitorStatistic}</TableCell>
+    </tr>
+  )
+}
+
+// TODO: Add types
+function TeamStats({ game }) {
+  return (
+    <div>
+      <h1 className="pb-4 text-2xl font-bold">Team Stats</h1>
+      <Table>
+        <tbody>
+          <tr>
+            <TableCell className="min-w-[90px]">{game.hTeam.tn}</TableCell>
+            <TableCell className="min-w-[150px]">Stats</TableCell>
+            <TableCell className="min-w-[90px]">{game.vTeam.tn}</TableCell>
+          </tr>
+
+          <Statistic
+            homeStatistic={`${game.hTeam.tstsg.fgm} / ${game.hTeam.tstsg.fga}`}
+            visitorStatistic={`${game.vTeam.tstsg.fgm} / ${game.vTeam.tstsg.fga}`}
+            label="Field Goals"
+          />
+
+          <Statistic
+            homeStatistic={`${game.hTeam.tstsg.tpm} / ${game.hTeam.tstsg.tpa}`}
+            visitorStatistic={`${game.vTeam.tstsg.tpm} / ${game.vTeam.tstsg.tpa}`}
+            label="3 Pointers"
+          />
+
+          <Statistic
+            homeStatistic={`${game.hTeam.tstsg.ftm} / ${game.hTeam.tstsg.fta}`}
+            visitorStatistic={`${game.vTeam.tstsg.ftm} / ${game.vTeam.tstsg.fta}`}
+            label="Free throws"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.reb}
+            visitorStatistic={game.vTeam.tstsg.reb}
+            label="Total Rebounds"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.oreb}
+            visitorStatistic={game.vTeam.tstsg.oreb}
+            label="Offensive Rebounds"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.ast}
+            visitorStatistic={game.vTeam.tstsg.ast}
+            label="Assists"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.blk}
+            visitorStatistic={game.vTeam.tstsg.blk}
+            label="Blocks"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.stl}
+            visitorStatistic={game.vTeam.tstsg.stl}
+            label="Steals"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.tov}
+            visitorStatistic={game.vTeam.tstsg.tov}
+            label="Turnovers"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.pip}
+            visitorStatistic={game.vTeam.tstsg.pip}
+            label="Points in the paint"
+          />
+
+          <Statistic
+            homeStatistic={game.hTeam.tstsg.pf}
+            visitorStatistic={game.vTeam.tstsg.pf}
+            label="Fouls - Personal"
+          />
+        </tbody>
+      </Table>
+    </div>
+  )
 }
 
 function Game() {
@@ -120,187 +304,13 @@ function Game() {
         <h1>Game has not started</h1>
       ) : (
         <>
-          <div className="py-5">
-            <h1 className="text-2xl font-semibold">Game Summary</h1>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHead>
-                  <tr className="border border-slate-600">
-                    <TableCell>Team</TableCell>
-                    <TableCell>Q1</TableCell>
-                    <TableCell>Q2</TableCell>
-                    <TableCell>Q3</TableCell>
-                    <TableCell>Q4</TableCell>
-                    <OvertimeHead period={game.period} />
-                  </tr>
-                </TableHead>
-                <tbody>
-                  <tr>
-                    <TableCell>{game.hTeam.ta}</TableCell>
-                    <TableCell>{game.hTeam.q1}</TableCell>
-                    <TableCell>{game.hTeam.q2}</TableCell>
-                    <TableCell>{game.hTeam.q3}</TableCell>
-                    <TableCell>{game.hTeam.q4}</TableCell>
-                    <OvertimeScore period={game.period} team={game.hTeam} />
-                  </tr>
-                  <tr>
-                    <TableCell>{game.vTeam.ta}</TableCell>
-                    <TableCell>{game.vTeam.q1}</TableCell>
-                    <TableCell>{game.vTeam.q2}</TableCell>
-                    <TableCell>{game.vTeam.q3}</TableCell>
-                    <TableCell>{game.vTeam.q4}</TableCell>
-                    <OvertimeScore period={game.period} team={game.vTeam} />
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </div>
+          <GameSummary game={game} />
 
-          <div className="flex gap-12 overflow-x-auto py-10 ">
-            <div>
-              <h1 className="pb-4 text-2xl font-bold">
-                {game.hTeam.tc} {game.hTeam.tn}
-              </h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Player</th>
-                    <th>Min</th>
-                    <th>Reb</th>
-                    <th>Ast</th>
-                    <th>Pts</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {game.hTeam.pstsg.map((player) => (
-                    <tr key={player.id}>
-                      <td>{player.fn}</td>
-                      <td>{player.min}</td>
-                      <td>{player.reb}</td>
-                      <td>{player.ast}</td>
-                      <td>{player.pts}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div className="flex gap-4 overflow-x-auto py-10 md:gap-12 ">
+            <PlayerStats team={game.hTeam} />
+            <PlayerStats team={game.vTeam} />
 
-            <div>
-              <h1 className="pb-4 text-2xl font-bold">
-                {game.vTeam.tc} {game.vTeam.tn}
-              </h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Player</th>
-                    <th>Min</th>
-                    <th>Reb</th>
-                    <th>Ast</th>
-                    <th>Pts</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {game.vTeam.pstsg.map((player) => (
-                    <tr key={player.id}>
-                      <td>{player.fn}</td>
-                      <td>{player.min}</td>
-                      <td>{player.reb}</td>
-                      <td>{player.ast}</td>
-                      <td>{player.pts}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div>
-              <h1 className="pb-4 text-2xl font-bold">Team Stats</h1>
-              <table>
-                <tr>
-                  <td className="font-bold">{game.hTeam.tn}</td>
-                  <td className="text-center">Stats</td>
-                  <td className="font-bold">{game.vTeam.tn}</td>
-                </tr>
-
-                <tr>
-                  <td>
-                    {game.hTeam.tstsg.fgm} / {game.hTeam.tstsg.fga}
-                  </td>
-                  <td>Field Goals</td>
-                  <td>
-                    {game.vTeam.tstsg.fgm} / {game.vTeam.tstsg.fga}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    {game.hTeam.tstsg.tpm} / {game.hTeam.tstsg.tpa}
-                  </td>
-                  <td>3 pointers</td>
-                  <td>
-                    {game.vTeam.tstsg.tpm} / {game.vTeam.tstsg.tpa}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    {game.hTeam.tstsg.ftm} / {game.hTeam.tstsg.fta}
-                  </td>
-                  <td>Free throws</td>
-                  <td>
-                    {game.vTeam.tstsg.ftm} / {game.vTeam.tstsg.fta}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.reb}</td>
-                  <td>Total Rebounds</td>
-                  <td>{game.vTeam.tstsg.reb}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.oreb}</td>
-                  <td>Offensive Rebounds</td>
-                  <td>{game.vTeam.tstsg.oreb}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.ast}</td>
-                  <td>Assists</td>
-                  <td>{game.vTeam.tstsg.ast}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.blk}</td>
-                  <td>Blocks</td>
-                  <td>{game.vTeam.tstsg.blk}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.stl}</td>
-                  <td>Steals</td>
-                  <td>{game.vTeam.tstsg.stl}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.tov}</td>
-                  <td>Turnovers</td>
-                  <td>{game.vTeam.tstsg.tov}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.pip}</td>
-                  <td>Points in the paint</td>
-                  <td>{game.vTeam.tstsg.pip}</td>
-                </tr>
-
-                <tr>
-                  <td>{game.hTeam.tstsg.pf}</td>
-                  <td>Fouls - Personal</td>
-                  <td>{game.vTeam.tstsg.pf}</td>
-                </tr>
-              </table>
-            </div>
+            <TeamStats game={game} />
           </div>
         </>
       )}

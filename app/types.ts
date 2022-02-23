@@ -5,6 +5,21 @@ export type Team = {
   loss?: string
 }
 
+export type TeamScore = {
+  ta: string
+  q1: string
+  q2: string
+  q3: string
+  q4: string
+  ot1?: string
+  ot2?: string
+  ot3?: string
+  ot4?: string
+  ot5?: string
+  ot6?: string
+  ot7?: string
+}
+
 export type Game = {
   startTime: string
   endTime?: string

@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameSummary> should render correctly 1`] = `
+<div>
+  <div
+    class="py-5"
+  >
+    <h1
+      class="text-2xl font-semibold"
+    >
+      Game Summary
+    </h1>
+    <div
+      class="overflow-x-auto"
+    >
+      <table
+        class="my-5 min-w-full border border-slate-600 bg-glass text-center text-white md:min-w-min"
+      >
+        <thead
+          class="bg-slate-900 font-bold"
+        >
+          <tr
+            class="border border-slate-600"
+          >
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Team
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Q1
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Q2
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Q3
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Q4
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              OT
+              1
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              OT
+              2
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Team A
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              10
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              20
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              30
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              40
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              12
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              13
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              Team B
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              10
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              20
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              30
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              40
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              12
+            </td>
+            <td
+              class="border border-slate-500 px-3 py-2 "
+            >
+              13
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;

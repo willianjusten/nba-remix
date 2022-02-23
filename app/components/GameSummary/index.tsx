@@ -1,10 +1,16 @@
 import { OvertimeHead, OvertimeScore } from '~/components/Overtime'
 import { Table, TableCell, TableHead } from '~/components/Table'
+import { TeamScore } from '~/types'
 
-// TODO: Add types
-// TODO: Add Story
-// TODO: Add tests
-function GameSummary({ game }) {
+export type GameSummaryProps = {
+  game: {
+    period: number
+    hTeam: TeamScore
+    vTeam: TeamScore
+  }
+}
+
+function GameSummary({ game }: GameSummaryProps) {
   return (
     <div className="py-5">
       <h1 className="text-2xl font-semibold">Game Summary</h1>

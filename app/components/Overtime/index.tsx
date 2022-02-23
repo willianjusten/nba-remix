@@ -1,4 +1,5 @@
 import { TableCell } from '~/components/Table'
+import { TeamScore } from '~/types'
 
 export type OvertimeHeadProps = {
   period: number
@@ -18,15 +19,7 @@ export function OvertimeHead({ period }: OvertimeHeadProps) {
 
 export type OvertimeScoreProps = {
   period: number
-  team: {
-    ot1: number
-    ot2?: number
-    ot3?: number
-    ot4?: number
-    ot5?: number
-    ot6?: number
-    ot7?: number
-  }
+  team: TeamScore
 }
 
 export function OvertimeScore({ period, team }: OvertimeScoreProps) {

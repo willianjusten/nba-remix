@@ -20,6 +20,25 @@ export type TeamScore = {
   ot7?: string
 }
 
+export type TeamPlayerStats = {
+  team: {
+    tc: string
+    tn: string
+    ta: string
+    pstsg: PlayerStats[]
+  }
+}
+
+export type PlayerStats = {
+  num: string
+  fn: string
+  ln: string
+  min: string
+  reb: string
+  ast: string
+  pts: string
+}
+
 export type Game = {
   startTime: string
   endTime?: string

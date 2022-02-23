@@ -3,7 +3,7 @@ import ArrowIcon from '~/components/ArrowIcon'
 import GameCard from '~/components/GameCard'
 import GameSummary from '~/components/GameSummary'
 import Layout from '~/components/Layout'
-import PlayerStats from '~/components/PlayerStats'
+import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
 export const loader = async ({ params }) => {

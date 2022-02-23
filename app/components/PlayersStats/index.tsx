@@ -1,9 +1,7 @@
 import { Table, TableCell, TableHead } from '~/components/Table'
+import { PlayerStats, TeamPlayerStats } from '~/types'
 
-// TODO: Add types
-// TODO: Add Story
-// TODO: Add tests
-function PlayerStats({ team }) {
+function PlayersStats({ team }: TeamPlayerStats) {
   return (
     <div>
       <h1 className="text-2xl font-bold">
@@ -22,7 +20,7 @@ function PlayerStats({ team }) {
           </tr>
         </TableHead>
         <tbody>
-          {team.pstsg.map((player) => (
+          {team.pstsg.map((player: PlayerStats) => (
             <tr key={player.num}>
               <TableCell className="truncate text-left">
                 {player.fn[0]}. {player.ln}
@@ -39,4 +37,4 @@ function PlayerStats({ team }) {
   )
 }
 
-export default PlayerStats
+export default PlayersStats

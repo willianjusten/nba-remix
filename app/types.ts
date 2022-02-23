@@ -20,6 +20,33 @@ export type TeamScore = {
   ot7?: string
 }
 
+export type TeamStatistic = {
+  tn: string
+  tstsg: {
+    fgm: string
+    fga: string
+    tpm: string
+    tpa: string
+    ftm: string
+    fta: string
+    blk: string
+    reb: string
+    oreb: string
+    ast: string
+    stl: string
+    tov: string
+    pip: string
+    pf: string
+  }
+}
+
+export type TeamGroupStatistics = {
+  game: {
+    hTeam: TeamStatistic
+    vTeam: TeamStatistic
+  }
+}
+
 export type TeamPlayerStats = {
   team: {
     tc: string

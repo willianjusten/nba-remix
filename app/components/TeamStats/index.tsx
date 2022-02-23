@@ -1,9 +1,17 @@
 import { Table, TableCell } from '~/components/Table'
+import { TeamGroupStatistics } from '~/types'
 
-// TODO: Add types
-// TODO: Add Story
-// TODO: Add tests
-export function Statistic({ homeStatistic, visitorStatistic, label }) {
+export type StatisticProps = {
+  homeStatistic: string
+  visitorStatistic: string
+  label: string
+}
+
+export function Statistic({
+  homeStatistic,
+  visitorStatistic,
+  label,
+}: StatisticProps) {
   return (
     <tr>
       <TableCell>{homeStatistic}</TableCell>
@@ -13,10 +21,7 @@ export function Statistic({ homeStatistic, visitorStatistic, label }) {
   )
 }
 
-// TODO: Add types
-// TODO: Add Story
-// TODO: Add tests
-function TeamStats({ game }) {
+function TeamStats({ game }: TeamGroupStatistics) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Team Stats</h1>

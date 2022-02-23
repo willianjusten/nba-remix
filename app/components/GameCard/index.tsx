@@ -13,7 +13,7 @@ const GameCard = ({
   endTime,
   period,
   clock,
-  details,
+  details = true,
 }: GameCardProps) => (
   <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700">
     <div className="flex w-full flex-col">

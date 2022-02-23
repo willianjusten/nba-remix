@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PlayerStats> should render correctly 1`] = `
+exports[`<PlayersStats> should render correctly 1`] = `
 <div>
   <div>
     <h1

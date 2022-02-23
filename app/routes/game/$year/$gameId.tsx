@@ -6,7 +6,14 @@ import Layout from '~/components/Layout'
 import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
-export const loader = async ({ params }) => {
+type Params = {
+  params: {
+    year: string
+    gameId: string
+  }
+}
+
+export const loader = async ({ params }: Params) => {
   const { year, gameId } = params
 
   const response = await fetch(

@@ -14,11 +14,11 @@ export const conferenceMapper = (teams: TeamStanding[], isEast: boolean) =>
       rank: team.confRank,
       win: team.win,
       loss: team.loss,
-      percentage: `${(team.winPct * 100).toFixed(0)}%`,
+      percentage: `${team.winPctV2}%`,
       gamesBehind: team.gamesBehind,
       homeRecord: `${team.homeWin}-${team.homeLoss}`,
       awayRecord: `${team.awayWin}-${team.awayLoss}`,
       lastTenRecord: `${team.lastTenWin}-${team.lastTenLoss}`,
-      streak: `${team.isWinStreak ? team.streak : -1 * team.streak}`,
+      streak: `${team.isWinStreak ? team.streak : -team.streak}`,
     }))
-    .sort((a, b) => a.rank - b.rank)
+    .sort((a, b) => +a.rank - +b.rank)

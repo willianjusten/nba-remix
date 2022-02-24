@@ -96,17 +96,17 @@ export type TeamStanding = {
     teamTricode: string
   }
   teamId: string
-  confRank: number
-  win: number
-  loss: number
-  winPct: number
+  confRank: string
+  win: string
+  loss: string
+  winPctV2: string
   gamesBehind: string
-  homeWin: number
-  homeLoss: number
-  awayWin: number
-  awayLoss: number
-  lastTenWin: number
-  lastTenLoss: number
+  homeWin: string
+  homeLoss: string
+  awayWin: string
+  awayLoss: string
+  lastTenWin: string
+  lastTenLoss: string
   isWinStreak: boolean
-  streak: number
+  streak: string
 }

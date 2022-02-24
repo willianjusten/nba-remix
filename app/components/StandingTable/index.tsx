@@ -2,11 +2,11 @@ import { Table, TableCell, TableHead } from '~/components/Table'
 import TeamLogo from '~/components/TeamLogo'
 
 export type TeamConference = {
-  rank: number
+  rank: string
   name: string
   code: string
-  win: number
-  loss: number
+  win: string
+  loss: string
   percentage: string
   gamesBehind: string
   homeRecord: string

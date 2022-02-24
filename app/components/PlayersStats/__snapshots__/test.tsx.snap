@@ -11,7 +11,9 @@ exports[`<PlayersStats> should render correctly 1`] = `
       Team Name
     </h1>
     <table
-      class="my-5 min-w-full border border-slate-600 bg-glass text-center text-white md:min-w-min"
+      class="my-5 min-w-full border border-slate-600 bg-glass text-center text-white
+      md:min-w-min
+    "
     >
       <thead
         class="bg-slate-900 font-bold"

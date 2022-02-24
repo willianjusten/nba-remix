@@ -10,6 +10,7 @@ export const conferenceMapper = (teams: TeamStanding[], isEast: boolean) =>
     )
     .map((team) => ({
       name: team.teamSitesOnly.teamNickname,
+      code: team.teamSitesOnly.teamTricode,
       rank: team.confRank,
       win: team.win,
       loss: team.loss,

@@ -1,19 +1,23 @@
 import { Table, TableCell, TableHead } from '~/components/Table'
+import TeamLogo from '~/components/TeamLogo'
+
+export type TeamConference = {
+  rank: number
+  name: string
+  code: string
+  win: number
+  loss: number
+  percentage: string
+  gamesBehind: string
+  homeRecord: string
+  awayRecord: string
+  lastTenRecord: string
+  streak: string
+}
 
 export type StandingTableProps = {
   label: string
-  conference: Array<{
-    rank: number
-    name: string
-    win: number
-    loss: number
-    percentage: string
-    gamesBehind: string
-    homeRecord: string
-    awayRecord: string
-    lastTenRecord: string
-    streak: string
-  }>
+  conference: TeamConference[]
 }
 
 function StandingTable({ label, conference }: StandingTableProps) {
@@ -39,7 +43,10 @@ function StandingTable({ label, conference }: StandingTableProps) {
           {conference.map((team) => (
             <tr key={team.name}>
               <TableCell>{team.rank}</TableCell>
-              <TableCell>{team.name}</TableCell>
+              <TableCell className="flex items-center gap-2">
+                <TeamLogo team={team.code} size={32} />
+                <span>{team.name}</span>
+              </TableCell>
               <TableCell>{team.win}</TableCell>
               <TableCell>{team.loss}</TableCell>
               <TableCell>{team.percentage}</TableCell>

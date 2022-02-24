@@ -93,6 +93,7 @@ export type GameList = {
 export type TeamStanding = {
   teamSitesOnly: {
     teamNickname: string
+    teamTricode: string
   }
   teamId: string
   confRank: number

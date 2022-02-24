@@ -1,6 +1,11 @@
-import { Link } from 'remix'
+import { Link, NavLink } from 'remix'
 
 function Header() {
+  const linkClass =
+    'text-lg transition-opacity hover:opacity-70 hover:border-b-2 hover:border-blue-300'
+  const activeLinkClass =
+    'text-lg transition-opacity hover:opacity-70 border-b-2 border-blue-500'
+
   return (
     <header className="container mx-auto flex items-center justify-between px-4 py-8">
       <Link to="/">
@@ -8,15 +13,18 @@ function Header() {
       </Link>
 
       <nav className="flex gap-6">
-        <Link className="text-lg transition-opacity hover:opacity-70" to="/">
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLinkClass : linkClass)}
+          to="/"
+        >
           Home
-        </Link>
-        <Link
-          className="text-lg transition-opacity hover:opacity-70"
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLinkClass : linkClass)}
           to="/standings"
         >
           Standings
-        </Link>
+        </NavLink>
       </nav>
     </header>
   )

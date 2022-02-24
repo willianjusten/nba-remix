@@ -1,43 +1,13 @@
 import { Story, Meta } from '@storybook/react'
 import TeamLogo, { TeamLogoProps } from '.'
+import { TEAM_NAME } from '~/constants'
 
 export default {
   title: 'TeamLogo',
   component: TeamLogo,
   argTypes: {
     team: {
-      options: [
-        'ATL',
-        'BKN',
-        'BOS',
-        'CHA',
-        'CHI',
-        'CLE',
-        'DAL',
-        'DEN',
-        'DET',
-        'GSW',
-        'HOU',
-        'IND',
-        'LAC',
-        'LAL',
-        'MEM',
-        'MIA',
-        'MIL',
-        'MIN',
-        'NOP',
-        'NYK',
-        'OKC',
-        'ORL',
-        'PHI',
-        'PHX',
-        'POR',
-        'SAC',
-        'SAS',
-        'TOR',
-        'UTA',
-        'WAS',
-      ],
+      options: Object.keys(TEAM_NAME),
       control: { type: 'select' },
     },
   },

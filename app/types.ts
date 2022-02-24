@@ -89,3 +89,24 @@ export type GameList = {
   vTeam: Team
   hTeam: Team
 }
+
+export type TeamStanding = {
+  teamSitesOnly: {
+    teamNickname: string
+    teamTricode: string
+  }
+  teamId: string
+  confRank: string
+  win: string
+  loss: string
+  winPctV2: string
+  gamesBehind: string
+  homeWin: string
+  homeLoss: string
+  awayWin: string
+  awayLoss: string
+  lastTenWin: string
+  lastTenLoss: string
+  isWinStreak: boolean
+  streak: string
+}

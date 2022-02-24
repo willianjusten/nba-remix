@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import PlayersStats from '.'
-import { TeamPlayerStats } from '~/types'
+import type { TeamPlayerStats } from '~/types'
 
 export default {
   title: 'PlayersStats',

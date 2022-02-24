@@ -1,5 +1,5 @@
 import { TableCell } from '~/components/Table'
-import { TeamScore } from '~/types'
+import type { TeamScore } from '~/types'
 
 export type OvertimeHeadProps = {
   period: number

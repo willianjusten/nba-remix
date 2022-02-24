@@ -1,6 +1,12 @@
 import { render, screen } from '@testing-library/react'
+import { LinkProps } from 'remix'
 
 import Layout from '.'
+
+jest.mock('remix', () => ({
+  Link: ({ children }: LinkProps) => <a href="/">{children}</a>,
+  useHref: jest.fn(),
+}))
 
 describe('<Layout />', () => {
   it('should render header and children', () => {

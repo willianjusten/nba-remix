@@ -13,6 +13,22 @@ describe('<Table>', () => {
       </Table>,
     )
 
+    expect(screen.getByRole('table')).toHaveClass('md:min-w-min')
+    expect(screen.getByText('Children')).toBeInTheDocument()
+  })
+
+  it('should render fullWidth', () => {
+    render(
+      <Table fullWidth>
+        <tbody>
+          <tr>
+            <td>Children</td>
+          </tr>
+        </tbody>
+      </Table>,
+    )
+
+    expect(screen.getByRole('table')).not.toHaveClass('md:min-w-min')
     expect(screen.getByText('Children')).toBeInTheDocument()
   })
 })

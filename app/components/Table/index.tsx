@@ -1,6 +1,13 @@
-export function Table({ children }: React.PropsWithChildren<{}>) {
+export function Table({
+  fullWidth = false,
+  children,
+}: React.PropsWithChildren<{ fullWidth?: boolean }>) {
   return (
-    <table className="my-5 min-w-full border border-slate-600 bg-glass text-center text-white md:min-w-min">
+    <table
+      className={`my-5 min-w-full border border-slate-600 bg-glass text-center text-white
+      ${fullWidth ? '' : 'md:min-w-min'}
+    `}
+    >
       {children}
     </table>
   )

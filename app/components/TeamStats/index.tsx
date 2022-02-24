@@ -1,5 +1,5 @@
 import { Table, TableCell } from '~/components/Table'
-import { TeamGroupStatistics } from '~/types'
+import type { TeamGroupStatistics } from '~/types'
 
 export type StatisticProps = {
   homeStatistic: string

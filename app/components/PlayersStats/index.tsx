@@ -1,5 +1,5 @@
 import { Table, TableCell, TableHead } from '~/components/Table'
-import { PlayerStats, TeamPlayerStats } from '~/types'
+import type { PlayerStats, TeamPlayerStats } from '~/types'
 
 function PlayersStats({ team }: TeamPlayerStats) {
   return (

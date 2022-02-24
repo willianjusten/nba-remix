@@ -1,6 +1,6 @@
 import { OvertimeHead, OvertimeScore } from '~/components/Overtime'
 import { Table, TableCell, TableHead } from '~/components/Table'
-import { TeamScore } from '~/types'
+import type { TeamScore } from '~/types'
 
 export type GameSummaryProps = {
   game: {

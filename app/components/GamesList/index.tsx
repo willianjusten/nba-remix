@@ -30,6 +30,8 @@ function GamesList({ games }: GamesListProps) {
                 startTime={startTimeUTC}
                 status={statusNum}
                 period={period.current}
+                isEndOfPeriod={period.isEndOfPeriod}
+                isHalftime={period.isHalftime}
                 clock={clock}
                 vTeam={vTeam}
                 hTeam={hTeam}

@@ -70,6 +70,8 @@ export type Game = {
   startTime: string
   status: number
   period: number
+  isHalftime?: boolean
+  isEndOfPeriod?: boolean
   clock?: string
   vTeam: Team
   hTeam: Team

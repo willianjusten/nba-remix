@@ -11,6 +11,8 @@ const GameCard = ({
   hTeam,
   startTime,
   status,
+  isHalftime,
+  isEndOfPeriod,
   period,
   clock,
   details = true,
@@ -25,7 +27,14 @@ const GameCard = ({
             <p className="w-1/3 text-left text-2xl font-bold">{vTeam.score}</p>
           )}
           <p className="flex-1 whitespace-nowrap px-3 pt-1.5 text-center uppercase">
-            {getTimePeriod({ startTime, status, period, clock })}
+            {getTimePeriod({
+              startTime,
+              status,
+              period,
+              clock,
+              isHalftime,
+              isEndOfPeriod,
+            })}
           </p>
           {hTeam.score && (
             <p className="w-1/3 text-right text-2xl font-bold">{hTeam.score}</p>

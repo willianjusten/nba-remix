@@ -52,6 +52,25 @@ describe('getTimePeriod()', () => {
         'Final/OT2',
       )
     })
+
+    it('should return halfime', () => {
+      const status = 2
+      const isHalftime = true
+
+      expect(getTimePeriod({ startTime, status, isHalftime })).toEqual(
+        'Halftime',
+      )
+    })
+
+    it('should return End of {period}', () => {
+      const status = 2
+      const period = 3
+      const isEndOfPeriod = true
+
+      expect(
+        getTimePeriod({ startTime, period, status, isEndOfPeriod }),
+      ).toEqual('End of Q3')
+    })
   })
 
   describe('Live', () => {

@@ -54,6 +54,36 @@ FinalWithOT.args = {
   ...teams,
 }
 
+export const Halftime: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+Halftime.args = {
+  startTime: '2022-02-12T22:00:00.000Z',
+  status: 2,
+  period: 4,
+  isHalftime: true,
+  clock: '',
+  ...teams,
+}
+
+export const EndPeriod: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+EndPeriod.args = {
+  startTime: '2022-02-12T22:00:00.000Z',
+  status: 2,
+  period: 3,
+  isEndOfPeriod: true,
+  clock: '',
+  ...teams,
+}
+
 export const Future: Story<GameCardProps> = (args) => (
   <div style={{ width: '320px' }}>
     <GameCard {...args} />

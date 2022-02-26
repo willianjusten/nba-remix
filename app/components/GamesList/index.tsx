@@ -19,7 +19,7 @@ function GamesList({ games }: GamesListProps) {
             seasonYear,
             gameId,
             startTimeUTC,
-            endTimeUTC,
+            statusNum,
             period,
             clock,
             vTeam,
@@ -28,8 +28,10 @@ function GamesList({ games }: GamesListProps) {
             <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
               <GameCard
                 startTime={startTimeUTC}
-                endTime={endTimeUTC}
+                status={statusNum}
                 period={period.current}
+                isEndOfPeriod={period.isEndOfPeriod}
+                isHalftime={period.isHalftime}
                 clock={clock}
                 vTeam={vTeam}
                 hTeam={hTeam}

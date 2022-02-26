@@ -26,7 +26,6 @@ export const loader = async ({ params }: Params) => {
   return {
     game: {
       startTimeUTC: game.htm,
-      endTimeUTC: game.dur,
       period: game.p,
       clock: game.cl,
       status: game.st,
@@ -65,7 +64,7 @@ function Game() {
           clock={game.clock}
           period={game.period}
           startTime={game.startTimeUTC}
-          endTime={game.endTimeUTC}
+          status={game.status}
           details={false}
         />
       </div>

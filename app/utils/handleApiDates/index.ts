@@ -33,9 +33,11 @@ export const getLeagueYear = (date: Date) => {
 
 export type getTimePeriodArgs = {
   startTime: string
-  endTime?: string
+  status: number
   clock?: string
   period?: number
+  isHalftime?: boolean
+  isEndOfPeriod?: boolean
 }
 
 const REGULAR_PERIOD_COUNT = 4
@@ -43,21 +45,29 @@ const REGULAR_PERIOD_COUNT = 4
 /**
  * Method that returns the time period of the game
  * @param startTime - The start time of the game
- * @param endTime - The end time of the game
  * @param clock - The current clock of the game
+ * @param status - The current status of the game - 1 (not started) | 2 (in progress) | 3 (ended)
+ * @param isHalftime - Whether the game is in the halftime or not
+ * @param isEndOfPeriod - Whether the game is in the end of the period or not
  * @param period - The current period of the game - 0 (not started) | 1-4 (regular) | +4 (OT)
  * @returns string
  */
 export const getTimePeriod = ({
   startTime,
-  endTime,
   clock,
+  status,
+  isHalftime,
+  isEndOfPeriod,
   period = 0,
 }: getTimePeriodArgs) => {
   const overtime =
     period > REGULAR_PERIOD_COUNT ? `OT${period - REGULAR_PERIOD_COUNT}` : ''
 
-  if (endTime) return `Final${overtime && `/${overtime}`}`
+  if (status === 3) return `Final${overtime && `/${overtime}`}`
+
+  if (isHalftime) return `Halftime`
+
+  if (isEndOfPeriod) return `End of ${overtime || `Q${period}`}`
 
   if (clock) return `${overtime || `Q${period}`} - ${clock}`
 

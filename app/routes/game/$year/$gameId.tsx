@@ -25,7 +25,8 @@ export const loader = async ({ params }: Params) => {
   // TODO: Move this to a mapper function
   return {
     game: {
-      startTimeUTC: game.htm,
+      // This is needed because the NBA API returns the date separated
+      startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
       period: game.p,
       clock: game.cl,
       status: game.st,

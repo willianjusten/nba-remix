@@ -3,7 +3,7 @@ import GameCard from '.'
 
 const game = {
   startTime: '2022-02-12T22:00:00.000Z',
-  endTime: '2022-02-13T00:30:00.000Z',
+  status: 3,
   period: 4,
   clock: '',
   vTeam: {

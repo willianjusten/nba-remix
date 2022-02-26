@@ -68,7 +68,7 @@ export type PlayerStats = {
 
 export type Game = {
   startTime: string
-  endTime?: string
+  status: number
   period: number
   clock?: string
   vTeam: Team
@@ -79,7 +79,7 @@ export type GameList = {
   gameId: string
   seasonYear: string
   startTimeUTC: string
-  endTimeUTC?: string
+  statusNum: number
   period: {
     current: number
     isHalftime: boolean

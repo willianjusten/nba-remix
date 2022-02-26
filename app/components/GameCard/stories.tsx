@@ -34,7 +34,7 @@ export const Final: Story<GameCardProps> = (args) => (
 
 Final.args = {
   startTime: '2022-02-12T22:00:00.000Z',
-  endTime: '2022-02-13T00:30:00.000Z',
+  status: 3,
   period: 4,
   clock: '',
   ...teams,
@@ -48,7 +48,7 @@ export const FinalWithOT: Story<GameCardProps> = (args) => (
 
 FinalWithOT.args = {
   startTime: '2022-02-12T22:00:00.000Z',
-  endTime: '2022-02-13T00:30:00.000Z',
+  status: 3,
   period: 5,
   clock: '',
   ...teams,
@@ -62,6 +62,7 @@ export const Future: Story<GameCardProps> = (args) => (
 
 Future.args = {
   startTime: '2022-02-14T22:00:00.000Z',
+  status: 1,
   clock: '',
   vTeam: {
     triCode: 'GSW',
@@ -83,6 +84,7 @@ export const Started: Story<GameCardProps> = (args) => (
 
 Started.args = {
   startTime: '2022-02-14T22:00:00.000Z',
+  status: 2,
   period: 4,
   clock: '1:34',
   ...teams,
@@ -96,6 +98,7 @@ export const StartedWithOT: Story<GameCardProps> = (args) => (
 
 StartedWithOT.args = {
   startTime: '2022-02-14T22:00:00.000Z',
+  status: 2,
   period: 6,
   clock: '4:34',
   ...teams,
@@ -109,6 +112,7 @@ export const WithoutFooter: Story<GameCardProps> = (args) => (
 
 WithoutFooter.args = {
   startTime: '2022-02-14T22:00:00.000Z',
+  status: 2,
   period: 6,
   clock: '4:34',
   ...teams,

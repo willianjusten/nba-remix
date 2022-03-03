@@ -7,6 +7,7 @@ import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
+import { DATE_LINK_FORMAT } from '~/constants'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -23,7 +24,7 @@ export const links = () => [...dayPickerInputStyles()]
 
 export const loader: LoaderFunction = async ({ request }) => {
   const today = new Date()
-  const date = format(today, 'yyyyMMdd')
+  const date = format(today, DATE_LINK_FORMAT)
   const url = new URL(request.url)
 
   const requestInfo = {

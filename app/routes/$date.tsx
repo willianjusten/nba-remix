@@ -6,6 +6,7 @@ import DateSelector from '~/components/DateSelector'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
+import { DATE_DISPLAY_FORMAT } from '~/constants'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -17,7 +18,10 @@ export const meta: MetaFunction = ({ data }) => {
     url: getUrl(data.requestInfo),
     origin: data.requestInfo.origin,
     title: `Games for ${format(day, 'dd/MM/yyyy')} | NBA Remix`,
-    description: `See the current games for ${format(day, 'dd MMMM yyyy')}`,
+    description: `See the current games for ${format(
+      day,
+      DATE_DISPLAY_FORMAT,
+    )}`,
   })
 }
 

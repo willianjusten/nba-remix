@@ -9,6 +9,7 @@ import Layout from '~/components/Layout'
 import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
+import { DATE_DISPLAY_FORMAT } from '~/constants'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -22,7 +23,7 @@ export const meta: MetaFunction = ({ data }) => {
     title: `${vTeamName} x ${hTeamName} | NBA Remix`,
     description: `See ${vTeamName} x ${hTeamName} results for the game on ${format(
       date,
-      'dd MMMM yyyy',
+      DATE_DISPLAY_FORMAT,
     )}`,
   })
 }

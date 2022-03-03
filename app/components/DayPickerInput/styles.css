@@ -1,3 +1,10 @@
-.DayPickerInput input {
-  background: inherit;
+.DayPicker-Day--today {
+  color: #ddd;
+  font-weight: bold;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
+.DayPicker:not(.DayPicker--interactionDisabled)
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+  background-color: #222;
 }

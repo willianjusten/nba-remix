@@ -32,13 +32,6 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
           }
         />
 
-        <button
-          onClick={() => console.log('dasdsa')}
-          type="button"
-          className="text-lg font-semibold"
-        >
-          {format(day, DATE_DISPLAY_FORMAT)}
-        </button>
         <Link to={`/${format(nextDay, DATE_LINK_FORMAT)}`}>
           <ArrowIcon className="rotate-180" title="next day" />
         </Link>

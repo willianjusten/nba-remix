@@ -12,7 +12,7 @@ import {
   ScrollRestoration,
   useTransition,
 } from 'remix'
-import type { MetaFunction } from 'remix'
+import type { LinksFunction, MetaFunction } from 'remix'
 
 import styles from './tailwind.css'
 
@@ -20,7 +20,7 @@ export const meta: MetaFunction = () => {
   return { title: 'NBA Games' }
 }
 
-export function links() {
+export const links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: styles },
     { rel: 'stylesheet', href: nProgressStyles },

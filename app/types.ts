@@ -112,3 +112,11 @@ export type TeamStanding = {
   isWinStreak: boolean
   streak: string
 }
+
+export type SocialMetas = {
+  url: string
+  title: string
+  description: string
+  origin?: string
+  image?: string
+}

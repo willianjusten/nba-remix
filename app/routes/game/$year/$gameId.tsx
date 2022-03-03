@@ -1,4 +1,7 @@
+import { format } from 'date-fns'
 import { useLoaderData } from 'remix'
+import type { LoaderFunction, MetaFunction } from 'remix'
+
 import ArrowIcon from '~/components/ArrowIcon'
 import GameCard from '~/components/GameCard'
 import GameSummary from '~/components/GameSummary'
@@ -6,15 +9,31 @@ import Layout from '~/components/Layout'
 import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
-type Params = {
-  params: {
-    year: string
-    gameId: string
-  }
-}
+import { getSocialMetas, getUrl } from '~/utils/seo'
 
-export const loader = async ({ params }: Params) => {
+export const meta: MetaFunction = ({ data }) => {
+  const date = new Date(data.game.startTimeUTC)
+  const vTeamName = data.game.vTeam.tn
+  const hTeamName = data.game.hTeam.tn
+
+  return getSocialMetas({
+    url: getUrl(data.requestInfo),
+    origin: data.requestInfo.origin,
+    title: `${vTeamName} x ${hTeamName} | NBA Remix`,
+    description: `See ${vTeamName} x ${hTeamName} results for the game on ${format(
+      date,
+      'dd MMMM yyyy',
+    )}`,
+  })
+}
+export const loader: LoaderFunction = async ({ params, request }) => {
   const { year, gameId } = params
+  const url = new URL(request.url)
+
+  const requestInfo = {
+    origin: url.origin,
+    pathname: url.pathname,
+  }
 
   const response = await fetch(
     `https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/${year}/scores/gamedetail/${gameId}_gamedetail.json`,
@@ -41,10 +60,11 @@ export const loader = async ({ params }: Params) => {
         ...game.hls,
       },
     },
+    requestInfo,
   }
 }
 
-function Game() {
+export default function Game() {
   const { game } = useLoaderData()
   const handleBackButton = () => window.history.back()
 
@@ -87,5 +107,3 @@ function Game() {
     </Layout>
   )
 }
-
-export default Game

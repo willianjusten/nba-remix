@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { useLoaderData } from 'remix'
+import { LinksFunction, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import DateSelector from '~/components/DateSelector'
@@ -11,6 +11,8 @@ import { DATE_LINK_FORMAT } from '~/constants'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
+export const links: LinksFunction = () => [...dayPickerInputStyles()]
+
 export const meta: MetaFunction = ({ data }) => {
   return getSocialMetas({
     url: getUrl(data.requestInfo),
@@ -19,8 +21,6 @@ export const meta: MetaFunction = ({ data }) => {
     description: 'See NBA game results and standings powered by Remix.run',
   })
 }
-
-export const links = () => [...dayPickerInputStyles()]
 
 export const loader: LoaderFunction = async ({ request }) => {
   const today = new Date()

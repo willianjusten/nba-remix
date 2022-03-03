@@ -1,7 +1,6 @@
 import NProgress from 'nprogress'
 import nProgressStyles from 'nprogress/nprogress.css'
 import { useEffect } from 'react'
-import reactDayPickerStyles from 'react-day-picker/lib/style.css'
 
 import {
   Links,
@@ -24,7 +23,6 @@ export const links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: styles },
     { rel: 'stylesheet', href: nProgressStyles },
-    { rel: 'stylesheet', href: reactDayPickerStyles },
   ]
 }
 

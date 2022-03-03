@@ -3,6 +3,7 @@ import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import DateSelector from '~/components/DateSelector'
+import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
@@ -17,6 +18,8 @@ export const meta: MetaFunction = ({ data }) => {
     description: 'See NBA game results and standings powered by Remix.run',
   })
 }
+
+export const links = () => [...dayPickerInputStyles()]
 
 export const loader: LoaderFunction = async ({ request }) => {
   const today = new Date()

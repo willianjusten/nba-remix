@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { Link, useNavigate } from 'remix'
 import ArrowIcon from '../ArrowIcon'
+import DayPickerInput, { parseDate, formatDate } from '../DayPickerInput'
 import { DATE_LINK_FORMAT, DATE_DISPLAY_FORMAT } from '~/constants'
 
 export type DateSelectorProps = {
@@ -24,6 +24,9 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
         <DayPickerInput
           placeholder={format(day, DATE_DISPLAY_FORMAT)}
           value={day}
+          format={DATE_DISPLAY_FORMAT}
+          parseDate={parseDate}
+          formatDate={formatDate}
           onDayChange={(selectedDay) =>
             navigate(`/${format(selectedDay, DATE_LINK_FORMAT)}`)
           }

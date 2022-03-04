@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
+import API from '~/api'
 import ArrowIcon from '~/components/ArrowIcon'
 import GameCard from '~/components/GameCard'
 import GameSummary from '~/components/GameSummary'
@@ -36,11 +37,9 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     pathname: url.pathname,
   }
 
-  const response = await fetch(
-    `https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/${year}/scores/gamedetail/${gameId}_gamedetail.json`,
-  )
-
-  const { g: game } = await response.json()
+  const {
+    data: { g: game },
+  } = await API.getGameDetails(year, gameId)
 
   // TODO: Move this to a mapper function
   return {

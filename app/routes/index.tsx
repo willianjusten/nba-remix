@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { LinksFunction, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
+import API from '~/api'
 import DateSelector from '~/components/DateSelector'
 import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
@@ -32,11 +33,9 @@ export const loader: LoaderFunction = async ({ request }) => {
     pathname: url.pathname,
   }
 
-  const response = await fetch(
-    `http://data.nba.net/prod/v2/${date}/scoreboard.json`,
-  )
-
-  const { games } = await response.json()
+  const {
+    data: { games },
+  } = await API.getGamesByDate(date)
 
   return {
     games,

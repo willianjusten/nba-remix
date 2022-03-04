@@ -99,3 +99,6 @@ export const WEST_TEAMS = [
   TEAM_ID.SAS,
   TEAM_ID.UTA,
 ]
+
+export const DATE_DISPLAY_FORMAT = 'dd MMMM yyyy'
+export const DATE_LINK_FORMAT = 'yyyyMMdd'

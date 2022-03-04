@@ -1,6 +1,8 @@
 import { format } from 'date-fns'
-import { Link } from 'remix'
+import { Link, useNavigate } from 'remix'
 import ArrowIcon from '../ArrowIcon'
+import DayPickerInput, { parseDate, formatDate } from '../DayPickerInput'
+import { DATE_LINK_FORMAT, DATE_DISPLAY_FORMAT } from '~/constants'
 
 export type DateSelectorProps = {
   day: Date
@@ -9,15 +11,28 @@ export type DateSelectorProps = {
 }
 
 function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
+  const navigate = useNavigate()
+
   return (
     <div className="flex flex-col py-12">
       <h1 className="mb-3 text-4xl font-bold">Games</h1>
       <div className="flex items-center gap-5">
-        <Link to={`/${format(prevDay, 'yyyyMMdd')}`}>
+        <Link to={`/${format(prevDay, DATE_LINK_FORMAT)}`}>
           <ArrowIcon title="previous day" />
         </Link>
-        <p className="text-lg font-semibold">{format(day, 'dd MMMM yyyy')}</p>
-        <Link to={`/${format(nextDay, 'yyyyMMdd')}`}>
+
+        <DayPickerInput
+          placeholder={format(day, DATE_DISPLAY_FORMAT)}
+          value={day}
+          format={DATE_DISPLAY_FORMAT}
+          parseDate={parseDate}
+          formatDate={formatDate}
+          onDayChange={(selectedDay) =>
+            navigate(`/${format(selectedDay, DATE_LINK_FORMAT)}`)
+          }
+        />
+
+        <Link to={`/${format(nextDay, DATE_LINK_FORMAT)}`}>
           <ArrowIcon className="rotate-180" title="next day" />
         </Link>
       </div>

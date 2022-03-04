@@ -1,6 +1,5 @@
 import NProgress from 'nprogress'
 import nProgressStyles from 'nprogress/nprogress.css'
-
 import { useEffect } from 'react'
 
 import {

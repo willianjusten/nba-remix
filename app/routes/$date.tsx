@@ -1,13 +1,17 @@
 import { format } from 'date-fns'
-import { useLoaderData, useParams } from 'remix'
+import { LinksFunction, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import DateSelector from '~/components/DateSelector'
+import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
+import { DATE_DISPLAY_FORMAT } from '~/constants'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
+
+export const links: LinksFunction = () => [...dayPickerInputStyles()]
 
 export const meta: MetaFunction = ({ data }) => {
   const date = data.requestInfo.pathname.substring(1)
@@ -17,7 +21,10 @@ export const meta: MetaFunction = ({ data }) => {
     url: getUrl(data.requestInfo),
     origin: data.requestInfo.origin,
     title: `Games for ${format(day, 'dd/MM/yyyy')} | NBA Remix`,
-    description: `See the current games for ${format(day, 'dd MMMM yyyy')}`,
+    description: `See the current games for ${format(
+      day,
+      DATE_DISPLAY_FORMAT,
+    )}`,
   })
 }
 

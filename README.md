@@ -32,3 +32,43 @@ npm run dev
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
 
 If you're used to using the `vercel dev` command provided by [Vercel CLI](https://vercel.com/cli) instead, you can also use that, but it's not needed.
+
+## Maintainers
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/adeonir">
+        <img src="https://avatars.githubusercontent.com/u/3428733?v=4?s=100" width="100px;" alt="Adeonir Kohl" />
+        <br />
+        <sub>
+          <b>
+            Adeonir Kohl
+          </b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/helderburato">
+        <img src="https://avatars.githubusercontent.com/u/862575?v=4?s=100" width="100px;" alt="Helder Berto" />
+        <br />
+        <sub>
+          <b>
+            Helder Berto
+          </b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/willianjusten">
+        <img src="https://avatars.githubusercontent.com/u/3991845?v=4?s=100" width="100px;" alt="Willian Justen" />
+        <br />
+        <sub>
+          <b>
+            Willian Justen
+          </b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>

@@ -1,10 +1,18 @@
+.DayPicker-Day {
+  padding: 0.5em 0.6em;
+  border-radius: 0.8em;
+}
+
 .DayPicker-Day--today {
   color: #ddd;
   font-weight: bold;
 }
 
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #3b82f6;
+}
+
 .DayPicker:not(.DayPicker--interactionDisabled)
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-  background-color: #222;
+  background-color: #0f172a;
 }

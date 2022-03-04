@@ -1,3 +1,7 @@
+.DayPickerInput input {
+  max-width: 12rem;
+}
+
 .DayPicker-Day {
   padding: 0.5em 0.6em;
   border-radius: 0.8em;

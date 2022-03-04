@@ -17,7 +17,8 @@ const DayPickerInput = (props: DayPickerInputProps) => (
   <BaseDayPickerInput
     component={(componentProps: unknown) => (
       <input
-        className="w-36 cursor-pointer bg-inherit text-lg font-semibold outline-none"
+        className="w-36 cursor-pointer bg-inherit text-center text-lg font-semibold outline-none"
+        readOnly
         {...componentProps}
       />
     )}

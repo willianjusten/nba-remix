@@ -9,6 +9,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useTransition,
 } from 'remix'
 import type { LinksFunction, MetaFunction } from 'remix'
@@ -26,7 +27,16 @@ export const links: LinksFunction = () => {
   ]
 }
 
+export async function loader() {
+  return {
+    ENV: {
+      APPCUES_ID: process.env.APPCUES_ID || '',
+    },
+  }
+}
+
 export default function App() {
+  const data = useLoaderData()
   let transition = useTransition()
 
   useEffect(() => {
@@ -34,7 +44,12 @@ export default function App() {
     if (transition.state === 'idle') NProgress.done()
     // and when it's something else it means it's either submitting a form or
     // waiting for the loaders of the next location so we start it
-    else NProgress.start()
+    else {
+      NProgress.start()
+    }
+
+    // track the user as annonymous
+    ;(window as any).Appcues.anonymous()
   }, [transition.state])
 
   return (
@@ -42,6 +57,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <script src={`//fast.appcues.com/${data.ENV.APPCUES_ID}.js`}></script>
         <Meta />
         <Links />
       </head>

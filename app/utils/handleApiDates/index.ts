@@ -2,11 +2,15 @@ import {
   addDays,
   addYears,
   format,
+  getHours,
   getMonth,
   getYear,
   parseISO,
+  startOfDay,
   subDays,
 } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
+import { EST_IANA_ZONE_ID } from '~/constants'
 
 const COVID_YEAR = 2020
 const COVID_MONTH_END = 9
@@ -80,7 +84,21 @@ export const getTimePeriod = ({
  * @returns object of date objects
  */
 export const getDays = (date?: string) => {
-  const day = date ? parseISO(date) : new Date()
+  let timeZonedDay: Date
+  const now = new Date().toISOString()
+  const etNow = utcToZonedTime(now, EST_IANA_ZONE_ID)
+  const etNowHours = getHours(etNow)
+
+  // Some NBA games starts in a day and finishes in the next day
+  // in order to show the games that are happening at that time
+  // even being the next day, we get the previous day
+  if (etNowHours < 6) {
+    timeZonedDay = startOfDay(subDays(etNow, 1))
+  } else {
+    timeZonedDay = startOfDay(etNow)
+  }
+
+  const day = date ? parseISO(date) : timeZonedDay
 
   return {
     day,

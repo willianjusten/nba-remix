@@ -23,8 +23,8 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const today = new Date()
-  const date = format(today, DATE_LINK_FORMAT)
+  const { day } = getDays()
+  const date = format(day, DATE_LINK_FORMAT)
   const url = new URL(request.url)
 
   const requestInfo = {

@@ -103,3 +103,5 @@ export const WEST_TEAMS = [
 export const DATE_DISPLAY_FORMAT = 'dd MMMM yyyy'
 export const DATE_LINK_FORMAT = 'yyyyMMdd'
 export const EST_IANA_ZONE_ID = 'America/New_York'
+
+export const TIME_TO_REFETCH = 20000 // 20s

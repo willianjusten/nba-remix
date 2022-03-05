@@ -1,6 +1,7 @@
 import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
+import API from '~/api'
 import Layout from '~/components/Layout'
 import StandingTable from '~/components/StandingTable'
 
@@ -24,15 +25,13 @@ export const loader: LoaderFunction = async ({ request }) => {
     pathname: url.pathname,
   }
 
-  const response = await fetch(
-    `http://data.nba.net/prod/v1/current/standings_all.json`,
-  )
+  const { data } = await API.getStandings()
 
   const {
     league: {
       standard: { teams },
     },
-  } = await response.json()
+  } = data
 
   return {
     east: conferenceMapper(teams, true),

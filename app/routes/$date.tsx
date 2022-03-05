@@ -1,4 +1,4 @@
-import { format, isSameDay } from 'date-fns'
+import { format } from 'date-fns'
 import { LinksFunction, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 

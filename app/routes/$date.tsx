@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, isSameDay } from 'date-fns'
 import { LinksFunction, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
@@ -7,7 +7,10 @@ import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
-import { DATE_DISPLAY_FORMAT } from '~/constants'
+import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
+
+import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
+
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -49,6 +52,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default function Index() {
+  useRevalidateOnInterval({ interval: TIME_TO_REFETCH })
   const { date } = useParams()
   const { day, prevDay, nextDay } = getDays(date)
 

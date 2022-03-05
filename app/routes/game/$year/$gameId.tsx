@@ -9,7 +9,10 @@ import Layout from '~/components/Layout'
 import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
-import { DATE_DISPLAY_FORMAT } from '~/constants'
+import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
+
+import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
+
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -66,6 +69,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default function Game() {
+  useRevalidateOnInterval({ interval: TIME_TO_REFETCH })
+
   const { game } = useLoaderData()
   const handleBackButton = () => window.history.back()
 

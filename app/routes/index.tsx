@@ -7,7 +7,10 @@ import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import GamesList from '~/components/GamesList'
 import Layout from '~/components/Layout'
 
-import { DATE_LINK_FORMAT } from '~/constants'
+import { DATE_LINK_FORMAT, TIME_TO_REFETCH } from '~/constants'
+
+import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
+
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -47,6 +50,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
   const { day, prevDay, nextDay } = getDays()
   const { games } = useLoaderData()
+  useRevalidateOnInterval({ interval: TIME_TO_REFETCH })
 
   return (
     <Layout>

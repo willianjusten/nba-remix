@@ -109,7 +109,7 @@ describe('getDays()', () => {
 
   it('should return the day, nextDay and prevDay when date is not passed', () => {
     // changing the day to a specific date
-    jest.useFakeTimers().setSystemTime(new Date('2021-06-28').getTime())
+    jest.useFakeTimers().setSystemTime(new Date('2021-06-28T12:00').getTime())
 
     expect(getDays()).toEqual({
       day: new Date('2021-06-28T00:00:00.000Z'),

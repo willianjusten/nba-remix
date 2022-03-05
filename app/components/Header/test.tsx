@@ -5,6 +5,7 @@ import Header from '.'
 
 jest.mock('remix', () => ({
   Link: ({ children }: LinkProps) => <a href="/">{children}</a>,
+  NavLink: ({ children }: LinkProps) => <a href="/">{children}</a>,
   useHref: jest.fn(),
 }))
 

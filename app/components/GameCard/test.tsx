@@ -48,4 +48,14 @@ describe('<GameCard />', () => {
 
     expect(screen.queryByText('View details')).not.toBeInTheDocument()
   })
+
+  it('should render live pulse when the game is happening', () => {
+    const gameLive = {
+      ...game,
+      status: 2,
+    }
+    render(<GameCard {...gameLive} details={false} />)
+
+    expect(screen.getByText('Live')).toBeInTheDocument()
+  })
 })

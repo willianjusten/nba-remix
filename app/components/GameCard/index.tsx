@@ -35,6 +35,12 @@ const GameCard = ({
               isHalftime,
               isEndOfPeriod,
             })}
+            {status == 2 && (
+              <span className="mx-auto block pt-2 text-xs tracking-widest">
+                <span className="mr-1 inline-block h-2 w-2 animate-pulse rounded-full bg-red-700"></span>
+                Live
+              </span>
+            )}
           </p>
           {hTeam.score && (
             <p className="w-1/3 text-right text-2xl font-bold">{hTeam.score}</p>

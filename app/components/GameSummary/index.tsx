@@ -17,7 +17,7 @@ function GameSummary({ game }: GameSummaryProps) {
       <div className="overflow-x-auto">
         <Table>
           <TableHead>
-            <tr className="border border-slate-600">
+            <tr className="border border-main">
               <TableCell>Team</TableCell>
               <TableCell>Q1</TableCell>
               <TableCell>Q2</TableCell>

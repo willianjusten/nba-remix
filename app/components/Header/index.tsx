@@ -2,7 +2,7 @@ import { Link, NavLink } from 'remix'
 
 function Header() {
   const linkClass =
-    'text-lg transition-opacity hover:opacity-70 hover:border-b-2 hover:border-blue-300'
+    'text-lg transition-opacity hover:opacity-70 border-b-2 border-transparent hover:border-blue-300'
   const activeLinkClass =
     'text-lg transition-opacity hover:opacity-70 border-b-2 border-blue-500'
 

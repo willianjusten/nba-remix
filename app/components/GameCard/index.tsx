@@ -1,9 +1,12 @@
+import cn from 'classnames'
+
 import TeamInfo from '../TeamInfo'
 import type { Game } from '~/types'
 import { getTimePeriod } from '~/utils/handleApiDates'
 
 export type GameCardProps = Game & {
   details?: boolean
+  interactive?: boolean
 }
 
 const GameCard = ({
@@ -16,8 +19,16 @@ const GameCard = ({
   period,
   clock,
   details = true,
+  interactive = true,
 }: GameCardProps) => (
-  <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700 firefox:bg-slate-750">
+  <article
+    className={cn(
+      'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750',
+      {
+        'hover:cursor-pointer hover:bg-slate-700': interactive,
+      },
+    )}
+  >
     <div className="flex w-full flex-col">
       <div className="flex p-6">
         <TeamInfo team={vTeam} />

@@ -24,7 +24,7 @@ const DayPickerInput = (props: DayPickerInputProps) => (
     )}
     overlayComponent={(overlayProps: unknown) => (
       <div
-        className="absolute z-10 flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700"
+        className="absolute z-10 flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 hover:cursor-pointer hover:bg-slate-700 firefox:bg-slate-750"
         {...overlayProps}
       />
     )}

@@ -23,7 +23,7 @@ const GameCard = ({
 }: GameCardProps) => (
   <article
     className={cn(
-      'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-opacity-90',
+      'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750',
       {
         'hover:cursor-pointer hover:bg-slate-700': interactive,
       },

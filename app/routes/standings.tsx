@@ -1,4 +1,4 @@
-import { useLoaderData } from 'remix'
+import { json, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -33,11 +33,19 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   } = data
 
-  return {
-    east: conferenceMapper(teams, true),
-    west: conferenceMapper(teams, false),
-    requestInfo,
-  }
+  return json(
+    {
+      east: conferenceMapper(teams, true),
+      west: conferenceMapper(teams, false),
+      requestInfo,
+    },
+    {
+      headers: {
+        'cache-control':
+          'public, max-age=60, s-maxage=600, stale-while-revalidate=31540000000',
+      },
+    },
+  )
 }
 
 export default function Standings() {

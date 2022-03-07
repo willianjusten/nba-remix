@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { LinksFunction, useLoaderData, useParams } from 'remix'
+import { json, LinksFunction, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -44,10 +44,18 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     data: { games },
   } = await API.getGamesByDate(params.date)
 
-  return {
-    games,
-    requestInfo,
-  }
+  return json(
+    {
+      games,
+      requestInfo,
+    },
+    {
+      headers: {
+        'cache-control':
+          'public, max-age=1, s-maxage=30, stale-while-revalidate=31540000000',
+      },
+    },
+  )
 }
 
 export default function Index() {

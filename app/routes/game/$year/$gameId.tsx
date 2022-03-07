@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { useLoaderData } from 'remix'
+import { json, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -45,26 +45,34 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   } = await API.getGameDetails(year, gameId)
 
   // TODO: Move this to a mapper function
-  return {
-    game: {
-      // This is needed because the NBA API returns the date separated
-      startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
-      period: game.p,
-      clock: game.cl,
-      status: game.st,
-      vTeam: {
-        score: game.vls.s,
-        triCode: game.vls.ta,
-        ...game.vls,
+  return json(
+    {
+      game: {
+        // This is needed because the NBA API returns the date separated
+        startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
+        period: game.p,
+        clock: game.cl,
+        status: game.st,
+        vTeam: {
+          score: game.vls.s,
+          triCode: game.vls.ta,
+          ...game.vls,
+        },
+        hTeam: {
+          score: game.hls.s,
+          triCode: game.hls.ta,
+          ...game.hls,
+        },
       },
-      hTeam: {
-        score: game.hls.s,
-        triCode: game.hls.ta,
-        ...game.hls,
+      requestInfo,
+    },
+    {
+      headers: {
+        'cache-control':
+          'public, max-age=1, s-maxage=60, stale-while-revalidate=31540000000',
       },
     },
-    requestInfo,
-  }
+  )
 }
 
 export default function Game() {

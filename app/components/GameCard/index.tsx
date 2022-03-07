@@ -17,7 +17,7 @@ const GameCard = ({
   clock,
   details = true,
 }: GameCardProps) => (
-  <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700">
+  <article className="flex rounded-lg border border-main bg-glass text-white backdrop-blur-xl duration-300 hover:cursor-pointer hover:bg-slate-700 firefox:bg-slate-750">
     <div className="flex w-full flex-col">
       <div className="flex p-6">
         <TeamInfo team={vTeam} />

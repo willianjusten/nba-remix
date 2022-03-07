@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { json, useLoaderData } from 'remix'
+import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -14,6 +14,7 @@ import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
+import { cachedJson } from '~/utils/cachedJson'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -45,34 +46,26 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   } = await API.getGameDetails(year, gameId)
 
   // TODO: Move this to a mapper function
-  return json(
-    {
-      game: {
-        // This is needed because the NBA API returns the date separated
-        startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
-        period: game.p,
-        clock: game.cl,
-        status: game.st,
-        vTeam: {
-          score: game.vls.s,
-          triCode: game.vls.ta,
-          ...game.vls,
-        },
-        hTeam: {
-          score: game.hls.s,
-          triCode: game.hls.ta,
-          ...game.hls,
-        },
+  return cachedJson({
+    game: {
+      // This is needed because the NBA API returns the date separated
+      startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
+      period: game.p,
+      clock: game.cl,
+      status: game.st,
+      vTeam: {
+        score: game.vls.s,
+        triCode: game.vls.ta,
+        ...game.vls,
       },
-      requestInfo,
-    },
-    {
-      headers: {
-        'cache-control':
-          'public, max-age=1, s-maxage=60, stale-while-revalidate=31540000000',
+      hTeam: {
+        score: game.hls.s,
+        triCode: game.hls.ta,
+        ...game.hls,
       },
     },
-  )
+    requestInfo,
+  })
 }
 
 export default function Game() {

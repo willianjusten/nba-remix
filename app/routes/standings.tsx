@@ -1,10 +1,11 @@
-import { json, useLoaderData } from 'remix'
+import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
 import Layout from '~/components/Layout'
 import StandingTable from '~/components/StandingTable'
 
+import { cachedJson } from '~/utils/cachedJson'
 import { conferenceMapper } from '~/utils/mappers'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -33,18 +34,13 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   } = data
 
-  return json(
+  return cachedJson(
     {
       east: conferenceMapper(teams, true),
       west: conferenceMapper(teams, false),
       requestInfo,
     },
-    {
-      headers: {
-        'cache-control':
-          'public, max-age=60, s-maxage=600, stale-while-revalidate=31540000000',
-      },
-    },
+    { browser: 60, cdn: 600 },
   )
 }
 

@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { json, LinksFunction, useLoaderData, useParams } from 'remix'
+import { LinksFunction, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -12,6 +12,7 @@ import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
+import { cachedJson } from '~/utils/cachedJson'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -44,18 +45,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     data: { games },
   } = await API.getGamesByDate(params.date)
 
-  return json(
-    {
-      games,
-      requestInfo,
-    },
-    {
-      headers: {
-        'cache-control':
-          'public, max-age=1, s-maxage=30, stale-while-revalidate=31540000000',
-      },
-    },
-  )
+  return cachedJson({ games, requestInfo }, { cdn: 60 })
 }
 
 export default function Index() {

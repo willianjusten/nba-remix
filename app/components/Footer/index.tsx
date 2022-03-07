@@ -4,19 +4,33 @@ function Footer() {
   return (
     <footer className="container mx-auto pt-16 text-center">
       <p>
-        Created with ❤️ by those{' '}
+        {`Created with `}
+        <span className="text-rose-600">♥️</span>
+        {` by those `}
         <a
           className={linkStyle}
           href="https://github.com/willianjusten/nba-remix/graphs/contributors"
+          target="_blank"
+          rel="noreferrer"
         >
           amazing developers
         </a>
-        , design by{' '}
-        <a className={linkStyle} href="https://github.com/alangabrielbs">
+        {`, designed by `}
+        <a
+          className={linkStyle}
+          href="https://github.com/alangabrielbs"
+          target="_blank"
+          rel="noreferrer"
+        >
           Alan Gabriel
         </a>
-        , powered by{' '}
-        <a className={linkStyle} href="https://remix.run">
+        {` and powered by `}
+        <a
+          className={linkStyle}
+          href="https://remix.run"
+          target="_blank"
+          rel="noreferrer"
+        >
           Remix.run
         </a>
       </p>

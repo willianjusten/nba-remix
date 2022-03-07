@@ -25,7 +25,11 @@ function GamesList({ games }: GamesListProps) {
             vTeam,
             hTeam,
           }) => (
-            <Link to={`/game/${seasonYear}/${gameId}`} key={gameId}>
+            <Link
+              prefetch="intent"
+              to={`/game/${seasonYear}/${gameId}`}
+              key={gameId}
+            >
               <GameCard
                 startTime={startTimeUTC}
                 status={statusNum}

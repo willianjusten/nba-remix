@@ -92,6 +92,7 @@ export default function Game() {
           startTime={game.startTimeUTC}
           status={game.status}
           details={false}
+          interactive={false}
         />
       </div>
 

@@ -41,7 +41,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     data: { games },
   } = await API.getGamesByDate(date)
 
-  return cachedJson({ games, requestInfo }, { cdn: 30 })
+  return cachedJson({ games, requestInfo })
 }
 
 export default function Index() {

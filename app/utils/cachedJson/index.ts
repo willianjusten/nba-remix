@@ -1,3 +1,5 @@
+import { A_YEAR_IN_SECONDS, TIME_TO_REFETCH } from '~/constants'
+
 type Options = {
   browser?: number
   cdn?: number
@@ -14,7 +16,11 @@ type Options = {
  */
 export function cachedJson(
   data: Record<string, unknown>,
-  { browser = 1, cdn = 60, swr = 3154e7 }: Options = {},
+  {
+    browser = 1,
+    cdn = TIME_TO_REFETCH / 1000, // milliseconds to seconds
+    swr = A_YEAR_IN_SECONDS,
+  }: Options = {},
 ): Response {
   return new Response(JSON.stringify(data), {
     headers: {

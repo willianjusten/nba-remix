@@ -105,6 +105,7 @@ export const DATE_LINK_FORMAT = 'yyyyMMdd'
 export const EST_IANA_ZONE_ID = 'America/New_York'
 
 export const TIME_TO_REFETCH = 20000 // 20s
+export const A_YEAR_IN_SECONDS = 3154e7
 
 export const GAME_STATUS = {
   NOT_STARTED: 1,

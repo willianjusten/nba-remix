@@ -5,6 +5,7 @@ import API from '~/api'
 import Layout from '~/components/Layout'
 import StandingTable from '~/components/StandingTable'
 
+import { cachedJson } from '~/utils/cachedJson'
 import { conferenceMapper } from '~/utils/mappers'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -33,11 +34,14 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   } = data
 
-  return {
-    east: conferenceMapper(teams, true),
-    west: conferenceMapper(teams, false),
-    requestInfo,
-  }
+  return cachedJson(
+    {
+      east: conferenceMapper(teams, true),
+      west: conferenceMapper(teams, false),
+      requestInfo,
+    },
+    { browser: 60, cdn: 600 },
+  )
 }
 
 export default function Standings() {

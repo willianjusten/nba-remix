@@ -14,6 +14,7 @@ import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
+import { cachedJson } from '~/utils/cachedJson'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -45,7 +46,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   } = await API.getGameDetails(year, gameId)
 
   // TODO: Move this to a mapper function
-  return {
+  return cachedJson({
     game: {
       // This is needed because the NBA API returns the date separated
       startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
@@ -64,7 +65,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       },
     },
     requestInfo,
-  }
+  })
 }
 
 export default function Game() {

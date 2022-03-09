@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { useMemo } from 'react'
 
 import TeamInfo from '../TeamInfo'
+import { GAME_STATUS } from '~/constants'
 import type { Game } from '~/types'
 import { getWinner } from '~/utils/getWinner'
 import { getTimePeriod } from '~/utils/handleApiDates'
@@ -42,7 +43,8 @@ const GameCard = ({
             {vTeam.score && (
               <p
                 className={cn('w-1/3 text-left text-2xl font-bold', {
-                  'opacity-50': winner !== 'vTeam' && status === 3,
+                  'opacity-50':
+                    winner !== 'vTeam' && status === GAME_STATUS.ENDED,
                 })}
               >
                 {vTeam.score}
@@ -57,7 +59,7 @@ const GameCard = ({
                 isHalftime,
                 isEndOfPeriod,
               })}
-              {status == 2 && (
+              {status == GAME_STATUS.IN_PROGRESS && (
                 <span className="mx-auto block pt-2 text-xs tracking-widest">
                   <span className="mr-1 inline-block h-2 w-2 animate-pulse rounded-full bg-red-700"></span>
                   Live
@@ -67,7 +69,8 @@ const GameCard = ({
             {hTeam.score && (
               <p
                 className={cn('w-1/3 text-right text-2xl font-bold', {
-                  'opacity-50': winner !== 'hTeam' && status === 3,
+                  'opacity-50':
+                    winner !== 'hTeam' && status === GAME_STATUS.ENDED,
                 })}
               >
                 {hTeam.score}

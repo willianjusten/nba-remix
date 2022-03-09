@@ -10,7 +10,7 @@ import Layout from '~/components/Layout'
 import PlayerStats from '~/components/PlayersStats'
 import TeamStats from '~/components/TeamStats'
 
-import { DATE_DISPLAY_FORMAT, TIME_TO_REFETCH } from '~/constants'
+import { DATE_DISPLAY_FORMAT, GAME_STATUS, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
@@ -96,7 +96,7 @@ export default function Game() {
         />
       </div>
 
-      {game.status === '1' ? (
+      {game.status === GAME_STATUS.NOT_STARTED ? (
         <h1>Game has not started</h1>
       ) : (
         <>

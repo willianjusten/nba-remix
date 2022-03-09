@@ -1,7 +1,9 @@
 import cn from 'classnames'
+import { useMemo } from 'react'
 
 import TeamInfo from '../TeamInfo'
-import type { Game, Team } from '~/types'
+import type { Game } from '~/types'
+import { getWinner } from '~/utils/getWinner'
 import { getTimePeriod } from '~/utils/handleApiDates'
 
 export type GameCardProps = Game & {
@@ -21,12 +23,7 @@ const GameCard = ({
   details = true,
   interactive = true,
 }: GameCardProps) => {
-  function getWinner(vTeam: Team, hTeam: Team) {
-    if (Number(hTeam.score) === Number(vTeam.score)) return null
-    return Number(hTeam.score) > Number(vTeam.score) ? 'hTeam' : 'vTeam'
-  }
-
-  const winner = getWinner(vTeam, hTeam)
+  const winner = useMemo(() => getWinner(vTeam, hTeam), [vTeam, hTeam])
 
   return (
     <article

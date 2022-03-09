@@ -10,7 +10,7 @@ import {
   subDays,
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
-import { EST_IANA_ZONE_ID } from '~/constants'
+import { EST_IANA_ZONE_ID, GAME_STATUS } from '~/constants'
 
 const COVID_YEAR = 2020
 const COVID_MONTH_END = 9
@@ -67,7 +67,7 @@ export const getTimePeriod = ({
   const overtime =
     period > REGULAR_PERIOD_COUNT ? `OT${period - REGULAR_PERIOD_COUNT}` : ''
 
-  if (status === 3) return `Final${overtime && `/${overtime}`}`
+  if (status === GAME_STATUS.ENDED) return `Final${overtime && `/${overtime}`}`
 
   if (isHalftime) return `Halftime`
 

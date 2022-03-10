@@ -52,7 +52,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
       period: game.p,
       clock: game.cl,
-      status: game.st,
+      status: Number(game.st),
       vTeam: {
         score: game.vls.s,
         triCode: game.vls.ta,

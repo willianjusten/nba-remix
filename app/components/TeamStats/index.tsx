@@ -22,6 +22,10 @@ export function Statistic({
 }
 
 function TeamStats({ game }: TeamGroupStatistics) {
+  const hTeamTstsg = game.hTeam.tstsg || {};
+  const vTeamTstsg = game.vTeam.tstsg || {};
+  const emptyLabel = '-'
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Team Stats</h1>
@@ -40,68 +44,68 @@ function TeamStats({ game }: TeamGroupStatistics) {
           </tr>
 
           <Statistic
-            homeStatistic={`${game.hTeam.tstsg.fgm} / ${game.hTeam.tstsg.fga}`}
-            visitorStatistic={`${game.vTeam.tstsg.fgm} / ${game.vTeam.tstsg.fga}`}
+            homeStatistic={hTeamTstsg.fgm ? `${hTeamTstsg.fgm} / ${hTeamTstsg.fga}` : emptyLabel}
+            visitorStatistic={vTeamTstsg.fgm ? `${vTeamTstsg.fgm} / ${vTeamTstsg.fga}` : emptyLabel}
             label="Field Goals"
           />
 
           <Statistic
-            homeStatistic={`${game.hTeam.tstsg.tpm} / ${game.hTeam.tstsg.tpa}`}
-            visitorStatistic={`${game.vTeam.tstsg.tpm} / ${game.vTeam.tstsg.tpa}`}
+            homeStatistic={hTeamTstsg.tpm ? `${hTeamTstsg.tpm} / ${hTeamTstsg.tpa}` : emptyLabel}
+            visitorStatistic={vTeamTstsg.tpm ? `${vTeamTstsg.tpm} / ${vTeamTstsg.tpa}` : emptyLabel}
             label="3 Pointers"
           />
 
           <Statistic
-            homeStatistic={`${game.hTeam.tstsg.ftm} / ${game.hTeam.tstsg.fta}`}
-            visitorStatistic={`${game.vTeam.tstsg.ftm} / ${game.vTeam.tstsg.fta}`}
+            homeStatistic={hTeamTstsg.ftm ? `${hTeamTstsg.ftm} / ${hTeamTstsg.fta}` : emptyLabel}
+            visitorStatistic={vTeamTstsg.ftm ? `${vTeamTstsg.ftm} / ${vTeamTstsg.fta}` : emptyLabel}
             label="Free throws"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.reb}
-            visitorStatistic={game.vTeam.tstsg.reb}
+            homeStatistic={hTeamTstsg.reb || emptyLabel}
+            visitorStatistic={vTeamTstsg.reb || emptyLabel}
             label="Total Rebounds"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.oreb}
-            visitorStatistic={game.vTeam.tstsg.oreb}
+            homeStatistic={hTeamTstsg.oreb || emptyLabel}
+            visitorStatistic={vTeamTstsg.oreb || emptyLabel}
             label="Offensive Rebounds"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.ast}
-            visitorStatistic={game.vTeam.tstsg.ast}
+            homeStatistic={hTeamTstsg.ast || emptyLabel}
+            visitorStatistic={vTeamTstsg.ast || emptyLabel}
             label="Assists"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.blk}
-            visitorStatistic={game.vTeam.tstsg.blk}
+            homeStatistic={hTeamTstsg.blk || emptyLabel}
+            visitorStatistic={vTeamTstsg.blk || emptyLabel}
             label="Blocks"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.stl}
-            visitorStatistic={game.vTeam.tstsg.stl}
+            homeStatistic={hTeamTstsg.stl || emptyLabel}
+            visitorStatistic={vTeamTstsg.stl || emptyLabel}
             label="Steals"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.tov}
-            visitorStatistic={game.vTeam.tstsg.tov}
+            homeStatistic={hTeamTstsg.tov || emptyLabel}
+            visitorStatistic={vTeamTstsg.tov || emptyLabel}
             label="Turnovers"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.pip}
-            visitorStatistic={game.vTeam.tstsg.pip}
+            homeStatistic={hTeamTstsg.pip || emptyLabel}
+            visitorStatistic={vTeamTstsg.pip || emptyLabel}
             label="Points in the paint"
           />
 
           <Statistic
-            homeStatistic={game.hTeam.tstsg.pf}
-            visitorStatistic={game.vTeam.tstsg.pf}
+            homeStatistic={hTeamTstsg.pf || emptyLabel}
+            visitorStatistic={vTeamTstsg.pf || emptyLabel}
             label="Fouls - Personal"
           />
         </tbody>

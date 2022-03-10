@@ -49,8 +49,8 @@ exports[`<PlayersStats> should render correctly 1`] = `
           <td
             class="border border-main px-3 py-2 truncate text-left"
           >
-            F
-            . 
+            F.
+             
             Last
           </td>
           <td
@@ -78,8 +78,8 @@ exports[`<PlayersStats> should render correctly 1`] = `
           <td
             class="border border-main px-3 py-2 truncate text-left"
           >
-            S
-            . 
+            S.
+             
             Last
           </td>
           <td

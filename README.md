@@ -1,4 +1,6 @@
-## NBA React
+## NBA Remix
+
+[![ci](https://github.com/willianjusten/nba-remix/actions/workflows/ci.yml/badge.svg)](https://github.com/willianjusten/nba-remix/actions/workflows/ci.yml)
 
 > A simple app to show NBA games and scores/details.
 

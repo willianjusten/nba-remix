@@ -1,4 +1,4 @@
-import { A_YEAR_IN_SECONDS, TIME_TO_REFETCH } from '~/constants'
+import { A_YEAR_IN_SECONDS, TIME_TO_CACHE } from '~/constants'
 
 type Options = {
   browser?: number
@@ -18,7 +18,7 @@ export function cachedJson(
   data: Record<string, unknown>,
   {
     browser = 1,
-    cdn = TIME_TO_REFETCH / 1000, // milliseconds to seconds
+    cdn = TIME_TO_CACHE / 1000, // milliseconds to seconds
     swr = A_YEAR_IN_SECONDS,
   }: Options = {},
 ): Response {

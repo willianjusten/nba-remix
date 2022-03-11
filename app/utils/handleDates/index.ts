@@ -125,7 +125,7 @@ export const parseDate = (str: string, dateFormat: string) => {
 
 /**
  *
- * @param date - string of the day - Ex.: '2022-02-14T00:00:00.000Z'
+ * @param date - date object of the day
  * @param dateFormat - string of the date format - Ex.: 'dd MMMM yyyy'
  * @returns string
  */

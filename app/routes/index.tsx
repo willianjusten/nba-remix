@@ -12,7 +12,6 @@ import { DATE_LINK_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
-import { cachedJson } from '~/utils/cachedJson'
 import { getDays } from '~/utils/handleApiDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -41,7 +40,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     data: { games },
   } = await API.getGamesByDate(date)
 
-  return cachedJson({ games, requestInfo })
+  return { games, requestInfo }
 }
 
 export default function Index() {

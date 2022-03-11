@@ -3,6 +3,10 @@ import BaseDayPickerInput from 'react-day-picker/DayPickerInput'
 import styles from 'react-day-picker/lib/style.css'
 import customStyles from './styles.css'
 
+interface IDayPickerInputProps extends DayPickerInputProps {
+  onDayChange: (selectedDay: Date) => void
+}
+
 export const links = () => [
   { rel: 'stylesheet', href: styles },
   {
@@ -11,7 +15,7 @@ export const links = () => [
   },
 ]
 
-const DayPickerInput = (props: DayPickerInputProps) => (
+const DayPickerInput = (props: IDayPickerInputProps) => (
   <BaseDayPickerInput
     component={(componentProps: unknown) => (
       <input
@@ -26,6 +30,10 @@ const DayPickerInput = (props: DayPickerInputProps) => (
         {...overlayProps}
       />
     )}
+    dayPickerProps={{
+      todayButton: 'Go to today',
+      onTodayButtonClick: (day: any) => props.onDayChange(day),
+    }}
     {...props}
   />
 )

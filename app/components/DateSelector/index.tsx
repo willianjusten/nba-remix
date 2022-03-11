@@ -17,7 +17,7 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
   return (
     <div className="flex flex-col py-12">
       <h1 className="mb-3 text-4xl font-bold">Games</h1>
-      <div className="-ml-2 flex items-center gap-5">
+      <div className="justify-between pt-4 flex items-center gap-5 sm:justify-start">
         <Link
           prefetch="intent"
           className="p-2"

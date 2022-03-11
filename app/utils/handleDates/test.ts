@@ -1,4 +1,4 @@
-import { getDays, getLeagueYear, getTimePeriod } from '.'
+import { getDays, getLeagueYear, getTimePeriod, formatDate, parseDate } from '.'
 
 // Because NBA season starts from July and ends in May,
 // we need to calculate the year of the season based on that
@@ -116,5 +116,29 @@ describe('getDays()', () => {
       nextDay: new Date('2021-06-29T00:00:00.000Z'),
       prevDay: new Date('2021-06-27T00:00:00.000Z'),
     })
+  })
+})
+
+describe('parseDate()', () => {
+  const props = {
+    str: '10 Mar 2022',
+    format: 'dd MMM yyyy',
+  }
+
+  it('should return the parsed date', () => {
+    expect(parseDate(props.str, props.format)).toEqual(
+      new Date('2022-03-10T00:00:00.000Z'),
+    )
+  })
+})
+
+describe('formatDate()', () => {
+  const props = {
+    date: new Date('2022-03-10T00:00:00.000Z'),
+    format: 'dd MMM yyyy',
+  }
+
+  it('should return the formated date', () => {
+    expect(formatDate(props.date, props.format)).toEqual('10 Mar 2022')
   })
 })

@@ -11,8 +11,6 @@ export const links = () => [
   },
 ]
 
-export * from './api'
-
 const DayPickerInput = (props: DayPickerInputProps) => (
   <BaseDayPickerInput
     component={(componentProps: unknown) => (

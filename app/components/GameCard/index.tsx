@@ -5,7 +5,7 @@ import TeamInfo from '../TeamInfo'
 import { GAME_STATUS } from '~/constants'
 import type { Game } from '~/types'
 import { getWinner } from '~/utils/getWinner'
-import { getTimePeriod } from '~/utils/handleApiDates'
+import { getTimePeriod } from '~/utils/handleDates'
 
 export type GameCardProps = Game & {
   details?: boolean

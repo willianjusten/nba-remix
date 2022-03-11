@@ -5,11 +5,13 @@ import {
   getHours,
   getMonth,
   getYear,
+  parse,
   parseISO,
   startOfDay,
   subDays,
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
+import { DateUtils } from 'react-day-picker'
 import { EST_IANA_ZONE_ID, GAME_STATUS } from '~/constants'
 
 const COVID_YEAR = 2020
@@ -105,4 +107,28 @@ export const getDays = (date?: string) => {
     prevDay: subDays(day, 1),
     nextDay: addDays(day, 1),
   }
+}
+
+/**
+ *
+ * @param str - string of the date - Ex.: '10 Mar 2022'
+ * @param dateFormat - string of the date format - Ex.: 'dd MMM yyyy'
+ * @returns date object
+ */
+export const parseDate = (str: string, dateFormat: string) => {
+  const parsed = parse(str, dateFormat, new Date())
+  if (DateUtils.isDate(parsed)) {
+    return parsed
+  }
+  return undefined
+}
+
+/**
+ *
+ * @param date - date object of the day
+ * @param dateFormat - string of the date format - Ex.: 'dd MMMM yyyy'
+ * @returns string
+ */
+export const formatDate = (date: Date, dateFormat: string) => {
+  return format(date, dateFormat)
 }

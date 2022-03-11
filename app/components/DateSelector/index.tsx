@@ -1,8 +1,9 @@
 import { format } from 'date-fns'
 import { Link, useNavigate } from 'remix'
 import ArrowIcon from '../ArrowIcon'
-import DayPickerInput, { parseDate, formatDate } from '../DayPickerInput'
+import DayPickerInput from '../DayPickerInput'
 import { DATE_LINK_FORMAT, DATE_DISPLAY_FORMAT } from '~/constants'
+import { formatDate, parseDate } from '~/utils/handleDates'
 
 export type DateSelectorProps = {
   day: Date
@@ -17,7 +18,11 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
     <div className="flex flex-col py-12">
       <h1 className="mb-3 text-4xl font-bold">Games</h1>
       <div className="-ml-2 flex items-center gap-5">
-        <Link prefetch="intent" className="p-2" to={`/${format(prevDay, DATE_LINK_FORMAT)}`}>
+        <Link
+          prefetch="intent"
+          className="p-2"
+          to={`/${format(prevDay, DATE_LINK_FORMAT)}`}
+        >
           <ArrowIcon title="previous day" />
         </Link>
 
@@ -32,7 +37,11 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
           }
         />
 
-        <Link prefetch="intent" className="p-2" to={`/${format(nextDay, DATE_LINK_FORMAT)}`}>
+        <Link
+          prefetch="intent"
+          className="p-2"
+          to={`/${format(nextDay, DATE_LINK_FORMAT)}`}
+        >
           <ArrowIcon className="rotate-180" title="next day" />
         </Link>
       </div>

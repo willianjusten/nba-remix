@@ -12,7 +12,7 @@ import { DATE_LINK_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
 import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
 
-import { getDays } from '~/utils/handleApiDates'
+import { getDays } from '~/utils/handleDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 export const links: LinksFunction = () => [...dayPickerInputStyles()]

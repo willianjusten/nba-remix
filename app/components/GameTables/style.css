@@ -1,0 +1,13 @@
+.react-tabs .react-tabs__tab-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0;
+  list-style: none;
+  padding: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.react-tabs__tab--selected {
+  border-bottom: 10px solid #e6e6e6;
+}

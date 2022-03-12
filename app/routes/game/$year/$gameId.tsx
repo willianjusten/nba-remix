@@ -6,9 +6,10 @@ import API from '~/api'
 import ArrowIcon from '~/components/ArrowIcon'
 import GameCard from '~/components/GameCard'
 import GameSummary from '~/components/GameSummary'
+import GameTables from '~/components/GameTables'
 import Layout from '~/components/Layout'
-import PlayerStats from '~/components/PlayersStats'
-import TeamStats from '~/components/TeamStats'
+// import PlayerStats from '~/components/PlayersStats'
+// import TeamStats from '~/components/TeamStats'
 
 import { DATE_DISPLAY_FORMAT, GAME_STATUS, TIME_TO_REFETCH } from '~/constants'
 
@@ -103,10 +104,17 @@ export default function Game() {
           <GameSummary game={game} />
 
           <div className="flex gap-4 overflow-x-auto md:gap-12 ">
-            <PlayerStats team={game.hTeam} />
-            <PlayerStats team={game.vTeam} />
 
-            <TeamStats game={game} />
+            <GameTables
+              vTeam={game.vTeam}
+              hTeam={game.hTeam}
+              game={game}
+            />
+
+            {/* <PlayerStats team={game.hTeam} />
+            <PlayerStats team={game.vTeam} />
+            <TeamStats game={game} /> */}
+            
           </div>
         </>
       )}

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 
 export function Table({
-  fullWidth = false,
+  fullWidth = true,
   children,
 }: React.PropsWithChildren<{ fullWidth?: boolean }>) {
   return (

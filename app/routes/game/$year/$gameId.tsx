@@ -84,7 +84,7 @@ export default function Game() {
         <span className="pl-3 text-xl">Back</span>
       </div>
 
-      <div className="py-5 md:max-w-sm">
+      <div className="py-3 px-3 max-w-screen-sm self-center">
         <GameCard
           vTeam={game.vTeam}
           hTeam={game.hTeam}
@@ -103,7 +103,7 @@ export default function Game() {
         <>
           <GameSummary game={game} />
 
-          <div className="flex gap-4 overflow-x-auto md:gap-12 ">
+          <div className="py-3 px-3 max-w-screen-sm">
 
             <GameTables
               vTeam={game.vTeam}
@@ -114,7 +114,7 @@ export default function Game() {
             {/* <PlayerStats team={game.hTeam} />
             <PlayerStats team={game.vTeam} />
             <TeamStats game={game} /> */}
-            
+
           </div>
         </>
       )}

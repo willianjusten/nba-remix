@@ -25,10 +25,10 @@ const GameTables = ({
   return (
     <>
       <Tabs>
-        <TabList className="flex flex-row">
-          <Tab className="basis-1/3 cursor-pointer">{vTeam.tn}</Tab>
-          <Tab className="basis-1/3 cursor-pointer">{hTeam.tn}</Tab>
-          <Tab className="basis-1/3 cursor-pointer">Stats</Tab>
+        <TabList className="flex flex-row items-stretch">
+          <Tab className="basis-1/3 cursor-pointer text-center">{vTeam.tn}</Tab>
+          <Tab className="basis-1/3 cursor-pointer text-center">{hTeam.tn}</Tab>
+          <Tab className="basis-1/3 cursor-pointer text-center">Stats</Tab>
         </TabList>
 
         <TabPanel>

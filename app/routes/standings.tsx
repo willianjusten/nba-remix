@@ -1,3 +1,4 @@
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
@@ -49,8 +50,25 @@ export default function Standings() {
 
   return (
     <Layout>
-      <StandingTable label="Eastern Conference" conference={east} />
-      <StandingTable label="Western Conference" conference={west} />
+      <Tabs>
+        <TabList className="flex flex-row items-stretch">
+          <Tab className="basis-1/2 cursor-pointer text-center">
+            <h1 className="text-3xl font-bold text-white">Western Conference</h1>
+          </Tab>
+          <Tab className="basis-1/2 cursor-pointer text-center">
+            <h1 className="text-3xl font-bold text-white">Eastern Conference</h1>
+          </Tab>
+        </TabList>
+
+        <TabPanel>
+           <StandingTable label="Western Conference" conference={west} />    
+        </TabPanel>
+        <TabPanel>
+          <StandingTable label="Eastern Conference" conference={east} />
+        </TabPanel>
+      </Tabs>  
+      {/* <StandingTable label="Eastern Conference" conference={east} />
+      <StandingTable label="Western Conference" conference={west} /> */}
     </Layout>
   )
 }

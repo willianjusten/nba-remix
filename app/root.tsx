@@ -13,6 +13,7 @@ import {
 } from 'remix'
 import type { LinksFunction, MetaFunction } from 'remix'
 
+import Layout from './components/Layout'
 import styles from './tailwind.css'
 
 export const meta: MetaFunction = () => {
@@ -24,6 +25,13 @@ export const links: LinksFunction = () => {
     { rel: 'stylesheet', href: styles },
     { rel: 'stylesheet', href: nProgressStyles },
   ]
+}
+
+export type ErrorBoundaryProps = {
+  error: {
+    message: String,
+    stack: String,
+  },
 }
 
 export default function App() {
@@ -71,4 +79,27 @@ export default function App() {
       </body>
     </html>
   )
+}
+
+export function ErrorBoundary({ error } : ErrorBoundaryProps) {
+  console.error(error);
+
+  return (
+    <html lang='en'>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Layout>
+          <h1 className="text-4xl font-bold mb-2">Oh no!</h1>
+          <h2 className="text-2xl font-semibold">Something went wrong.</h2>
+        </Layout>
+        <Scripts />
+      </body>
+    </html>
+  );
 }

@@ -24,7 +24,7 @@ export function Statistic({
 function TeamStats({ game }: TeamGroupStatistics) {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Team Stats</h1>
+      {/* <h1 className="text-2xl font-bold">Team Stats</h1> */}
       <Table>
         <tbody>
           <tr>

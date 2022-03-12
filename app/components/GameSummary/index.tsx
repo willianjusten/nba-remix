@@ -12,7 +12,7 @@ export type GameSummaryProps = {
 
 function GameSummary({ game }: GameSummaryProps) {
   return (
-    <div className="py-5">
+    <div className="py-3 px-3 max-w-screen-sm">
       <h1 className="text-2xl font-semibold">Game Summary</h1>
       <div className="overflow-x-auto">
         <Table>

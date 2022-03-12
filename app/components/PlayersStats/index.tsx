@@ -4,9 +4,9 @@ import type { PlayerStats, TeamPlayerStats } from '~/types'
 function PlayersStats({ team }: TeamPlayerStats) {
   return (
     <div>
-      <h1 className="text-2xl font-bold">
+      {/* <h1 className="text-2xl font-bold">
         {team.tc} {team.tn}
-      </h1>
+      </h1> */}
       <Table>
         <TableHead>
           <tr>

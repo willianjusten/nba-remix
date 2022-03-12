@@ -29,7 +29,7 @@ const GameCard = ({
   return (
     <article
       className={cn(
-        'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750',
+        'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750 self-center',
         {
           'hover:cursor-pointer hover:bg-slate-700': interactive,
         },

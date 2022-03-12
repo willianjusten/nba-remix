@@ -20,3 +20,8 @@
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
   background-color: #0f172a;
 }
+
+.DayPicker-Footer {
+  display: flex;
+  justify-content: center;
+}

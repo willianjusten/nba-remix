@@ -20,7 +20,9 @@
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
   background-color: #0f172a;
 }
-
+.DayPicker-TodayButton {
+  color: #3b82f6;
+}
 .DayPicker-Footer {
   display: flex;
   justify-content: center;

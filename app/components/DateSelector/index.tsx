@@ -35,6 +35,9 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
           onDayChange={(selectedDay) =>
             navigate(`/${format(selectedDay, DATE_LINK_FORMAT)}`)
           }
+          dayPickerProps={{
+            todayButton: 'Go to today'
+          }}
         />
 
         <Link

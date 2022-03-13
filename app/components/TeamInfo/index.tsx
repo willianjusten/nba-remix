@@ -1,13 +1,14 @@
-import TeamLogo from '../TeamLogo'
-
 import { TEAM_NAME } from '~/constants'
+
+import { TeamLogo } from '~/components/TeamLogo'
+
 import type { Team } from '~/types'
 
 export type TeamInfoProps = {
   team: Team
 }
 
-function TeamInfo({ team }: TeamInfoProps) {
+export function TeamInfo({ team }: TeamInfoProps) {
   return (
     <div className="flex w-1/4 flex-col items-center text-center">
       <TeamLogo team={team.triCode} size={48} />
@@ -20,5 +21,3 @@ function TeamInfo({ team }: TeamInfoProps) {
     </div>
   )
 }
-
-export default TeamInfo

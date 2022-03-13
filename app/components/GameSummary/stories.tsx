@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react'
-import GameSummary, { GameSummaryProps } from '.'
+
+import { GameSummary, GameSummaryProps } from '.'
 
 export default {
   title: 'GameSummary',
@@ -9,7 +10,7 @@ export default {
       default: 'dark',
     },
   },
-} as Meta
+} as Meta<GameSummaryProps>
 
 export const Default: Story<GameSummaryProps> = (args) => (
   <GameSummary {...args} />

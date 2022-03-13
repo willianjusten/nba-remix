@@ -2,8 +2,9 @@ import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
-import Layout from '~/components/Layout'
-import StandingTable from '~/components/StandingTable'
+
+import { Layout } from '~/components/Layout'
+import { StandingTable } from '~/components/StandingTable'
 
 import { cachedJson } from '~/utils/cachedJson'
 import { conferenceMapper } from '~/utils/mappers'

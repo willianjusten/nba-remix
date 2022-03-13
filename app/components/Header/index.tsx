@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'remix'
 
-function Header() {
+export function Header() {
   const linkClass =
     'text-lg transition-opacity hover:opacity-70 border-b-2 border-transparent hover:border-blue-300'
   const activeLinkClass =
@@ -29,5 +29,3 @@ function Header() {
     </header>
   )
 }
-
-export default Header

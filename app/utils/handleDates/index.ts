@@ -12,6 +12,7 @@ import {
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
 import { DateUtils } from 'react-day-picker'
+
 import {
   COVID_MONTH_END,
   COVID_YEAR,

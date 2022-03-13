@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import GameCard from '.'
+
+import { GameCard } from '.'
 
 const game = {
   startTime: '2022-02-12T22:00:00.000Z',

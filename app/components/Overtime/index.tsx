@@ -1,4 +1,5 @@
 import { TableCell } from '~/components/Table'
+
 import type { TeamScore } from '~/types'
 
 export type OvertimeHeadProps = {

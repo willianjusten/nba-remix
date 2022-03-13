@@ -1,4 +1,4 @@
-function Footer() {
+export function Footer() {
   const linkStyle = 'border-b-blue-500 text-blue-500 hover:border-b-[1px]'
 
   return (
@@ -37,5 +37,3 @@ function Footer() {
     </footer>
   )
 }
-
-export default Footer

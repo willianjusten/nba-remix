@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
-import PlayersStats from '.'
+
+import { PlayersStats } from '.'
 
 describe('<PlayersStats>', () => {
   it('should render correctly', () => {

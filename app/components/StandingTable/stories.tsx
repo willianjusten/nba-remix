@@ -1,14 +1,15 @@
 import { Story, Meta } from '@storybook/react'
-import StandingTable, { StandingTableProps } from '.'
 
-export const Default: Story<StandingTableProps> = (args) => (
-  <StandingTable {...args} />
-)
+import { StandingTable, StandingTableProps } from '.'
 
 export default {
   title: 'StandingTable',
   component: StandingTable,
-} as Meta
+} as Meta<StandingTableProps>
+
+export const Default: Story<StandingTableProps> = (args) => (
+  <StandingTable {...args} />
+)
 
 Default.args = {
   label: 'Eastern Conference',

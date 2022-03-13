@@ -5,7 +5,7 @@ export type TeamLogoProps = {
   size?: number
 }
 
-function TeamLogo({ team, size }: TeamLogoProps) {
+export function TeamLogo({ team, size }: TeamLogoProps) {
   const Icon = NBAIcons[team as keyof typeof NBAIcons]
 
   return Icon ? (
@@ -16,5 +16,3 @@ function TeamLogo({ team, size }: TeamLogoProps) {
     </div>
   )
 }
-
-export default TeamLogo

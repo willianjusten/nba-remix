@@ -1,5 +1,10 @@
 export const DEFAULT_DOMAIN = 'https://nba-remix.vercel.app'
 
+export const API_URL = {
+  base: 'http://data.nba.net/prod/',
+  details: 'https://data.nba.com/',
+}
+
 export const TEAM_NAME = {
   ATL: 'Hawks',
   BKN: 'Nets',

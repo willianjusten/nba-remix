@@ -1,7 +1,6 @@
 import { Story, Meta } from '@storybook/react'
-import TeamInfo, { TeamInfoProps } from '.'
 
-export const Default: Story<TeamInfoProps> = (args) => <TeamInfo {...args} />
+import { TeamInfo, TeamInfoProps } from '.'
 
 export default {
   title: 'TeamInfo',
@@ -9,7 +8,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
-} as Meta
+} as Meta<TeamInfoProps>
+
+export const Default: Story<TeamInfoProps> = (args) => <TeamInfo {...args} />
 
 Default.args = {
   team: {

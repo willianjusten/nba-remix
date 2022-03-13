@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
-import GameSummary from '.'
+
+import { GameSummary } from '.'
 
 describe('<GameSummary>', () => {
   it('should render correctly', () => {

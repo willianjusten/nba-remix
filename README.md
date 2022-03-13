@@ -41,6 +41,22 @@ This project uses [husky](https://www.npmjs.com/package/husky) for pre-commits.
 
 To disable it, add `export HUSKY_SKIP_HOOKS=1` to your shell configuration file (`.zshrc`, `.bashrc`).
 
+## Writing Components
+
+The project favors function components using `function` and avoid using `export default`. Also, always prefer to use `type` instead of `interface`.
+
+When creating a component then the coding style adopted by the project is like this:
+
+```js
+export type MyComponentProps = {
+  myComponentProp?: string,
+}
+
+export function MyComponent({ myComponentProp }: MyComponentProps) {
+  return <>MyComponent</>
+}
+```
+
 ## Maintainers
 
 <table>

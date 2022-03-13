@@ -15,7 +15,19 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "generate": "plop --plopfile generators/plopfile.js",
-    "lint": "eslint app --max-warnings=0"
+    "lint": "eslint app --max-warnings=0",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn eslint --fix",
+      "yarn prettier --write"
+    ]
   },
   "dependencies": {
     "@remix-run/react": "^1.2.3",
@@ -62,7 +74,9 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.3.5",
     "msw": "^0.39.1",
     "plop": "^3.0.5",
     "postcss": "^8.4.8",

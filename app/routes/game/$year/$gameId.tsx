@@ -3,18 +3,19 @@ import { useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
-import ArrowIcon from '~/components/ArrowIcon'
-import GameCard from '~/components/GameCard'
-import GameSummary from '~/components/GameSummary'
-import Layout from '~/components/Layout'
-import PlayerStats from '~/components/PlayersStats'
-import TeamStats from '~/components/TeamStats'
 
 import { DATE_DISPLAY_FORMAT, GAME_STATUS, TIME_TO_REFETCH } from '~/constants'
 
-import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
+import { ArrowIcon } from '~/components/ArrowIcon'
+import { GameCard } from '~/components/GameCard'
+import { GameSummary } from '~/components/GameSummary'
+import { Layout } from '~/components/Layout'
+import { PlayersStats } from '~/components/PlayersStats'
+import { TeamStats } from '~/components/TeamStats'
 
 import { getSocialMetas, getUrl } from '~/utils/seo'
+
+import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
 
 export const meta: MetaFunction = ({ data }) => {
   const date = new Date(data.game.startTimeUTC)
@@ -103,8 +104,8 @@ export default function Game() {
           <GameSummary game={game} />
 
           <div className="flex gap-4 overflow-x-auto md:gap-12 ">
-            <PlayerStats team={game.hTeam} />
-            <PlayerStats team={game.vTeam} />
+            <PlayersStats team={game.hTeam} />
+            <PlayersStats team={game.vTeam} />
 
             <TeamStats game={game} />
           </div>

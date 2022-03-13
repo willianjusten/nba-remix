@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react'
+
 import { Table, TableCell, TableHead } from '.'
 
 export default {

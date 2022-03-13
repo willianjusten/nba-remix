@@ -1,4 +1,5 @@
 import urljoin from 'url-join'
+
 import { DEFAULT_DOMAIN } from '~/constants'
 
 import type { SocialMetas } from '~/types'

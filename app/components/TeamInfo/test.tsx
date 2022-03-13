@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import TeamInfo from '.'
+
+import { TeamInfo } from '.'
 
 const team = {
   score: '',

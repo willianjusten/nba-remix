@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+
 import { Table, TableCell, TableHead } from '.'
 
 describe('<Table>', () => {

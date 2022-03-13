@@ -16,13 +16,61 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
     "import/order": [
       "error",
       {
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "~/api",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "~/constants",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "~/components/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "~/utils/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+        ],
         "alphabetize": {
           "order": "asc"
         }
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["app/*", "app/routes/**/*.tsx", "app/**/stories.tsx"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
 }

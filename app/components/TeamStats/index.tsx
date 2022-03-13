@@ -1,4 +1,5 @@
 import { Table, TableCell } from '~/components/Table'
+
 import type { TeamGroupStatistics } from '~/types'
 
 export type StatisticProps = {
@@ -21,7 +22,7 @@ export function Statistic({
   )
 }
 
-function TeamStats({ game }: TeamGroupStatistics) {
+export function TeamStats({ game }: TeamGroupStatistics) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Team Stats</h1>
@@ -109,5 +110,3 @@ function TeamStats({ game }: TeamGroupStatistics) {
     </div>
   )
 }
-
-export default TeamStats

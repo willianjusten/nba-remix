@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react'
-import GameCard, { GameCardProps } from '.'
+
+import { GameCard, GameCardProps } from '.'
 
 export default {
   title: 'GameCard',
@@ -9,7 +10,7 @@ export default {
       default: 'dark',
     },
   },
-} as Meta
+} as Meta<GameCardProps>
 
 const teams = {
   vTeam: {

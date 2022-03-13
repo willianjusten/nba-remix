@@ -1,5 +1,6 @@
 import { OvertimeHead, OvertimeScore } from '~/components/Overtime'
 import { Table, TableCell, TableHead } from '~/components/Table'
+
 import type { TeamScore } from '~/types'
 
 export type GameSummaryProps = {
@@ -10,7 +11,7 @@ export type GameSummaryProps = {
   }
 }
 
-function GameSummary({ game }: GameSummaryProps) {
+export function GameSummary({ game }: GameSummaryProps) {
   return (
     <div className="py-5">
       <h1 className="text-2xl font-semibold">Game Summary</h1>
@@ -49,5 +50,3 @@ function GameSummary({ game }: GameSummaryProps) {
     </div>
   )
 }
-
-export default GameSummary

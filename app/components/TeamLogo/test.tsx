@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import TeamLogo from '.'
+import { TeamLogo } from '.'
 
 describe('<TeamLogo />', () => {
   it('should render the team TeamLogo', () => {

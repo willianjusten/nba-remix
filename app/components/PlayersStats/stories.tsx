@@ -1,6 +1,8 @@
 import { Story, Meta } from '@storybook/react'
-import PlayersStats from '.'
+
 import type { TeamPlayerStats } from '~/types'
+
+import { PlayersStats } from '.'
 
 export default {
   title: 'PlayersStats',
@@ -10,7 +12,7 @@ export default {
       default: 'dark',
     },
   },
-} as Meta
+} as Meta<TeamPlayerStats>
 
 export const Default: Story<TeamPlayerStats> = (args) => (
   <PlayersStats {...args} />

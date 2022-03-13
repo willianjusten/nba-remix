@@ -1,3 +1,5 @@
+export const DEFAULT_DOMAIN = 'https://nba-remix.vercel.app'
+
 export const TEAM_NAME = {
   ATL: 'Hawks',
   BKN: 'Nets',
@@ -99,6 +101,11 @@ export const WEST_TEAMS = [
   TEAM_ID.SAS,
   TEAM_ID.UTA,
 ]
+
+export const COVID_YEAR = 2020
+export const COVID_MONTH_END = 9
+export const REGULAR_MONTH_END = 5
+export const REGULAR_PERIOD_COUNT = 4
 
 export const DATE_DISPLAY_FORMAT = 'dd MMMM yyyy'
 export const DATE_LINK_FORMAT = 'yyyyMMdd'

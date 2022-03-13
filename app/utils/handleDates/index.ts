@@ -12,11 +12,14 @@ import {
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
 import { DateUtils } from 'react-day-picker'
-import { EST_IANA_ZONE_ID, GAME_STATUS } from '~/constants'
-
-const COVID_YEAR = 2020
-const COVID_MONTH_END = 9
-const REGULAR_MONTH_END = 5
+import {
+  COVID_MONTH_END,
+  COVID_YEAR,
+  EST_IANA_ZONE_ID,
+  GAME_STATUS,
+  REGULAR_MONTH_END,
+  REGULAR_PERIOD_COUNT,
+} from '~/constants'
 
 /**
  * Method to get the year of the league based on the date
@@ -25,7 +28,7 @@ const REGULAR_MONTH_END = 5
  * @param date - Date object to get the year from
  * @returns string - Ex.: '2020'
  */
-export const getLeagueYear = (date: Date) => {
+export function getLeagueYear(date: Date) {
   if (getYear(date) === COVID_YEAR) {
     return getMonth(date) > COVID_MONTH_END
       ? getYear(date)
@@ -46,8 +49,6 @@ export type getTimePeriodArgs = {
   isEndOfPeriod?: boolean
 }
 
-const REGULAR_PERIOD_COUNT = 4
-
 /**
  * Method that returns the time period of the game
  * @param startTime - The start time of the game
@@ -58,14 +59,14 @@ const REGULAR_PERIOD_COUNT = 4
  * @param period - The current period of the game - 0 (not started) | 1-4 (regular) | +4 (OT)
  * @returns string
  */
-export const getTimePeriod = ({
+export function getTimePeriod({
   startTime,
   clock,
   status,
   isHalftime,
   isEndOfPeriod,
   period = 0,
-}: getTimePeriodArgs) => {
+}: getTimePeriodArgs) {
   const overtime =
     period > REGULAR_PERIOD_COUNT ? `OT${period - REGULAR_PERIOD_COUNT}` : ''
 
@@ -85,7 +86,7 @@ export const getTimePeriod = ({
  * @param date - string of the day - Ex.: '20220214'
  * @returns object of date objects
  */
-export const getDays = (date?: string) => {
+export function getDays(date?: string) {
   let timeZonedDay: Date
   const now = new Date().toISOString()
   const etNow = utcToZonedTime(now, EST_IANA_ZONE_ID)
@@ -115,7 +116,7 @@ export const getDays = (date?: string) => {
  * @param dateFormat - string of the date format - Ex.: 'dd MMM yyyy'
  * @returns date object
  */
-export const parseDate = (str: string, dateFormat: string) => {
+export function parseDate(str: string, dateFormat: string) {
   const parsed = parse(str, dateFormat, new Date())
   if (DateUtils.isDate(parsed)) {
     return parsed
@@ -129,6 +130,6 @@ export const parseDate = (str: string, dateFormat: string) => {
  * @param dateFormat - string of the date format - Ex.: 'dd MMMM yyyy'
  * @returns string
  */
-export const formatDate = (date: Date, dateFormat: string) => {
+export function formatDate(date: Date, dateFormat: string) {
   return format(date, dateFormat)
 }

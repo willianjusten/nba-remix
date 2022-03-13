@@ -1,19 +1,12 @@
-import NProgress from 'nprogress'
 import nProgressStyles from 'nprogress/nprogress.css'
-import { useEffect } from 'react'
-
 import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
+  Links, LinksFunction, LiveReload,
+  Meta, MetaFunction, Outlet,
   Scripts,
-  ScrollRestoration,
-  useTransition,
+  ScrollRestoration
 } from 'remix'
-import type { LinksFunction, MetaFunction } from 'remix'
-
 import Layout from './components/Layout'
+import { useNProgress } from './hooks/use-nprogress'
 import styles from './tailwind.css'
 
 export const meta: MetaFunction = () => {
@@ -35,15 +28,8 @@ export type ErrorBoundaryProps = {
 }
 
 export default function App() {
-  let transition = useTransition()
 
-  useEffect(() => {
-    // when the state is idle then we can to complete the progress bar
-    if (transition.state === 'idle') NProgress.done()
-    // and when it's something else it means it's either submitting a form or
-    // waiting for the loaders of the next location so we start it
-    else NProgress.start()
-  }, [transition.state])
+  useNProgress()
 
   return (
     <html lang="en">
@@ -81,7 +67,7 @@ export default function App() {
   )
 }
 
-export function ErrorBoundary({ error } : ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: ErrorBoundaryProps) {
   console.error(error);
 
   return (

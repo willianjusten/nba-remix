@@ -2,8 +2,8 @@ import { EAST_TEAMS, WEST_TEAMS } from '~/constants'
 
 import type { TeamStanding } from '~/types'
 
-export const conferenceMapper = (teams: TeamStanding[], isEast: boolean) =>
-  teams
+export function conferenceMapper(teams: TeamStanding[], isEast: boolean) {
+  return teams
     .filter((team) =>
       isEast
         ? EAST_TEAMS.includes(team.teamId)
@@ -23,3 +23,4 @@ export const conferenceMapper = (teams: TeamStanding[], isEast: boolean) =>
       streak: `${team.isWinStreak ? team.streak : -team.streak}`,
     }))
     .sort((a, b) => +a.rank - +b.rank)
+}

@@ -1,19 +1,27 @@
 import urljoin from 'url-join'
+import { DEFAULT_DOMAIN } from '~/constants'
 
 import type { SocialMetas } from '~/types'
 
-const defaultDomain = 'https://nba-remix.vercel.app/'
-
-export const getSocialMetas = ({
+/**
+ * Returns a object of social metas
+ * @param url - the url of the page
+ * @param title - the title of the page
+ * @param description - the description of the page
+ * @param origin - the origin of the page
+ * @param image - the image of the page
+ * @returns object
+ */
+export function getSocialMetas({
   url,
   title,
   description,
   origin,
   image,
-}: SocialMetas) => {
+}: SocialMetas) {
   const parsedImage = image
     ? image
-    : urljoin(origin ?? defaultDomain, '/images/og-image.jpg')
+    : urljoin(origin ?? DEFAULT_DOMAIN, '/images/og-image.jpg')
 
   const tags: { [key: string]: string } = {
     url,
@@ -37,12 +45,22 @@ export const getSocialMetas = ({
   return tags
 }
 
+/**
+ * Returns the canonical URL
+ * @param url - The url of the page
+ * @returns string
+ */
 export function removeTrailingSlash(url: string) {
   return url.endsWith('/') ? url.slice(0, -1) : url
 }
 
+/**
+ * Returns the current url of the request
+ * @param requestInfo - The request info object
+ * @returns string
+ */
 export function getUrl(requestInfo: { origin: string; pathname: string }) {
   return removeTrailingSlash(
-    urljoin(requestInfo.origin ?? defaultDomain, requestInfo.pathname ?? ''),
+    urljoin(requestInfo.origin ?? DEFAULT_DOMAIN, requestInfo.pathname ?? ''),
   )
 }

@@ -1,8 +1,11 @@
 import { format } from 'date-fns'
 import { Link, useNavigate } from 'remix'
-import ArrowIcon from '../ArrowIcon'
-import DayPickerInput from '../DayPickerInput'
+
 import { DATE_LINK_FORMAT, DATE_DISPLAY_FORMAT } from '~/constants'
+
+import { ArrowIcon } from '~/components/ArrowIcon'
+import { DayPickerInput } from '~/components/DayPickerInput'
+
 import { formatDate, parseDate } from '~/utils/handleDates'
 
 export type DateSelectorProps = {
@@ -11,13 +14,13 @@ export type DateSelectorProps = {
   prevDay: Date
 }
 
-function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
+export function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
   const navigate = useNavigate()
 
   return (
     <div className="flex flex-col py-12">
       <h1 className="mb-3 text-4xl font-bold">Games</h1>
-      <div className="justify-between pt-4 flex items-center gap-5 sm:justify-start">
+      <div className="flex items-center justify-between gap-5 pt-4 sm:justify-start">
         <Link
           prefetch="intent"
           className="p-2"
@@ -36,7 +39,7 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
             navigate(`/${format(selectedDay, DATE_LINK_FORMAT)}`)
           }
           dayPickerProps={{
-            todayButton: 'Go to today'
+            todayButton: 'Go to today',
           }}
         />
 
@@ -51,5 +54,3 @@ function DateSelector({ day, nextDay, prevDay }: DateSelectorProps) {
     </div>
   )
 }
-
-export default DateSelector

@@ -1,9 +1,6 @@
 import fetch from 'cross-fetch'
 
-export const API_URL = {
-  base: 'http://data.nba.net/prod/',
-  details: 'https://data.nba.com/',
-}
+import { API_URL } from '~/constants'
 
 class API {
   static async getStandings() {
@@ -39,4 +36,5 @@ class API {
   }
 }
 
+// eslint-disable-next-line import/no-default-export
 export default API

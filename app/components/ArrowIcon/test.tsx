@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import ArrowIcon from '.'
+import { ArrowIcon } from '.'
 
 describe('<ArrowIcon />', () => {
   it('should render correctly', () => {

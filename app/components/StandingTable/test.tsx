@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import StandingTable from '.'
+
+import { StandingTable } from '.'
 
 describe('<StandingTable>', () => {
   it('should render correctly', () => {

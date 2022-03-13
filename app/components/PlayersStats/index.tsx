@@ -1,7 +1,8 @@
 import { Table, TableCell, TableHead } from '~/components/Table'
+
 import type { PlayerStats, TeamPlayerStats } from '~/types'
 
-function PlayersStats({ team }: TeamPlayerStats) {
+export function PlayersStats({ team }: TeamPlayerStats) {
   return (
     <div>
       <h1 className="text-2xl font-bold">
@@ -36,5 +37,3 @@ function PlayersStats({ team }: TeamPlayerStats) {
     </div>
   )
 }
-
-export default PlayersStats

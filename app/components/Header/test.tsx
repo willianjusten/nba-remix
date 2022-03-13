@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { LinkProps } from 'remix'
 
-import Header from '.'
+import { Header } from '.'
 
 jest.mock('remix', () => ({
   Link: ({ children }: LinkProps) => <a href="/">{children}</a>,

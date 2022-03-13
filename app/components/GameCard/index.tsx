@@ -1,18 +1,22 @@
-import cn from 'classnames'
 import { useMemo } from 'react'
 
-import TeamInfo from '../TeamInfo'
+import cn from 'classnames'
+
 import { GAME_STATUS } from '~/constants'
-import type { Game } from '~/types'
+
+import { TeamInfo } from '~/components/TeamInfo'
+
 import { getWinner } from '~/utils/getWinner'
 import { getTimePeriod } from '~/utils/handleDates'
+
+import type { Game } from '~/types'
 
 export type GameCardProps = Game & {
   details?: boolean
   interactive?: boolean
 }
 
-const GameCard = ({
+export function GameCard({
   vTeam,
   hTeam,
   startTime,
@@ -23,7 +27,7 @@ const GameCard = ({
   clock,
   details = true,
   interactive = true,
-}: GameCardProps) => {
+}: GameCardProps) {
   const winner = useMemo(() => getWinner(vTeam, hTeam), [vTeam, hTeam])
 
   return (
@@ -90,5 +94,3 @@ const GameCard = ({
     </article>
   )
 }
-
-export default GameCard

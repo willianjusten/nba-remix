@@ -12,6 +12,7 @@ import {
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
 import { DateUtils } from 'react-day-picker'
+
 import { EST_IANA_ZONE_ID, GAME_STATUS } from '~/constants'
 
 const COVID_YEAR = 2020

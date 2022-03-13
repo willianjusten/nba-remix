@@ -1,26 +1,14 @@
 import { Table, TableCell, TableHead } from '~/components/Table'
-import TeamLogo from '~/components/TeamLogo'
+import { TeamLogo } from '~/components/TeamLogo'
 
-export type TeamConference = {
-  rank: string
-  name: string
-  code: string
-  win: string
-  loss: string
-  percentage: string
-  gamesBehind: string
-  homeRecord: string
-  awayRecord: string
-  lastTenRecord: string
-  streak: string
-}
+import { TeamConference } from '~/types'
 
 export type StandingTableProps = {
   label: string
   conference: TeamConference[]
 }
 
-function StandingTable({ label, conference }: StandingTableProps) {
+export function StandingTable({ label, conference }: StandingTableProps) {
   return (
     <div className="overflow-x-auto py-5">
       <h1 className="text-3xl font-bold text-white">{label}</h1>
@@ -64,5 +52,3 @@ function StandingTable({ label, conference }: StandingTableProps) {
     </div>
   )
 }
-
-export default StandingTable

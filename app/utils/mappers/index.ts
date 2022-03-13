@@ -1,4 +1,5 @@
 import { EAST_TEAMS, WEST_TEAMS } from '~/constants'
+
 import type { TeamStanding } from '~/types'
 
 export const conferenceMapper = (teams: TeamStanding[], isEast: boolean) =>

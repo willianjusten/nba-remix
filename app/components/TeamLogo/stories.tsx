@@ -1,6 +1,8 @@
 import { Story, Meta } from '@storybook/react'
-import TeamLogo, { TeamLogoProps } from '.'
+
 import { TEAM_NAME } from '~/constants'
+
+import { TeamLogo, TeamLogoProps } from '.'
 
 export default {
   title: 'TeamLogo',
@@ -11,7 +13,7 @@ export default {
       control: { type: 'select' },
     },
   },
-} as Meta
+} as Meta<TeamLogoProps>
 
 export const Default: Story<TeamLogoProps> = (args) => <TeamLogo {...args} />
 

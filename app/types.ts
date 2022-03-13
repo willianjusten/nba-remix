@@ -56,6 +56,40 @@ export type TeamPlayerStats = {
   }
 }
 
+export type TeamStanding = {
+  teamSitesOnly: {
+    teamNickname: string
+    teamTricode: string
+  }
+  teamId: string
+  confRank: string
+  win: string
+  loss: string
+  winPctV2: string
+  gamesBehind: string
+  homeWin: string
+  homeLoss: string
+  awayWin: string
+  awayLoss: string
+  lastTenWin: string
+  lastTenLoss: string
+  isWinStreak: boolean
+  streak: string
+}
+
+export type TeamConference = {
+  rank: string
+  name: string
+  code: string
+  win: string
+  loss: string
+  percentage: string
+  gamesBehind: string
+  homeRecord: string
+  awayRecord: string
+  lastTenRecord: string
+  streak: string
+}
 export type PlayerStats = {
   num: string
   fn: string
@@ -90,27 +124,6 @@ export type GameList = {
   clock?: string
   vTeam: Team
   hTeam: Team
-}
-
-export type TeamStanding = {
-  teamSitesOnly: {
-    teamNickname: string
-    teamTricode: string
-  }
-  teamId: string
-  confRank: string
-  win: string
-  loss: string
-  winPctV2: string
-  gamesBehind: string
-  homeWin: string
-  homeLoss: string
-  awayWin: string
-  awayLoss: string
-  lastTenWin: string
-  lastTenLoss: string
-  isWinStreak: boolean
-  streak: string
 }
 
 export type SocialMetas = {

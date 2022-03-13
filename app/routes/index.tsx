@@ -3,17 +3,18 @@ import { LinksFunction, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
-import DateSelector from '~/components/DateSelector'
-import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
-import GamesList from '~/components/GamesList'
-import Layout from '~/components/Layout'
 
 import { DATE_LINK_FORMAT, TIME_TO_REFETCH } from '~/constants'
 
-import useRevalidateOnInterval from '~/hooks/use-revalidate-on-interval'
+import { DateSelector } from '~/components/DateSelector'
+import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
+import { GamesList } from '~/components/GamesList'
+import { Layout } from '~/components/Layout'
 
 import { getDays } from '~/utils/handleDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
+
+import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
 
 export const links: LinksFunction = () => [...dayPickerInputStyles()]
 

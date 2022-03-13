@@ -2,7 +2,7 @@ export type ArrowIconProps = {
   size?: number
 } & React.HTMLAttributes<SVGElement>
 
-function ArrowIcon({ size = 12, ...rest }: ArrowIconProps) {
+export function ArrowIcon({ size = 12, ...rest }: ArrowIconProps) {
   return (
     <svg
       fill="none"
@@ -28,5 +28,3 @@ function ArrowIcon({ size = 12, ...rest }: ArrowIconProps) {
     </svg>
   )
 }
-
-export default ArrowIcon

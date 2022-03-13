@@ -1,12 +1,14 @@
 import { Link } from 'remix'
-import GameCard from '../GameCard'
+
+import { GameCard } from '~/components/GameCard'
+
 import type { GameList } from '~/types'
 
 export type GamesListProps = {
   games: GameList[]
 }
 
-function GamesList({ games }: GamesListProps) {
+export function GamesList({ games }: GamesListProps) {
   return (
     <div className="grid grid-cols-auto-fill gap-5">
       {games.length === 0 ? (
@@ -47,5 +49,3 @@ function GamesList({ games }: GamesListProps) {
     </div>
   )
 }
-
-export default GamesList

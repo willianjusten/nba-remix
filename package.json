@@ -24,7 +24,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
+    "app/**/*.{ts,tsx}": [
       "yarn eslint --fix",
       "yarn prettier --write"
     ]

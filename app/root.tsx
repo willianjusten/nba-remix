@@ -1,13 +1,19 @@
 import nProgressStyles from 'nprogress/nprogress.css'
 import {
-  Links, LinksFunction, LiveReload,
-  Meta, MetaFunction, Outlet,
+  Links,
+  LinksFunction,
+  LiveReload,
+  Meta,
+  MetaFunction,
+  Outlet,
   Scripts,
   ScrollRestoration
 } from 'remix'
 import Layout from './components/Layout'
 import { useNProgress } from './hooks/use-nprogress'
 import styles from './tailwind.css'
+
+
 
 export const meta: MetaFunction = () => {
   return { title: 'NBA Games' }

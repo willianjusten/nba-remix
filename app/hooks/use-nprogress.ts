@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 import { useTransition } from 'remix'
 
 /**
- * When the state is idle then we can to complete the progress bar
- * and when it's something else it means it's either submitting a form or
- * waiting for the loaders of the next location so we start it
+ * When the state turns to idle it means the interaction is done.
+ * When it's not idle, it means something is happening yet,
+ * could be waiting for the loaders of the next location or submitting a form.
  */
 
 export function useNProgress() {

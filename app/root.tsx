@@ -14,6 +14,7 @@ import { Layout } from '~/components/Layout'
 
 import { useNProgress } from '~/hooks/use-nprogress'
 
+import { useServiceWorker } from './hooks/use-servicer-worker'
 import styles from './tailwind.css'
 
 export const meta: MetaFunction = () => {
@@ -36,6 +37,7 @@ export type ErrorBoundaryProps = {
 
 export default function App() {
   useNProgress()
+  useServiceWorker()
 
   return (
     <html lang="en">
@@ -43,6 +45,8 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
+        <link rel="manifest" href="/resources/manifest.json" />
+        <link rel="icon" type="favicon" href="/icons/favicon.ico" />
         <Links />
       </head>
       <body>

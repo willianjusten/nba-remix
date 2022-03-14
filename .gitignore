@@ -18,6 +18,7 @@ api/_build
 
 # production
 /build
+public/entry.worker.js
 
 # misc
 .DS_Store

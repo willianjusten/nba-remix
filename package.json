@@ -4,11 +4,13 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "npm run build:css && remix build",
+    "build": "npm run build:css && npm run build:worker && remix build",
     "build:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/tailwind.css --minify",
-    "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "build:worker": "esbuild ./app/entry.worker.ts --outfile=./public/entry.worker.js --minify --bundle --format=esm",
+    "dev": "concurrently \"npm run dev:css\" \"npm run dev:worker\" \"npm run dev:remix\"",
+    "dev:remix": "remix dev",
     "dev:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/tailwind.css --watch",
-    "postinstall": "remix setup node",
+    "dev:worker": "esbuild ./app/entry.worker.ts --outfile=./public/entry.worker.js --bundle --format=esm --define:process.env.NODE_ENV='\"development\"' --watch",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --watch --maxWorkers=25%",
     "test:ci": "jest --runInBand",
@@ -16,7 +18,8 @@
     "build-storybook": "build-storybook",
     "generate": "plop --plopfile generators/plopfile.js",
     "lint": "eslint app --max-warnings=0",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "remix setup node"
   },
   "husky": {
     "hooks": {

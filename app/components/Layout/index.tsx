@@ -7,10 +7,12 @@ export type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-900 bg-main bg-cover bg-center pb-24 text-white">
-      <Header />
-      <main className="container mx-auto flex-grow px-4">{children}</main>
-      <Footer />
+    <div className="flex min-h-screen flex-col bg-slate-900 bg-main  bg-center bg-no-repeat text-white">
+      <div className="bg-gradient-layout min-h-screen backdrop-blur-bg">
+        <Header />
+        <main className="container mx-auto flex-grow px-4">{children}</main>
+        <Footer />
+      </div>
     </div>
   )
 }

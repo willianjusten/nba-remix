@@ -10,8 +10,8 @@ import {
   ScrollRestoration
 } from 'remix'
 
-import { Layout } from './components/Layout'
-import { useNProgress } from './hooks/use-nprogress'
+import { Layout } from '~/components/Layout'
+import { useNProgress } from '~/hooks/use-nprogress'
 
 import styles from './tailwind.css'
 

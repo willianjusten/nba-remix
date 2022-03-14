@@ -1,5 +1,6 @@
-import nProgress from 'nprogress'
 import { useEffect } from 'react'
+
+import nProgress from 'nprogress'
 import { useTransition } from 'remix'
 
 /**

@@ -7,10 +7,11 @@ import {
   MetaFunction,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
 } from 'remix'
 
 import { Layout } from '~/components/Layout'
+
 import { useNProgress } from '~/hooks/use-nprogress'
 
 import styles from './tailwind.css'
@@ -34,7 +35,6 @@ export type ErrorBoundaryProps = {
 }
 
 export default function App() {
-
   useNProgress()
 
   return (
@@ -74,7 +74,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: ErrorBoundaryProps) {
-  console.error(error);
+  console.error(error)
 
   return (
     <html lang="en">

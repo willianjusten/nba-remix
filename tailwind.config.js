@@ -20,9 +20,6 @@ module.exports = {
       gridTemplateColumns: {
         'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
       },
-      backdropBlur: {
-        bg: '105px',
-      },
     },
   },
   plugins: [

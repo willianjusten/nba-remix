@@ -4,6 +4,6 @@
 
 @layer components {
   .bg-gradient-layout {
-    background: linear-gradient(160deg, rgb(12 43 103 / 30%) 55%, rgb(200 15 46 / 30%) 100%);
+    background: linear-gradient(160deg, rgb(14 25 44 / 30%) 55%, rgb(200 15 46 / 30%) 100%);
   }
 }

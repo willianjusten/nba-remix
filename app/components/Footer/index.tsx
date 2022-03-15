@@ -2,7 +2,7 @@ export function Footer() {
   const linkStyle = 'border-b-blue-500 text-blue-500 hover:border-b-[1px]'
 
   return (
-    <footer className="container mx-auto pt-16 text-center">
+    <footer className="container mx-auto pt-16 pb-8 text-center">
       <p>
         {`Created with `}
         <span className="text-rose-600">♥️</span>

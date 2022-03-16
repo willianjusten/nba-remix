@@ -5,6 +5,6 @@
 @layer components {
   .bg-layout {
     background: linear-gradient(160deg, rgb(14 25 44 / 30%) 55%, rgb(200 15 46 / 30%) 100%);
-    @apply flex min-h-screen flex-col bg-slate-900 text-white before:absolute before:h-full before:w-full before:bg-main before:bg-center  before:bg-no-repeat before:blur-[105px] before:content-['']
+    @apply flex min-h-screen flex-col bg-slate-900 text-white before:absolute before:h-full before:w-full before:opacity-50 before:bg-main before:bg-center before:bg-no-repeat before:blur-[105px] before:content-['']
   }
 }

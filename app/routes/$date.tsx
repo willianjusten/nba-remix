@@ -11,7 +11,6 @@ import { links as dayPickerInputStyles } from '~/components/DayPickerInput'
 import { GamesList } from '~/components/GamesList'
 import { Layout } from '~/components/Layout'
 
-import { cachedJson } from '~/utils/cachedJson'
 import { getDays } from '~/utils/handleDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
@@ -46,7 +45,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     data: { games },
   } = await API.getGamesByDate(params.date)
 
-  return cachedJson({ games, requestInfo })
+  return { games, requestInfo }
 }
 
 export default function Index() {

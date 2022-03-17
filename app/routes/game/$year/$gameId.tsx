@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { format } from 'date-fns'
-import { useLoaderData } from 'remix'
+import { useFetcher, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -69,10 +71,29 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default function Game() {
-  useRevalidateOnInterval({ interval: TIME_TO_REFETCH })
+  const { game: loaderGame } = useLoaderData()
+  const fetcher = useFetcher()
+  const params = useParams()
 
-  const { game } = useLoaderData()
+  const [game, setGame] = useState(loaderGame)
+
+  const revalidateFn = () => {
+    //Revalidate only when browser tab is active
+    if (document.visibilityState === 'visible') {
+      fetcher.load(`/game/${params.year}/${params.gameId}`)
+    }
+  }
+
   const handleBackButton = () => window.history.back()
+
+  useRevalidateOnInterval({ interval: TIME_TO_REFETCH, revalidateFn })
+
+  useEffect(() => {
+    if (fetcher.data) {
+      const { game } = fetcher.data
+      setGame(game)
+    }
+  }, [fetcher.data])
 
   return (
     <Layout>

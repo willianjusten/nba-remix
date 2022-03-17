@@ -63,7 +63,7 @@ export function MyComponent({ myComponentProp }: MyComponentProps) {
   <tr>
     <td align="center">
       <a href="https://github.com/adeonir">
-        <img src="https://avatars.githubusercontent.com/u/3428733?v=4?s=100" width="100px;" alt="Adeonir Kohl" />
+        <img src="https://github.com/adeonir.png?v=4?s=100" width="100px;" alt="Adeonir Kohl" />
         <br />
         <sub>
           <b>
@@ -73,8 +73,19 @@ export function MyComponent({ myComponentProp }: MyComponentProps) {
       </a>
     </td>
     <td align="center">
+      <a href="https://github.com/fsilvaco">
+        <img src="https://github.com/fsilvaco.png?v=4?s=100" width="100px;" alt="Flávio Silva" />
+        <br />
+        <sub>
+          <b>
+            Flávio Silva
+          </b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
       <a href="https://github.com/helderburato">
-        <img src="https://avatars.githubusercontent.com/u/862575?v=4?s=100" width="100px;" alt="Helder Berto" />
+        <img src="https://github.com/helderburato.png?v=4?s=100" width="100px;" alt="Helder Berto" />
         <br />
         <sub>
           <b>
@@ -85,7 +96,7 @@ export function MyComponent({ myComponentProp }: MyComponentProps) {
     </td>
     <td align="center">
       <a href="https://github.com/willianjusten">
-        <img src="https://avatars.githubusercontent.com/u/3991845?v=4?s=100" width="100px;" alt="Willian Justen" />
+        <img src="https://github.com/willianjusten.png?v=4?s=100" width="100px;" alt="Willian Justen" />
         <br />
         <sub>
           <b>

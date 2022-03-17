@@ -133,3 +133,7 @@ export type SocialMetas = {
   origin?: string
   image?: string
 }
+
+export type UserPreferences = {
+  favoriteTeam: Team | undefined
+}

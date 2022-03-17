@@ -115,6 +115,7 @@ export const REGULAR_PERIOD_COUNT = 4
 export const DATE_DISPLAY_FORMAT = 'dd MMMM yyyy'
 export const DATE_LINK_FORMAT = 'yyyyMMdd'
 export const EST_IANA_ZONE_ID = 'America/New_York'
+export const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
 export const TIME_TO_REFETCH = 20000 // 20s
 export const TIME_TO_CACHE = 15 // 15s

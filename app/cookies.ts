@@ -2,10 +2,10 @@ import { createCookie } from 'remix'
 
 import { Team, UserPreferences } from '~/types'
 
-const ONE_MONTH_IN_SECONDS = 30 * 24 * 60 * 60
+import { ONE_YEAR_IN_SECONDS } from './constants'
 
 const userPrefsCookie = createCookie('user-prefs', {
-  maxAge: ONE_MONTH_IN_SECONDS,
+  maxAge: ONE_YEAR_IN_SECONDS,
 })
 
 export async function getUserPrefsCookie(request: Request) {

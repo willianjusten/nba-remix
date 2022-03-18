@@ -11,8 +11,8 @@ export function useRevalidateOnInterval({
   interval = 1000,
   revalidateFn,
 }: Options) {
-  let defaultRevalidate = useRevalidate()
-  let revalidate = revalidateFn ?? defaultRevalidate
+  const defaultRevalidate = useRevalidate()
+  const revalidate = revalidateFn ?? defaultRevalidate
 
   useEffect(
     function revalidateOnInterval() {

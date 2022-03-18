@@ -52,14 +52,16 @@ export default function Index() {
   const fetcher = useFetcher()
   const [games, setGames] = useState(loaderGames)
 
-  const revalidateFn = () => {
-    //Revalidate only when browser tab is active
+  const revalidateOnActiveTab = () => {
     if (document.visibilityState === 'visible') {
-      fetcher.load('/')
+      fetcher.load('?index')
     }
   }
 
-  useRevalidateOnInterval({ interval: TIME_TO_REFETCH, revalidateFn })
+  useRevalidateOnInterval({
+    interval: TIME_TO_REFETCH,
+    revalidateFn: revalidateOnActiveTab,
+  })
 
   useEffect(() => {
     if (fetcher.data) {

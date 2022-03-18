@@ -77,8 +77,7 @@ export default function Game() {
 
   const [game, setGame] = useState(loaderGame)
 
-  const revalidateFn = () => {
-    //Revalidate only when browser tab is active
+  const revalidateOnActiveTab = () => {
     if (document.visibilityState === 'visible') {
       fetcher.load(`/game/${params.year}/${params.gameId}`)
     }
@@ -86,7 +85,10 @@ export default function Game() {
 
   const handleBackButton = () => window.history.back()
 
-  useRevalidateOnInterval({ interval: TIME_TO_REFETCH, revalidateFn })
+  useRevalidateOnInterval({
+    interval: TIME_TO_REFETCH,
+    revalidateFn: revalidateOnActiveTab,
+  })
 
   useEffect(() => {
     if (fetcher.data) {

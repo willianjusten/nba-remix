@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { format } from 'date-fns'
-import { LinksFunction, useFetcher, useLoaderData } from 'remix'
+import { json, LinksFunction, useFetcher, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -17,6 +17,7 @@ import { getDays } from '~/utils/handleDates'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
+import { GameList, RequestInfo } from '~/types'
 
 export const links: LinksFunction = () => [...dayPickerInputStyles()]
 
@@ -27,6 +28,11 @@ export const meta: MetaFunction = ({ data }) => {
     title: 'Games for today | NBA Remix',
     description: 'See NBA game results and standings powered by Remix.run',
   })
+}
+
+export type LoaderData = {
+  games: GameList[]
+  requestInfo: RequestInfo
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -43,12 +49,12 @@ export const loader: LoaderFunction = async ({ request }) => {
     data: { games },
   } = await API.getGamesByDate(date)
 
-  return { games, requestInfo }
+  return json<LoaderData>({ games, requestInfo })
 }
 
 export default function Index() {
   const { day, prevDay, nextDay } = getDays()
-  const { games: loaderGames } = useLoaderData()
+  const { games: loaderGames } = useLoaderData<LoaderData>()
   const fetcher = useFetcher()
   const [games, setGames] = useState(loaderGames)
 

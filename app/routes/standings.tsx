@@ -10,6 +10,8 @@ import { cachedJson } from '~/utils/cachedJson'
 import { conferenceMapper } from '~/utils/mappers'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
+import { TeamConference } from '~/types'
+
 export const meta: MetaFunction = ({ data }) => {
   return getSocialMetas({
     url: getUrl(data.requestInfo),
@@ -17,6 +19,12 @@ export const meta: MetaFunction = ({ data }) => {
     title: 'Standings | NBA Remix',
     description: 'See the current standings for NBA',
   })
+}
+
+export type LoaderData = {
+  east: TeamConference[]
+  west: TeamConference[]
+  requestInfo: RequestInfo
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -46,7 +54,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 export default function Standings() {
-  const { east, west } = useLoaderData()
+  const { east, west } = useLoaderData<LoaderData>()
 
   return (
     <Layout>

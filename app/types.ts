@@ -1,3 +1,8 @@
+export type RequestInfo = {
+  origin: string
+  pathname: string
+}
+
 export type Team = {
   score?: string
   triCode: string

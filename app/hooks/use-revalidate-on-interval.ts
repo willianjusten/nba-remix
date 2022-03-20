@@ -4,10 +4,15 @@ import { useRevalidate } from 'remix-utils'
 
 interface Options {
   interval?: number
+  revalidateFn?: () => void
 }
 
-export function useRevalidateOnInterval({ interval = 1000 }: Options) {
-  let revalidate = useRevalidate()
+export function useRevalidateOnInterval({
+  interval = 1000,
+  revalidateFn,
+}: Options) {
+  const defaultRevalidate = useRevalidate()
+  const revalidate = revalidateFn ?? defaultRevalidate
 
   useEffect(
     function revalidateOnInterval() {

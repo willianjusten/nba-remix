@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { format } from 'date-fns'
-import { LinksFunction, useLoaderData } from 'remix'
+import { LinksFunction, useFetcher, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -46,8 +48,27 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Index() {
   const { day, prevDay, nextDay } = getDays()
-  const { games } = useLoaderData()
-  useRevalidateOnInterval({ interval: TIME_TO_REFETCH })
+  const { games: loaderGames } = useLoaderData()
+  const fetcher = useFetcher()
+  const [games, setGames] = useState(loaderGames)
+
+  const revalidateOnActiveTab = () => {
+    if (document.visibilityState === 'visible') {
+      fetcher.load('?index')
+    }
+  }
+
+  useRevalidateOnInterval({
+    interval: TIME_TO_REFETCH,
+    revalidateFn: revalidateOnActiveTab,
+  })
+
+  useEffect(() => {
+    if (fetcher.data) {
+      const { games } = fetcher.data
+      setGames(games)
+    }
+  }, [fetcher.data])
 
   return (
     <Layout>

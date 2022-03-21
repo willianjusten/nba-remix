@@ -4,6 +4,7 @@ export type RequestInfo = {
 }
 
 export type Team = {
+  tn?: string
   score?: string
   triCode: string
   win?: string
@@ -106,7 +107,8 @@ export type PlayerStats = {
 }
 
 export type Game = {
-  startTime: string
+  startTimeUTC?: Date
+  startTime?: string
   status: number
   period: number
   isHalftime?: boolean

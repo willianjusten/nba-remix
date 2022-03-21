@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { format } from 'date-fns'
-import { useFetcher, useLoaderData, useParams } from 'remix'
+import { json, useFetcher, useLoaderData, useParams } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 
 import API from '~/api'
@@ -18,6 +18,7 @@ import { TeamStats } from '~/components/TeamStats'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
+import { Game, RequestInfo } from '~/types'
 
 export const meta: MetaFunction = ({ data }) => {
   const date = new Date(data.game.startTimeUTC)
@@ -34,6 +35,12 @@ export const meta: MetaFunction = ({ data }) => {
     )}`,
   })
 }
+
+export type LoaderData = {
+  game: Game
+  requestInfo: RequestInfo
+}
+
 export const loader: LoaderFunction = async ({ params, request }) => {
   const { year, gameId } = params
   const url = new URL(request.url)
@@ -48,7 +55,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   } = await API.getGameDetails(year, gameId)
 
   // TODO: Move this to a mapper function
-  return {
+  return json<LoaderData>({
     game: {
       // This is needed because the NBA API returns the date separated
       startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
@@ -67,33 +74,40 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       },
     },
     requestInfo,
-  }
+  })
 }
 
-export default function Game() {
+export default function GameDetails() {
   const { game: loaderGame } = useLoaderData()
   const fetcher = useFetcher()
   const params = useParams()
 
   const [game, setGame] = useState(loaderGame)
 
-  const revalidateOnActiveTab = () => {
-    if (document.visibilityState === 'visible') {
-      fetcher.load(`/game/${params.year}/${params.gameId}`)
-    }
+  const setTitle = (game: Game) => {
+    document.title = `${game.vTeam.tn} ${game.vTeam.score} x ${game.hTeam.score} ${game.hTeam.tn} | NBA Remix`
   }
+
+  useEffect(() => {
+    setTitle(game)
+  }, [game])
 
   const handleBackButton = () => window.history.back()
 
+  const revalidateGameData = () => {
+    fetcher.load(`/game/${params.year}/${params.gameId}`)
+  }
+
   useRevalidateOnInterval({
     interval: TIME_TO_REFETCH,
-    revalidateFn: revalidateOnActiveTab,
+    revalidateFn: revalidateGameData,
   })
 
   useEffect(() => {
     if (fetcher.data) {
       const { game } = fetcher.data
       setGame(game)
+      setTitle(game)
     }
   }, [fetcher.data])
 

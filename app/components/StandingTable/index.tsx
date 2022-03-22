@@ -1,5 +1,9 @@
+import cn from 'classnames'
+
 import { Table, TableCell, TableHead } from '~/components/Table'
 import { TeamLogo } from '~/components/TeamLogo'
+
+import { isPlayin, isPlayoff } from '~/utils/handleQualification'
 
 import { TeamConference } from '~/types'
 
@@ -9,6 +13,11 @@ export type StandingTableProps = {
 }
 
 export function StandingTable({ label, conference }: StandingTableProps) {
+  const standing_colors = {
+    playoff: 'bg-green-600',
+    playin: 'bg-sky-600',
+  }
+
   return (
     <div className="overflow-x-auto py-5">
       <h1 className="text-3xl font-bold text-white">{label}</h1>
@@ -28,9 +37,18 @@ export function StandingTable({ label, conference }: StandingTableProps) {
           </tr>
         </TableHead>
         <tbody>
-          {conference.map((team) => (
+          {conference.map((team, index) => (
             <tr key={team.name}>
-              <TableCell>{team.rank}</TableCell>
+              <TableCell>
+                <div
+                  className={cn('rounded-full', {
+                    [standing_colors.playoff]: isPlayoff(index),
+                    [standing_colors.playin]: isPlayin(index),
+                  })}
+                >
+                  {team.rank}
+                </div>
+              </TableCell>
               <TableCell className="flex items-center gap-2">
                 <TeamLogo team={team.code} size={32} />
                 <span>{team.name}</span>
@@ -49,6 +67,20 @@ export function StandingTable({ label, conference }: StandingTableProps) {
           ))}
         </tbody>
       </Table>
+      <div className="flex justify-center">
+        <div className="mr-6 flex items-center">
+          <div
+            className={`mr-2 h-5 w-10 rounded-full ${standing_colors.playoff}`}
+          ></div>
+          <span className="text-sm text-gray-400">Playoffs</span>
+        </div>
+        <div className="flex items-center">
+          <div
+            className={`mr-2 h-5 w-10 rounded-full ${standing_colors.playin}`}
+          ></div>
+          <span className="text-sm text-gray-400">Play-In Tournament</span>
+        </div>
+      </div>
     </div>
   )
 }

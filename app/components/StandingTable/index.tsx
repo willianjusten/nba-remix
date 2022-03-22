@@ -28,9 +28,21 @@ export function StandingTable({ label, conference }: StandingTableProps) {
           </tr>
         </TableHead>
         <tbody>
-          {conference.map((team) => (
+          {conference.map((team, index) => (
             <tr key={team.name}>
-              <TableCell>{team.rank}</TableCell>
+              <TableCell>
+                <div
+                  className={` rounded-full ${
+                    index < 6
+                      ? 'bg-green-900'
+                      : index < 10
+                      ? 'bg-green-600'
+                      : ''
+                  }`}
+                >
+                  {team.rank}
+                </div>
+              </TableCell>
               <TableCell className="flex items-center gap-2">
                 <TeamLogo team={team.code} size={32} />
                 <span>{team.name}</span>
@@ -49,6 +61,16 @@ export function StandingTable({ label, conference }: StandingTableProps) {
           ))}
         </tbody>
       </Table>
+      <div className="flex justify-center">
+        <div className="mr-6 flex items-center">
+          <div className="mr-2 h-5 w-10 rounded-full bg-green-900"></div>
+          <span className="text-sm text-gray-400">Playoffs</span>
+        </div>
+        <div className="flex items-center">
+          <div className="mr-2 h-5 w-10 rounded-full bg-green-600"></div>
+          <span className="text-sm text-gray-400">Play-In Tournament</span>
+        </div>
+      </div>
     </div>
   )
 }

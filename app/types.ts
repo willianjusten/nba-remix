@@ -108,7 +108,7 @@ export type PlayerStats = {
 
 export type Game = {
   startTimeUTC?: Date
-  startTime?: string
+  startTime: string
   status: number
   period: number
   isHalftime?: boolean
@@ -143,4 +143,15 @@ export type SocialMetas = {
 
 export type UserPreferences = {
   favoriteTeam: Team | undefined
+}
+
+export type GameDetailsData = {
+  startTimeUTC: string
+  status: number
+  period: number
+  isHalftime?: boolean
+  isEndOfPeriod?: boolean
+  clock?: string
+  vTeam: Team & TeamScore & TeamPlayerStats['team'] & TeamStatistic
+  hTeam: Team & TeamScore & TeamPlayerStats['team'] & TeamStatistic
 }

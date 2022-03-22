@@ -18,7 +18,7 @@ import { TeamStats } from '~/components/TeamStats'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
-import { Game, RequestInfo } from '~/types'
+import { GameDetailsData, RequestInfo } from '~/types'
 
 export const meta: MetaFunction = ({ data }) => {
   const date = new Date(data.game.startTimeUTC)
@@ -37,7 +37,7 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export type LoaderData = {
-  game: Game
+  game: GameDetailsData
   requestInfo: RequestInfo
 }
 
@@ -58,7 +58,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   return json<LoaderData>({
     game: {
       // This is needed because the NBA API returns the date separated
-      startTimeUTC: new Date(`${game.gdtutc} ${game.utctm} UTC`),
+      startTimeUTC: `${new Date(`${game.gdtutc} ${game.utctm} UTC`)}`,
       period: game.p,
       clock: game.cl,
       status: Number(game.st),
@@ -78,13 +78,13 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default function GameDetails() {
-  const { game: loaderGame } = useLoaderData()
+  const { game: loaderGame } = useLoaderData<LoaderData>()
   const fetcher = useFetcher()
   const params = useParams()
 
   const [game, setGame] = useState(loaderGame)
 
-  const setTitle = (game: Game) => {
+  const setTitle = (game: GameDetailsData) => {
     document.title = `${game.vTeam.tn} ${game.vTeam.score} x ${game.hTeam.score} ${game.hTeam.tn} | NBA Remix`
   }
 

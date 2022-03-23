@@ -18,6 +18,7 @@ import { TeamStats } from '~/components/TeamStats'
 import { getSocialMetas, getUrl } from '~/utils/seo'
 
 import { useRevalidateOnInterval } from '~/hooks/use-revalidate-on-interval'
+import { useTitle } from '~/hooks/use-title'
 import { GameDetailsData, RequestInfo } from '~/types'
 
 export const meta: MetaFunction = ({ data }) => {
@@ -84,14 +85,6 @@ export default function GameDetails() {
 
   const [game, setGame] = useState(loaderGame)
 
-  const setTitle = (game: GameDetailsData) => {
-    document.title = `${game.vTeam.tn} ${game.vTeam.score} x ${game.hTeam.score} ${game.hTeam.tn} | NBA Remix`
-  }
-
-  useEffect(() => {
-    setTitle(game)
-  }, [game])
-
   const handleBackButton = () => window.history.back()
 
   const revalidateGameData = () => {
@@ -103,11 +96,14 @@ export default function GameDetails() {
     revalidateFn: revalidateGameData,
   })
 
+  useTitle(
+    `${game.vTeam.tn} ${game.vTeam.score} x ${game.hTeam.score} ${game.hTeam.tn} | NBA Remix`,
+  )
+
   useEffect(() => {
     if (fetcher.data) {
       const { game } = fetcher.data
       setGame(game)
-      setTitle(game)
     }
   }, [fetcher.data])
 

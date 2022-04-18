@@ -17,6 +17,7 @@ export type GameCardProps = Game & {
 }
 
 export function GameCard({
+  playoffs,
   vTeam,
   hTeam,
   startTime,
@@ -41,7 +42,7 @@ export function GameCard({
     >
       <div className="flex w-full flex-col">
         <div className="flex p-6">
-          <TeamInfo team={vTeam} />
+          <TeamInfo team={vTeam} isPlayoffs={!!playoffs} />
 
           <div className="mt-3 flex flex-1">
             {vTeam.score && (
@@ -69,7 +70,14 @@ export function GameCard({
                   Live
                 </span>
               )}
+
+              {playoffs?.seriesSummaryText && (
+                <span className="mt-3 block text-center text-xs font-semibold capitalize">
+                  {playoffs?.seriesSummaryText}
+                </span>
+              )}
             </p>
+
             {hTeam.score && (
               <p
                 className={cn('w-1/3 text-right text-2xl font-bold', {
@@ -82,7 +90,7 @@ export function GameCard({
             )}
           </div>
 
-          <TeamInfo team={hTeam} />
+          <TeamInfo team={hTeam} isPlayoffs={!!playoffs} />
         </div>
 
         {details && (

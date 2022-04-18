@@ -26,6 +26,7 @@ export function GamesList({ games }: GamesListProps) {
             clock,
             vTeam,
             hTeam,
+            playoffs,
           }) => (
             <Link
               prefetch="intent"
@@ -41,6 +42,7 @@ export function GamesList({ games }: GamesListProps) {
                 clock={clock}
                 vTeam={vTeam}
                 hTeam={hTeam}
+                playoffs={playoffs}
               />
             </Link>
           ),

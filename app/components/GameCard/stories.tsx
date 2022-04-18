@@ -149,3 +149,20 @@ WithoutFooter.args = {
   ...teams,
   details: false,
 }
+
+export const WithPlayoffs: Story<GameCardProps> = (args) => (
+  <div style={{ width: '320px' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+WithPlayoffs.args = {
+  startTime: '2022-02-12T22:00:00.000Z',
+  status: 3,
+  period: 4,
+  clock: '',
+  ...teams,
+  playoffs: {
+    seriesSummaryText: 'PHI leads 1-0',
+  },
+}

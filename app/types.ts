@@ -116,6 +116,9 @@ export type Game = {
   clock?: string
   vTeam: Team
   hTeam: Team
+  playoffs?: {
+    seriesSummaryText: string
+  }
 }
 
 export type GameList = {
@@ -127,6 +130,9 @@ export type GameList = {
     current: number
     isHalftime: boolean
     isEndOfPeriod: boolean
+  }
+  playoffs?: {
+    seriesSummaryText: string
   }
   clock?: string
   vTeam: Team

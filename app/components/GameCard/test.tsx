@@ -59,4 +59,18 @@ describe('<GameCard />', () => {
 
     expect(screen.getByText('Live')).toBeInTheDocument()
   })
+
+  it('should render playoff text when its on playoffs and not render season records', () => {
+    const gameLive = {
+      ...game,
+      playoffs: {
+        seriesSummaryText: 'PHI leads 1-0',
+      },
+    }
+    render(<GameCard {...gameLive} details={false} />)
+
+    expect(screen.getByText('PHI leads 1-0')).toBeInTheDocument()
+
+    expect(screen.queryByText('32-22')).not.toBeInTheDocument()
+  })
 })

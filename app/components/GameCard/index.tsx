@@ -34,13 +34,13 @@ export function GameCard({
   return (
     <article
       className={cn(
-        'flex rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750',
+        'flex h-full rounded-lg border border-main bg-glass text-white backdrop-blur-lg duration-300 firefox:bg-slate-750',
         {
           'hover:cursor-pointer hover:bg-slate-700': interactive,
         },
       )}
     >
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col justify-between">
         <div className="flex p-6">
           <TeamInfo team={vTeam} isPlayoffs={!!playoffs} />
 

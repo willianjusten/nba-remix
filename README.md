@@ -84,8 +84,8 @@ export function MyComponent({ myComponentProp }: MyComponentProps) {
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/helderburato">
-        <img src="https://github.com/helderburato.png?v=4?s=100" width="100px;" alt="Helder Berto" />
+      <a href="https://github.com/helderberto">
+        <img src="https://github.com/helderberto.png?v=4?s=100" width="100px;" alt="Helder Berto" />
         <br />
         <sub>
           <b>

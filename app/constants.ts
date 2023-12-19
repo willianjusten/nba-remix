@@ -1,7 +1,7 @@
 export const DEFAULT_DOMAIN = 'https://nba-remix.vercel.app'
 
 export const API_URL = {
-  base: 'http://data.nba.net/prod/',
+  base: 'https://proxy.boxscores.site/?apiUrl=stats.nba.com',
   details: 'https://data.nba.com/',
 }
 
@@ -113,7 +113,7 @@ export const REGULAR_MONTH_END = 5
 export const REGULAR_PERIOD_COUNT = 4
 
 export const DATE_DISPLAY_FORMAT = 'dd MMMM yyyy'
-export const DATE_LINK_FORMAT = 'yyyyMMdd'
+export const DATE_LINK_FORMAT = 'yyyy-MM-dd'
 export const EST_IANA_ZONE_ID = 'America/New_York'
 export const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 

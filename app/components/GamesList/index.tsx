@@ -18,30 +18,30 @@ export function GamesList({ games }: GamesListProps) {
       ) : (
         games.map(
           ({
-            seasonYear,
             gameId,
-            startTimeUTC,
-            statusNum,
+            gameCode,
+            gameTimeUTC,
+            gameStatus,
             period,
-            clock,
-            vTeam,
-            hTeam,
+            gameClock,
+            awayTeam,
+            homeTeam,
             playoffs,
           }) => (
             <Link
               prefetch="intent"
-              to={`/game/${seasonYear}/${gameId}`}
+              to={`/game/${gameCode.slice(0, 4)}/${gameId}`}
               key={gameId}
             >
               <GameCard
-                startTime={startTimeUTC}
-                status={statusNum}
+                startTime={gameTimeUTC}
+                status={gameStatus}
                 period={period.current}
                 isEndOfPeriod={period.isEndOfPeriod}
                 isHalftime={period.isHalftime}
-                clock={clock}
-                vTeam={vTeam}
-                hTeam={hTeam}
+                clock={gameClock}
+                vTeam={awayTeam}
+                hTeam={homeTeam}
                 playoffs={playoffs}
               />
             </Link>

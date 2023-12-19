@@ -12,8 +12,11 @@ class API {
     }
   }
 
+  // https://proxy.boxscores.site/?apiUrl=stats.nba.com/stats/scoreboardv3&GameDate=2023-12-18&LeagueID=00
   static async getGamesByDate(date: string | undefined) {
-    const response = await fetch(`${API_URL.base}v2/${date}/scoreboard.json`)
+    const response = await fetch(
+      `${API_URL.base}/stats/scoreboardv3&GameDate=${date}&LeagueID=00`,
+    )
     const data = await response.json()
     return {
       data,

@@ -6,9 +6,10 @@ export type RequestInfo = {
 export type Team = {
   tn?: string
   score?: string
-  triCode: string
-  win?: string
-  loss?: string
+  triCode?: string
+  teamTricode?: string
+  wins?: string
+  losses?: string
 }
 
 export type TeamScore = {
@@ -123,9 +124,10 @@ export type Game = {
 
 export type GameList = {
   gameId: string
+  gameCode: string
   seasonYear: string
-  startTimeUTC: string
-  statusNum: number
+  gameTimeUTC: string
+  gameStatus: number
   period: {
     current: number
     isHalftime: boolean
@@ -134,9 +136,9 @@ export type GameList = {
   playoffs?: {
     seriesSummaryText: string
   }
-  clock?: string
-  vTeam: Team
-  hTeam: Team
+  gameClock?: string
+  awayTeam: Team
+  homeTeam: Team
 }
 
 export type SocialMetas = {

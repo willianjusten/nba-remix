@@ -46,7 +46,9 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   const {
-    data: { games },
+    data: {
+      scoreboard: { games },
+    },
   } = await API.getGamesByDate(date)
 
   return json<LoaderData>({ games, requestInfo })
